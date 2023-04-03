@@ -1,3 +1,15 @@
+game:GetService("StarterGui"):SetCore("SendNotification",{
+		Title = "VectorHub",
+		Text = "Loading..",
+		Icon = "rbxassetid://12932179211",
+		Duration = 5
+		})
+game:GetService("StarterGui"):SetCore("SendNotification",{
+		Title = "VectorHub",
+		Text = "Success!!",
+		Icon = "rbxassetid://12932179211",
+		Duration = 5
+		})
 local Update =  loadstring(Game:HttpGet"https://pastebin.com/raw/gJTc30Sh")()
 local Library = Update:Window("Vector Hub","",Enum.KeyCode.RightControl);
 local main = Library:Tab("Main", "rbxassetid://6026568198")
