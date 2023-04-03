@@ -3,7 +3,18 @@ local win = Update:Window("Turbo Hub","",Enum.KeyCode.RightControl);
 
 
 -- Main Tab --
-
+game:GetService("StarterGui"):SetCore("SendNotification",{
+		Title = "VectorHub",
+		Text = "Loading..",
+		Icon = "rbxassetid://12932179211",
+		Duration = 5
+		})
+game:GetService("StarterGui"):SetCore("SendNotification",{
+		Title = "VectorHub",
+		Text = "Success!!",
+		Icon = "rbxassetid://12932179211",
+		Duration = 5
+		})
 
 local Home = win:Tab("Main", "rbxassetid://6026568198")
 local farm = win:Tab("Auto Farm", "rbxassetid://7044284832")
