@@ -9,6 +9,19 @@ local egg = Library:Tab("Eggs", "rbxassetid://6031265976")
 local misc = Library:Tab("Misc", "rbxassetid://6034509993")
 local cred = Library:Tab("Credits", "rbxassetid://7743866778")
 
+game:GetService("StarterGui"):SetCore("SendNotification",{
+		Title = "VectorHub",
+		Text = "Loading..",
+		Icon = "rbxassetid://12932179211",
+		Duration = 5
+		})
+game:GetService("StarterGui"):SetCore("SendNotification",{
+		Title = "VectorHub",
+		Text = "Success!!",
+		Icon = "rbxassetid://12932179211",
+		Duration = 5
+		})
+
 local player = game.Players.LocalPlayer
 local antiAFK = true
 player.Idled:connect(function()
