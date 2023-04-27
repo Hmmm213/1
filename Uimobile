@@ -14,7 +14,7 @@ ImageButton.Size = UDim2.new(0, 80, 0, 80)
 ImageButton.Draggable = true
 ImageButton.BackgroundColor3 = Color3.fromRGB(28, 107, 186)
 ImageButton.BackgroundTransparency = 1.000
-ImageButton.Image = "rbxassetid://12932179211"
+ImageButton.Image = "rbxassetid://13161580004"
 ImageButton.MouseButton1Down:connect(function()
 game.CoreGui:FindFirstChild("VectorHub").Enabled = not game.CoreGui:FindFirstChild("VectorHub").Enabled
 end)
@@ -211,7 +211,7 @@ local Logo = Instance.new("ImageLabel")
 	Logo.BackgroundTransparency = 1.000
 	Logo.Position = UDim2.new(0, 10, 0, 10)
 	Logo.Size = UDim2.new(0, 150, 0, 150)
-	Logo.Image = "rbxassetid://12932179211"
+	Logo.Image = "rbxassetid://13161580004"
 local Tab = Instance.new("Frame")
 Tab.Name = "Tab" 
 Tab.Parent = Main
@@ -832,7 +832,7 @@ imgLabelIcon.Name = "Icon"
 				imgLabelIcon.BackgroundTransparency = 1.000
 				imgLabelIcon.Position = UDim2.new(0, 5, 0, 1)
 				imgLabelIcon.Size = UDim2.new(0, 30, 0, 30)
-				imgLabelIcon.Image = "rbxassetid://12362129605" 
+				imgLabelIcon.Image = "rbxassetid://"  
 
 Title.Parent = Button
 Title.BackgroundColor3 = Color3.fromRGB(150, 150, 150)
