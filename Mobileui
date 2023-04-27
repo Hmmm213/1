@@ -1179,7 +1179,7 @@ end
                 ImageLabel.BorderSizePixel = 0
                 ImageLabel.Position = UDim2.new(0, 7.5, 0, 7.5)
                 ImageLabel.Size = UDim2.new(0, 30, 0, 30)
-                ImageLabel.Image = "rbxassetid://12362129605"
+                ImageLabel.Image = "rbxassetid://"
                 
                 
                 
