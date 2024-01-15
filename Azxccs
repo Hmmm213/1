@@ -147,6 +147,7 @@ if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7
 				end
 			end
 		end)
+		
 		-- [require module]
 		local CombatFramework = require(game:GetService("Players").LocalPlayer.PlayerScripts:WaitForChild("CombatFramework"))
 		local CombatFrameworkR = getupvalues(CombatFramework)[2]
@@ -228,15 +229,16 @@ if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7
 				end
 			end
 		end
+		_G.FastAttack = true
 		spawn(function()
 				setscriptable(game.Players.LocalPlayer, "SimulationRadius", true)
 				sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
-				while _G.FastAttack do wait(0)
-				task.wait(0.033) --0.035ไม่หลุด
+				while _G.FastAttack do wait()
+				task.wait(0.033)
 				yakmefan()
 				end
 		end)
-		
+
 	repeat wait(0) until game:IsLoaded()
 	if game:GetService("Players").LocalPlayer.PlayerGui.Main:FindFirstChild("ChooseTeam")  then
 		repeat wait()
