@@ -234,7 +234,7 @@ if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7
 				setscriptable(game.Players.LocalPlayer, "SimulationRadius", true)
 				sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
 				while _G.FastAttack do wait()
-				task.wait(0.033)
+				task.wait(0.03)
 				yakmefan()
 				end
 		end)
