@@ -234,7 +234,7 @@ if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7
 					setscriptable(game.Players.LocalPlayer, "SimulationRadius", true)
 					sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
 					while _G.FastAttack do wait()
-					task.wait(0.03)
+					task.wait(0.035)
 					yakmefan()
 					end
 			end)
@@ -3443,7 +3443,7 @@ function GetMaterial(matname)
 		local Distance = (RealTarget.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).Magnitude
 		
 		if TweenPlay < 100 then
-			TweeSpeed = 700
+			TweeSpeed = 650
 		elseif Distance < 250 then
 			Speed = 590
 		elseif Distance < 500 then
@@ -3454,7 +3454,7 @@ function GetMaterial(matname)
 			Speed = 330
 		end
 		
-		if _G.BypassTP then
+		if _G.Bypass_TP then
 		if Distance > 3000 and not AutoFarmMaterial and not _G.AutoGodHumanand and not _G.AutoRaids and not (game.Players.LocalPlayer.Backpack:FindFirstChild("Special Microchip") or game.Players.LocalPlayer.Character:FindFirstChild("Special Microchip") or game.Players.LocalPlayer.Backpack:FindFirstChild("God's Chalice") or game.Players.LocalPlayer.Character:FindFirstChild("God's Chalice") or game.Players.LocalPlayer.Backpack:FindFirstChild("Hallow Essence") or game.Players.LocalPlayer.Character:FindFirstChild("Hallow Essence") or game.Players.LocalPlayer.Character:FindFirstChild("Sweet Chalice") or game.Players.LocalPlayer.Backpack:FindFirstChild("Sweet Chalice")) and not (Name == "Fishman Commando" or Name == "Fishman Warrior") then
 			repeat wait() game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(-5076.60107, 314.54129, -3152.13086, 0.351963997, -4.56893581e-08, -0.93601352, 6.84364423e-08, 1, -2.30789325e-08, 0.93601352, -5.59344855e-08, 0.351963997))  until (CFrame.new(-5076.60107, 314.54129, -3152.13086, 0.351963997, -4.56893581e-08, -0.93601352, 6.84364423e-08, 1, -2.30789325e-08, 0.93601352, -5.59344855e-08, 0.351963997).Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 3
 			wait(1)
@@ -3528,7 +3528,7 @@ function GetMaterial(matname)
 				_G.Clip = false
 			end
 	
-			if TweenPlay > 2000 and _G.Bypass_TP then
+			if TweenPlay > 3000 and _G.Bypass_TP then
 				repeat wait() game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(-5076.60107, 314.54129, -3152.13086, 0.351963997, -4.56893581e-08, -0.93601352, 6.84364423e-08, 1, -2.30789325e-08, 0.93601352, -5.59344855e-08, 0.351963997))  until (CFrame.new(-5076.60107, 314.54129, -3152.13086, 0.351963997, -4.56893581e-08, -0.93601352, 6.84364423e-08, 1, -2.30789325e-08, 0.93601352, -5.59344855e-08, 0.351963997).Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 3
 				wait(1)
 				pcall(function() 
@@ -3568,7 +3568,7 @@ function GetMaterial(matname)
 				LocalPlayer.Humanoid.AutoRotate = true
 			end
 			if TweenPlay < 100 then
-				TweeSpeed = 700
+				TweeSpeed = 650
 		elseif TweenPlay < 250 then
 				TweeSpeed = 590
 			elseif TweenPlay < 500 then
@@ -5834,7 +5834,6 @@ spawn(function()
                                             v.Humanoid.JumpPower = 0
                                             v.Humanoid.WalkSpeed = 0
                                             v.HumanoidRootPart.CanCollide = false
-                                            v.Humanoid:ChangeState(11)
                                             getgenv().ToTarget(v.HumanoidRootPart.CFrame * MethodFarm)
                                         until not _G.Auto_Farm_Bone  or v.Humanoid.Health <= 0 or not v.Parent or v.Humanoid.Health <= 0
                                         StartMagnet = false
@@ -6245,7 +6244,7 @@ spawn(function()
 	task.spawn(function()
 		while task.wait() do
 			pcall(function()
-				if _G.StartMagnet or BringMobFarm or _G.BringNormal or MagnetEctoplasm or StartEvoMagnet or StartRengokuMagnet or StartMagnetMusketeerhat then 
+				if _G.StartMagnet or BringMobFarm or _G.BringNormal or MagnetEctoplasm or StartEvoMagnet or StartRengokuMagnet or StartMagnetMusketeerhat or _G.Settings.Brimob then 
 					for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
 						if not string.find(v.Name,"Boss") and (v.HumanoidRootPart.Position - PosMon.Position).magnitude <= 200 then -- หลัก
 							if InMyNetWork(v.HumanoidRootPart) then
