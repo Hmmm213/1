@@ -3942,39 +3942,6 @@ function GetMaterial(matname)
 		return
 	end
 	
-	function TPPlayer(Point)
-		TweeSpeed = 300
-		local LocalPlayer = game.Players.LocalPlayer 
-		TweenPlay = (Point.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
-		pcall(function() 
-				tot = game:GetService("TweenService"):Create(LocalPlayer.Character.HumanoidRootPart,TweenInfo.new(TweenPlay/TweeSpeed, Enum.EasingStyle.Linear),{CFrame = Point})
-		end);tot:Play()
-		if TweenPlay >= 1200 then
-			game.Players.LocalPlayer.Character.Head:Destroy()
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Point * CFrame.new(0,50,0)
-			wait(.2)
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Point
-			wait(.1)
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Point * CFrame.new(0,50,0)
-			game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = true
-			wait(.1)
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Point
-			wait(0.5)
-			game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = false
-			_G.Clip = false
-		elseif TweenPlay <= 300 then
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Point
-		end
-		if _G.StopTween == true then tot:Cancel();_G.Clip = false end
-		if _G.StopTween then
-			tot:Cancel()
-			BringMobFarm = false
-			UseSkillGun = false
-			_G.UseSkill = false
-		elseif game.Players.LocalPlayer.Character.Humanoid.Health > 0 then
-			tot:Play()
-		end
-	end	
 	
 	function Check_Sword(Sword_Name)
 		for i, v in pairs(game:GetService("ReplicatedStorage").Remotes['CommF_']:InvokeServer("getInventory")) do
@@ -4346,7 +4313,7 @@ end
 						getgenv().ToTarget(CFrameMon)
 					end
 				end
-			elseif MyLevel >= 70 and MyLevel <= 310 then -- ทำฟาร์มคนใหม่
+			elseif MyLevel >= 70 and MyLevel <= 310 then 
 				if QuestC.Visible == false then
 					game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("PlayerHunter")
 				elseif QuestC.Visible == true then
@@ -4361,7 +4328,7 @@ end
 								end
 
 								EquipWeapon(_G.Select_Weapon)
-								TPPlayer(game:GetService("Players")[getgenv().SelectPly].Character.HumanoidRootPart.CFrame * CFrame.new(0,0,5))
+								toTarget(game:GetService("Players")[getgenv().SelectPly].Character.HumanoidRootPart.CFrame * CFrame.new(0,0,5))
 								game:GetService("Players")[getgenv().SelectPly].Character.HumanoidRootPart.Size = Vector3.new(120,120,120)
 								if (game:GetService("Players")[getgenv().SelectPly].Character.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 6 then
 								game:service('VirtualInputManager'):SendKeyEvent(true, "X", false, game)
@@ -12715,7 +12682,7 @@ spawn(function()
 	end
 end)
 FakeDamage("Vector Hub")
-Vec("<Color=Yellow>เอาใหม่<Color=/>")
+Vec("<Color=Yellow>กูไม่เคยยอมแพ้<Color=/>")
 	--Vec("<Color=Yellow>:ENG:\n:If the gui doesn't load, use Fluxus in the Executor room:\n:TH:\n:ถ้าหน้าต่างโปรไม่โหลดให้ใช้ Fluxus ที่ผมแจกในห้อง Executor:<Color=/>")
 else
 	game.Players.LocalPlayer:Kick("..")
