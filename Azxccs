@@ -2969,13 +2969,13 @@ function GetMaterial(matname)
 		local Lvl = game:GetService("Players").LocalPlayer.Data.Level.Value
 		if Lvl >= 1 and Lvl <= 9 then
 			if tostring(game.Players.LocalPlayer.Team) == "Marines" then
-				MobName = "Trainee [Lv. 5]"
+				MobName = "Trainee"
 				QuestName = "MarineQuest"
 				QuestLevel = 1
 				Mon = "Trainee"
 				NPCPosition = CFrame.new(-2709.67944, 24.5206585, 2104.24585, -0.744724929, -3.97967455e-08, -0.667371571, 4.32403588e-08, 1, -1.07884304e-07, 0.667371571, -1.09201515e-07, -0.744724929)
 			elseif tostring(game.Players.LocalPlayer.Team) == "Pirates" then
-				MobName = "Bandit [Lv. 5]"
+				MobName = "Bandit"
 				Mon = "Bandit"
 				QuestName = "BanditQuest1"
 				QuestLevel = 1
@@ -2993,7 +2993,7 @@ function GetMaterial(matname)
 		end
 	
 		if Lvl >= 210 and Lvl <= 249 then
-			MobName = "Dangerous Prisoner [Lv. 210]"
+			MobName = "Dangerous Prisoner"
 			QuestName = "PrisonerQuest"
 			QuestLevel = 2
 			Mon = "Dangerous Prisoner"
@@ -3068,13 +3068,13 @@ function GetMaterial(matname)
 		if QuestName == "MarineQuest2" then
 			QuestName = "MarineQuest2"
 			QuestLevel = 1
-			MobName = "Chief Petty Officer [Lv. 120]"
+			MobName = "Chief Petty Officer"
 			Mon = "Chief Petty Officer"
 			LevelRequire = 120
 		elseif QuestName == "ImpelQuest" then
 			QuestName = "PrisonerQuest"
 			QuestLevel = 2
-			MobName = "Dangerous Prisoner [Lv. 190]"
+			MobName = "Dangerous Prisoner"
 			Mon = "Dangerous Prisoner"
 			LevelRequire = 210
 			NPCPosition = CFrame.new(5310.60547, 0.350014925, 474.946594, 0.0175017118, 0, 0.999846935, 0, 1, 0, -0.999846935, 0, 0.0175017118)
@@ -3087,7 +3087,7 @@ function GetMaterial(matname)
 		elseif QuestName == "Area2Quest" and QuestLevel == 2 then
 			QuestName = "Area2Quest"
 			QuestLevel = 1
-			MobName = "Swan Pirate [Lv. 775]"
+			MobName = "Swan Pirate"
 			Mon = "Swan Pirate"
 			LevelRequire = 775
 		end
