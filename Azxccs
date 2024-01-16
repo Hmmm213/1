@@ -152,6 +152,14 @@ end
 			FastAttackSpeed = true
 			_G.Fast = true
 		end
+spawn(function()
+	while task.wait(0) do
+		if _G.FastAttack then
+			game:GetService("VirtualUser"):CaptureController()
+			game:GetService("VirtualUser"):Button1Down(Vector2.new(1280, 672), game.Workspace.CurrentCamera.CFrame)
+		end
+	end
+end)
 		local CameraShaker = require(game.ReplicatedStorage.Util.CameraShaker)
 		CombatFrameworkR = require(game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework)
 		y = debug.getupvalues(CombatFrameworkR)[2]
