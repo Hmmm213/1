@@ -4351,7 +4351,7 @@ end
 					game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("PlayerHunter")
 				elseif QuestC.Visible == true then
 					if string.find(quest,"Defeat") then
-						if game.Players[getgenv().SelectPly].Data.Level.Value >= 20 and game.Players[getgenv().SelectPly].Data.Level.Value <= MyLevel * 2 then
+		
 							repeat task.wait()
 								if not game.Players.LocalPlayer.Character:FindFirstChild("HasBuso") then
 									game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Buso")
@@ -4387,21 +4387,6 @@ end
 							if not game.Players:FindFirstChild(Player) then
 								game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("PlayerHunter")
 							end
-						else
-							for i,v in pairs(PlayersAll) do
-								if v.Data.Level.Value >= 20 and v.Data.Level.Value <= PlayerLevel * 2 then
-									game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("PlayerHunter")
-									print(v)
-								else
-									_G.ChackPlayer = _G.ChackPlayer + 1
-									if _G.ChackPlayer >= 12 then
-										_G.AutoFarmFast = false
-									else
-										print("Chack Player ".._G.ChackPlayer)
-									end
-								end
-							end
-						end
 					end
 				end
 			end
@@ -12741,7 +12726,7 @@ spawn(function()
 	end
 end)
 FakeDamage("Vector Hub")
-Vec("<Color=Yellow>Vector Hub loaded Finished ฟาสหลุดไหม<Color=/>")
+Vec("<Color=Yellow>เทสฆ่าคน<Color=/>")
 	--Vec("<Color=Yellow>:ENG:\n:If the gui doesn't load, use Fluxus in the Executor room:\n:TH:\n:ถ้าหน้าต่างโปรไม่โหลดให้ใช้ Fluxus ที่ผมแจกในห้อง Executor:<Color=/>")
 else
 	game.Players.LocalPlayer:Kick("..")
