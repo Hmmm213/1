@@ -4003,8 +4003,12 @@ function GetMaterial(matname)
 		Name = "General"
 	})
 	
-		
-	local E  = InfoSection:AddLabel({Name = "..."})
+	local CredtSection = MainTab:CreateSection({
+		Name = "Credit",
+		Side = "Left"
+	})
+	
+	local E  = CredtSection:AddLabel({Name = "..."})
 	function UpdateInfo()
 		local gameTime = math.floor(workspace.DistributedGameTime + 0.5)
 		local hour = math.floor(gameTime / (60^2)) % 24
@@ -4020,10 +4024,6 @@ function GetMaterial(matname)
 		end
 	end)
 	
-	local CredtSection = MainTab:CreateSection({
-		Name = "Credit",
-		Side = "Left"
-	})
 	CredtSection:AddLabel({
 		Name = "Script Made By Ryuenz#6264\nUi library Made By Ares"
 	})
@@ -4154,7 +4154,7 @@ function GetMaterial(matname)
 			Dey_Stats:Set("Day : "..os.date('%A, %B %d '))
 		end
 	end)
-	
+
 	local MainSection = MainTab:CreateSection({
 		Name = "Main",
 		Side = "Left"
