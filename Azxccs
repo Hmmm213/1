@@ -3993,17 +3993,17 @@ function GetMaterial(matname)
 	
 	--------------------------------------------
 	
-	local PepsisWorld = library:Evil()
-	local InfoTab = PepsisWorld:CreateTab({
-		Name = "Information" 
+	local VectorHub = library:Evil()
+	local MainTab = VectorHub:CreateTab({
+		Name = "General"
 	})
-	local InfoSection = InfoTab:CreateSection({
-		Name = "Profile",
+	
+	local CredtSection = MainTab:CreateSection({
+		Name = "Information",
 		Side = "Left"
 	})
 	
-	
-	local E  = InfoSection:AddLabel({Name = "..."})
+	local E  = CredtSection:AddLabel({Name = "..."})
 	function UpdateInfo()
 		local gameTime = math.floor(workspace.DistributedGameTime + 0.5)
 		local hour = math.floor(gameTime / (60^2)) % 24
@@ -4019,10 +4019,6 @@ function GetMaterial(matname)
 		end
 	end)
 	
-	local CredtSection = InfoTab:CreateSection({
-		Name = "Credit",
-		Side = "Left"
-	})
 	CredtSection:AddLabel({
 		Name = "Script Made By Ryuenz#6264\nUi library Made By Ares"
 	})
@@ -4061,60 +4057,36 @@ function GetMaterial(matname)
 	
 	})
 	
-	local InfoStatusSection = InfoTab:CreateSection({
+	local MainSection = MainTab:CreateSection({
 		Name = "Status",
 		Side = "Right"
 	})
 	
-		local Stats_Moon = InfoStatusSection:AddLabel({
+		local FM = MainSection:AddLabel({
 			Name = "Status Moon : 0% 🌑"
 		})
 		
 		task.spawn(function()
-			while task.wait() do
-				pcall(function()
-					if W1 or W2  or W3 then
-						if game:GetService("Lighting").FantasySky.MoonTextureId=="http://www.roblox.com/asset/?id=9709149431" or game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709149431" then
-							Stats_Moon:Set("Status Moon : 100% 🌝")
-						elseif game:GetService("Lighting").FantasySky.MoonTextureId=="http://www.roblox.com/asset/?id=9709149052" or game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709149052" then
-							Stats_Moon:Set("Status Moon : 75% 🌖")
-						elseif game:GetService("Lighting").FantasySky.MoonTextureId=="http://www.roblox.com/asset/?id=9709143733" or game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709143733" then
-							Stats_Moon:Set("Status Moon : 50% 🌗")
-						elseif game:GetService("Lighting").FantasySky.MoonTextureId=="http://www.roblox.com/asset/?id=9709150086" or game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709150086" then
-							Stats_Moon:Set("Status Moon : 50% 🌗")
-						elseif game:GetService("Lighting").FantasySky.MoonTextureId=="http://www.roblox.com/asset/?id=9709150401" or game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709150401" then
-							Stats_Moon:Set("Status Moon : 25% 🌘")
-						elseif game:GetService("Lighting").FantasySky.MoonTextureId=="http://www.roblox.com/asset/?id=9709149680" or game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709149680" then
-							Stats_MoonFM:Set("Status Moon : 15% 🌙")
-						elseif game:GetService("Lighting").FantasySky.MoonTextureId=="http://www.roblox.com/asset/?id=9709139597" or game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709139597" then
-							Stats_MoonFM:Set("Status Moon : 15% 🌙")
-						else
-							Stats_Moon:Set("Status Moon : 0% 🌑")
-						end
-					else
-						if game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709149431" then
-							Stats_Moon:Set("Status Moon : 100% 🌝")
-						elseif game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709149052" then
-							Stats_Moon:Set("Status Moon : 75% 🌖")
-						elseif game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709143733" then
-							Stats_Moon:Set("Status Moon : 50% 🌗")
-						elseif game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709150086" then
-							Stats_Moon:Set("Status Moon : 50% 🌗")
-						elseif game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709150401" then
-							Stats_Moon:Set("Status Moon : 25% 🌘")
-						elseif game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709149680" then
-							Stats_MoonFM:Set("Status Moon : 15% 🌙")
-						elseif game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709139597" then
-							Stats_MoonFM:Set("Status Moon : 15% 🌙")
-						else
-							Stats_Moon:Set("Status Moon : 0% 🌑")
-						end
-					end
-				end)
-			end
-		end)
+            while task.wait() do
+                pcall(function()
+                    if game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709149431" then
+                        FM:Set("Moon Status : 5/5 🌕") 
+                    elseif game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709149052" then
+                        FM:Set("Moon Status : 4/5 🌖")
+                    elseif game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709143733" then
+                        FM:Set("Moon Status : 3/5 🌗")
+                    elseif game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709150401" then
+                        FM:Set("Moon Status : 2/5 🌘")
+                    elseif game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709149680" then
+                        FM:Set("Moon Status : 1/5 🌘") 
+                    else
+                        FM:Set("Moon Status : 0/5 🌘")
+                    end
+                end)
+            end
+	end)
 			
-		local Mirage_Island_Stats = InfoStatusSection:AddLabel({
+		local Mirage_Island_Stats = MainSection:AddLabel({
 			Name = "Status Mirage Island : "
 		})
 		
@@ -4128,7 +4100,7 @@ function GetMaterial(matname)
 			end
 		end)
 		
-		local Kitsunecheck = InfoStatusSection:AddLabel({
+		local Kitsunecheck = MainSection:AddLabel({
 			Name = "Status Kitsune Island : "
 		})
 		spawn(function()
@@ -4144,7 +4116,7 @@ function GetMaterial(matname)
 		end)
 
 	
-	local Dey_Stats = InfoStatusSection:AddLabel({
+	local Dey_Stats = MainSection:AddLabel({
 		Name = "Day : "..os.date('%A, %B %d ')
 	})
 	
@@ -4154,10 +4126,6 @@ function GetMaterial(matname)
 		end
 	end)
 
-	local MainTab = PepsisWorld:CreateTab({
-		Name = "General"
-	})
-	
 	local MainSection = MainTab:CreateSection({
 		Name = "Main",
 		Side = "Left"
@@ -7749,7 +7717,7 @@ end)
 		end
 	end)
 
-	local ItemsTab = PepsisWorld:CreateTab({
+	local ItemsTab = VectorHub:CreateTab({
 		Name = "Items"
 	}) 
 	if W3 then
@@ -10127,7 +10095,7 @@ end
 		end
 	end)
 	
-	local TeleportTab = PepsisWorld:CreateTab({
+	local TeleportTab = VectorHub:CreateTab({
 		Name = "Dungeon"
 	})
 	
@@ -10859,7 +10827,7 @@ end
 	end)
 	
 	
-	local RaceV4Tab = PepsisWorld:CreateTab({
+	local RaceV4Tab = VectorHub:CreateTab({
 		Name = "RaceV4"
 	})
 
@@ -11407,7 +11375,7 @@ spawn(function()
 					LockMoon()
 				end
 			}
-	local Event = PepsisWorld:CreateTab({
+	local Event = VectorHub:CreateTab({
 		Name = "Event"
 	})
 		
@@ -11872,7 +11840,7 @@ NewEvent:AddToggle({
                                                 end
                                             end)
 
-											local ShopTab = PepsisWorld:CreateTab({
+											local ShopTab = VectorHub:CreateTab({
 												Name = "Shop"
 											})
 										
@@ -12197,7 +12165,7 @@ NewEvent:AddToggle({
 												end
 											})
 											
-	local Misc = PepsisWorld:CreateTab({
+	local Misc = VectorHub:CreateTab({
 		Name = "Misc"
 	})
 	local MiscSection = Misc:CreateSection({
