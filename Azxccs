@@ -773,7 +773,7 @@ end
 		Title2.Position = UDim2.new(0, 95, 0, 10)
 		Title2.Size = UDim2.new(0, 483, 0, 31)
 		Title2.Font = Enum.Font.FredokaOne
-		Title2.Text = "Hub | By Ryuenz#6264 |Beta Version"
+		Title2.Text = "Hub | By Ryuenz#6264"
 		Title2.TextColor3 = _G.Color
 		Title2.TextSize = 17.000
 		Title2.TextWrapped = true
@@ -3442,7 +3442,9 @@ function GetMaterial(matname)
 		local tweenfunc = {}
 		local Distance = (RealTarget.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).Magnitude
 		
-		if Distance < 250 then
+		if TweenPlay < 100 then
+			TweeSpeed = 700
+		elseif Distance < 250 then
 			Speed = 590
 		elseif Distance < 500 then
 			Speed = 500
@@ -3565,7 +3567,9 @@ function GetMaterial(matname)
 			else
 				LocalPlayer.Humanoid.AutoRotate = true
 			end
-			if TweenPlay < 250 then
+			if TweenPlay < 100 then
+				TweeSpeed = 700
+		elseif TweenPlay < 250 then
 				TweeSpeed = 590
 			elseif TweenPlay < 500 then
 				TweeSpeed = 500
@@ -3994,15 +3998,12 @@ function GetMaterial(matname)
 	--------------------------------------------
 	
 	local PepsisWorld = library:Evil()
-	local InfoTab = PepsisWorld:CreateTab({
-		Name = "Information" 
-	})
-	local InfoSection = InfoTab:CreateSection({
-		Name = "Profile",
-		Side = "Left"
+
+	local MainTab = PepsisWorld:CreateTab({
+		Name = "General"
 	})
 	
-	
+		
 	local E  = InfoSection:AddLabel({Name = "..."})
 	function UpdateInfo()
 		local gameTime = math.floor(workspace.DistributedGameTime + 0.5)
@@ -4019,7 +4020,7 @@ function GetMaterial(matname)
 		end
 	end)
 	
-	local CredtSection = InfoTab:CreateSection({
+	local CredtSection = MainTab:CreateSection({
 		Name = "Credit",
 		Side = "Left"
 	})
@@ -4061,12 +4062,12 @@ function GetMaterial(matname)
 	
 	})
 	
-	local InfoStatusSection = InfoTab:CreateSection({
+	local MainSection = MainTab:CreateSection({
 		Name = "Status",
 		Side = "Right"
 	})
 	
-		local Stats_Moon = InfoStatusSection:AddLabel({
+		local Stats_Moon = MainSection:AddLabel({
 			Name = "Status Moon : 0% 🌑"
 		})
 		
@@ -4114,7 +4115,7 @@ function GetMaterial(matname)
 			end
 		end)
 			
-		local Mirage_Island_Stats = InfoStatusSection:AddLabel({
+		local Mirage_Island_Stats = MainSection:AddLabel({
 			Name = "Status Mirage Island : "
 		})
 		
@@ -4128,7 +4129,7 @@ function GetMaterial(matname)
 			end
 		end)
 		
-		local Kitsunecheck = InfoStatusSection:AddLabel({
+		local Kitsunecheck = MainSection:AddLabel({
 			Name = "Status Kitsune Island : "
 		})
 		spawn(function()
@@ -4144,7 +4145,7 @@ function GetMaterial(matname)
 		end)
 
 	
-	local Dey_Stats = InfoStatusSection:AddLabel({
+	local Dey_Stats = MainSection:AddLabel({
 		Name = "Day : "..os.date('%A, %B %d ')
 	})
 	
@@ -4153,10 +4154,6 @@ function GetMaterial(matname)
 			Dey_Stats:Set("Day : "..os.date('%A, %B %d '))
 		end
 	end)
-
-	local MainTab = PepsisWorld:CreateTab({
-		Name = "General"
-	})
 	
 	local MainSection = MainTab:CreateSection({
 		Name = "Main",
@@ -5522,7 +5519,7 @@ spawn(function()
 		})
 		
 		local Mob_Kill_Cake_Prince = CakePrinceSection:AddLabel({
-			Name = "Total",
+			Name = "..",
 			Flag = "Total"
 		})
 		
@@ -5771,7 +5768,7 @@ spawn(function()
 		})
 		
 		local Bone_Check = FarmBoneSection:AddLabel({
-			Name = "Total",
+			Name = "..",
 			Flag = "Total"
 		})
 		
@@ -5779,8 +5776,6 @@ spawn(function()
 			while wait() do
 				if game:GetService("Players").LocalPlayer.Data.Level.Value >= 1500 then
 					Bone_Check:Set("Bone : "..game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Bones","Check"))
-				else
-					Bone_Check:Set("Bone : Nil")
 				end
 			end
 		end)
@@ -5866,6 +5861,15 @@ spawn(function()
 			end
 		}
 		
+		FarmBoneSection:AddToggle{
+			Name = "Random Bone\nสุ่มกระดูก",
+			Flag = "AccetpQuestBone",
+			Value = _G.AccetpQuestBone,
+			Callback  = function(value)
+				_G.AccetpQuestBone = value
+			end
+		}
+
 		spawn(function()
 			while wait(.1) do
 				if _G.Auto_Trade_Bone then
@@ -6256,8 +6260,6 @@ spawn(function()
 								end
 								v.HumanoidRootPart.CanCollide = false
 								v.Head.CanCollide = false
-								v.Humanoid:ChangeState(11)
-								v.Humanoid:ChangeState(14)
 								sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius",  math.huge)
 							end
 						end
@@ -12545,7 +12547,7 @@ MiscSection1:AddButton({
 		kaituncap()
 	end
 })
-loadstring(game:HttpGet("https://raw.githubusercontent.com/SSDAWGDFHTEHVFFSGXCVBSDFBFDGWGSDVDDSXC/d/main/hooks"))()
+--loadstring(game:HttpGet("https://raw.githubusercontent.com/SSDAWGDFHTEHVFFSGXCVBSDFBFDGWGSDVDDSXC/d/main/hooks"))()
 FakeDamage("Vector Hub")
 Vec("<Color=Yellow>Vector Hub loaded Finished<Color=/>")
 	--Vec("<Color=Yellow>:ENG:\n:If the gui doesn't load, use Fluxus in the Executor room:\n:TH:\n:ถ้าหน้าต่างโปรไม่โหลดให้ใช้ Fluxus ที่ผมแจกในห้อง Executor:<Color=/>")
