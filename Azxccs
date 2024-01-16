@@ -229,7 +229,7 @@ if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7
 						end
 					end
 				end
-				
+				_G.FastAttack = true
 				spawn(function()
 					while _G.FastAttack do task.wait(0)
 						task.wait(0.035)
@@ -6290,7 +6290,7 @@ spawn(function()
 	SettingSection:AddToggle{
 		Name = "Fast Attack\nโจมตีเร็ว",
 		Flag = "FastAttack",
-		Value = true,
+		Value = _G.FastAttack,
 		Callback  = function(value)
 			_G.FastAttack = value
 		end
