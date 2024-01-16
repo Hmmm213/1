@@ -4240,6 +4240,7 @@ end
 													v.Humanoid.WalkSpeed = 0
 													v.Head.CanCollide = false
 													BringMobFarm = true
+													_G.FastType = "Fast"
 													EquipWeapon(_G.Select_Weapon)
 													v.HumanoidRootPart.Transparency = 1
 													getgenv().ToTarget(v.HumanoidRootPart.CFrame * MethodFarm)
@@ -4309,7 +4310,7 @@ end
 			local MyLevel = game.Players.LocalPlayer.Data.Level.Value
 			local QuestC = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest
 			CFrameMon = CFrame.new(-7719.66895, 5611.42334, -1445.98816, 0.906745553, -1.43169192e-08, -0.421678245, 5.939971e-08, 1, 9.37764852e-08, 0.421678245, -1.10078972e-07, 0.906745553)
-			if _G.Auto_Farm_Level and (CFrameMon.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude > 2000 then
+			if _G.Auto_Farm_Level and (CFrameMon.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude > 1000 then
 				game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(-7894.6176757813, 5547.1416015625, -380.29119873047))
 			end
 			if MyLevel >= 15 and MyLevel <= 69 then
@@ -4324,13 +4325,12 @@ end
 								v.Head.CanCollide = false
 								BringMobFarm = true
 								EquipWeapon(_G.Select_Weapon)
-
 								if MyLevel >= 70 and MyLevel <= 310 then
 									if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
 										game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("PlayerHunter")
 									end
 								end
-
+								_G.FastType = "Normal"
 								PosMon = v.HumanoidRootPart.CFrame
 								v.HumanoidRootPart.Size = Vector3.new(60,60,60)
 								v.HumanoidRootPart.Transparency = 1
@@ -4343,6 +4343,7 @@ end
 						end
 					else
 						BringMobFarm = false
+						getgenv().ToTarget(CFrameMon)
 					end
 				end
 			elseif MyLevel >= 70 and MyLevel <= 310 then
@@ -4370,6 +4371,7 @@ end
 								game:service('VirtualInputManager'):SendKeyEvent(true, "Z", false, game)
 								game:service('VirtualInputManager'):SendKeyEvent(false, "Z", false, game)
 								end
+								_G.FastType = "Fast"
 								if not _G.Auto_Farm_Level or not _G.Auto_Farm_LevelO or _G.Auto_Farm_Level or _G.Auto_Farm_LevelO or _G.SuperFastAttack then
 									_G.FastAttack = true
 								end
@@ -12739,7 +12741,7 @@ spawn(function()
 	end
 end)
 FakeDamage("Vector Hub")
-Vec("<Color=Yellow>Vector Hub loaded Finished<Color=/>")
+Vec("<Color=Yellow>Vector Hub loaded Finished นะจ๊ะ<Color=/>")
 	--Vec("<Color=Yellow>:ENG:\n:If the gui doesn't load, use Fluxus in the Executor room:\n:TH:\n:ถ้าหน้าต่างโปรไม่โหลดให้ใช้ Fluxus ที่ผมแจกในห้อง Executor:<Color=/>")
 else
 	game.Players.LocalPlayer:Kick("..")
