@@ -4346,12 +4346,11 @@ end
 						getgenv().ToTarget(CFrameMon)
 					end
 				end
-			elseif MyLevel >= 70 and MyLevel <= 310 then
+			elseif MyLevel >= 70 and MyLevel <= 310 then -- ทำฟาร์มคนใหม่
 				if QuestC.Visible == false then
 					game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("PlayerHunter")
 				elseif QuestC.Visible == true then
 					if string.find(quest,"Defeat") then
-		
 							repeat task.wait()
 								if not game.Players.LocalPlayer.Character:FindFirstChild("HasBuso") then
 									game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Buso")
@@ -4376,17 +4375,7 @@ end
 									_G.FastAttack = true
 								end
 
-								if game:GetService("Players")[getgenv().SelectPly].Character.Humanoid.Health <= 0 then
-									_G.AutoFarmFast_Num = 1
-									_G.AutoFarmFast = false
-								end
-
-							until game.Players[getgenv().SelectPly].Character.Humanoid.Health <= 0 or not Auto_Farm_Level_Fast() or _G.AutoFarmFast_Num == 1
-							_G.AutoFarmFast_Num = 1
-							_G.AutoFarmFast = false
-							if not game.Players:FindFirstChild(Player) then
-								game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("PlayerHunter")
-							end
+							until game.Players[getgenv().SelectPly].Character.Humanoid.Health <= 0 or not Auto_Farm_Level_Fast() or MyLevel >= 310
 					end
 				end
 			end
@@ -5634,7 +5623,7 @@ spawn(function()
 			Callback = function(value)
 				SelectModeMaterial = value
 			end})
-	--หะ 
+	
 	FarmMaterialSection:AddToggle({
 		Name = "Auto Farm Material\nออโต้ฟาร์มวัสดุ",
 		Value = AutoFarmMaterial,
@@ -12726,7 +12715,7 @@ spawn(function()
 	end
 end)
 FakeDamage("Vector Hub")
-Vec("<Color=Yellow>เทสฆ่าคน<Color=/>")
+Vec("<Color=Yellow>เอาใหม่<Color=/>")
 	--Vec("<Color=Yellow>:ENG:\n:If the gui doesn't load, use Fluxus in the Executor room:\n:TH:\n:ถ้าหน้าต่างโปรไม่โหลดให้ใช้ Fluxus ที่ผมแจกในห้อง Executor:<Color=/>")
 else
 	game.Players.LocalPlayer:Kick("..")
