@@ -276,14 +276,11 @@ if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7
 	end
 	for i, v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
 		if v:IsA("Model") and v:FindFirstChild("HumanoidRootPart") then
-			print(v.HumanoidRootPart.Parent)
 			local EnemySpawnsX2 = v.HumanoidRootPart:Clone()
 			local result = string.gsub(v.Name, "Lv. ", "")
 			local result2 = string.gsub(result, "[%[%]]", "")
 			local result3 = string.gsub(result2, "%d+", "")
 			local result4 = string.gsub(result3, "%s+", "")
-
-			print(result4)
 			EnemySpawnsX2.Name = result4
 			EnemySpawnsX2.Parent = workspace.EnemySpawns
 			EnemySpawnsX2.Anchored = true
@@ -296,8 +293,6 @@ if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7
 			local result2 = string.gsub(result, "[%[%]]", "")
 			local result3 = string.gsub(result2, "%d+", "")
 			local result4 = string.gsub(result3, "%s+", "")
-
-			print(result4)
 			EnemySpawnsX2.Name = result4
 			EnemySpawnsX2.Parent = workspace.EnemySpawns
 			EnemySpawnsX2.Anchored = true
@@ -4237,8 +4232,7 @@ end
 													SetCFarme = 1
 												end
 												if not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, QuestCheck()[6]) then
-													--game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
-													print(321)
+													game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
 												else
 													PosMon = v.HumanoidRootPart.CFrame
 													v.HumanoidRootPart.Size = Vector3.new(60,60,60)
@@ -4265,14 +4259,10 @@ end
 									if (QuestCheck()[7][SetCFarme].Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 50 then
 										if SetCFarme == nil or SetCFarme == '' then
 											SetCFarme = 1
-											print(SetCFarme)
 										elseif SetCFarme >= #QuestCheck()[7] then
 											SetCFarme = 1
-											print(SetCFarme)
 										end
 										SetCFarme =  SetCFarme + 1
-
-										print(SetCFarme)
 										wait(0.5)
 									end
 								else
@@ -4318,15 +4308,15 @@ end
 		pcall(function()
 			local MyLevel = game.Players.LocalPlayer.Data.Level.Value
 			local QuestC = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest
-			CFrameMon = CFrame.new(-4837.64258, 850.10199, -1840.58374, -0.430530697, -4.42848638e-08, -0.90257591, -3.08042516e-08, 1, -3.43712756e-08, 0.90257591, 1.30052875e-08, -0.430530697)
+			CFrameMon = CFrame.new(-7670, 5607, -1460)
 	
 			if MyLevel >= 15 and MyLevel <= 69 then
 				BringMobFarm = false
 				for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
-					if v.Name == "God's Guard" then
+					if v.Name == "Royal Squad" then
 						if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+							game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
 							repeat task.wait()
-								--game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
 								v.HumanoidRootPart.CanCollide = false
 								v.Humanoid.WalkSpeed = 0
 								v.Head.CanCollide = false
@@ -4351,7 +4341,7 @@ end
 					else
 						BringMobFarm = false
 						if _G.Auto_Farm_Level and (CFrameMon.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude > 500 then
-							game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(-4607.82275, 872.54248, -1667.55688))
+							game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(-7894.6176757813, 5547.1416015625, -380.29119873047))
 						end
 						getgenv().ToTarget(CFrameMon)
 					end
@@ -4373,15 +4363,14 @@ end
 
 								EquipWeapon(_G.Select_Weapon)
 								TPPlayer(game:GetService("Players")[getgenv().SelectPly].Character.HumanoidRootPart.CFrame * CFrame.new(0,0,5))
-								
 								game:GetService("Players")[getgenv().SelectPly].Character.HumanoidRootPart.Size = Vector3.new(120,120,120)
-	
+								if (game:GetService("Players")[getgenv().SelectPly].Character.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 6 then
 								game:service('VirtualInputManager'):SendKeyEvent(true, "X", false, game)
 								game:service('VirtualInputManager'):SendKeyEvent(false, "X", false, game)
-	
+							wait(.1)
 								game:service('VirtualInputManager'):SendKeyEvent(true, "Z", false, game)
 								game:service('VirtualInputManager'):SendKeyEvent(false, "Z", false, game)
-	
+								end
 								if not _G.Auto_Farm_Level or not _G.Auto_Farm_LevelO or _G.Auto_Farm_Level or _G.Auto_Farm_LevelO or _G.SuperFastAttack then
 									_G.FastAttack = true
 								end
@@ -4637,8 +4626,7 @@ end
 												if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") then
 													repeat task.wait()
 														if not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, "Swan Pirate") then
-															--game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
-															print(321)
+															game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
 														else
 															PosMon = v.HumanoidRootPart.CFrame
 															v.HumanoidRootPart.Size = Vector3.new(60,60,60)
@@ -4813,14 +4801,10 @@ end
 								if (QuestCheck()[7][SetCFarme].Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 50 then
 									if SetCFarme == nil or SetCFarme == '' then
 										SetCFarme = 1
-										print(SetCFarme)
 									elseif SetCFarme >= #QuestCheck()[7] then
 										SetCFarme = 1
-										print(SetCFarme)
 									end
 									SetCFarme =  SetCFarme + 1
-
-									print(SetCFarme)
 									wait(0.5)
 								end
 							else
@@ -4965,14 +4949,10 @@ end
 								if (QuestCheck()[7][SetCFarme].Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 50 then
 									if SetCFarme == nil or SetCFarme == '' then
 										SetCFarme = 1
-										print(SetCFarme)
 									elseif SetCFarme >= #QuestCheck()[7] then
 										SetCFarme = 1
-										print(SetCFarme)
 									end
 									SetCFarme =  SetCFarme + 1
-
-									print(SetCFarme)
 									wait(0.5)
 								end
 							else
@@ -5193,7 +5173,7 @@ end
 														for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
 															if v.ToolTip == "Sword" then
 																if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
-																	print("nomon")
+																	print(".")
 																end
 															end
 														end
@@ -5294,7 +5274,6 @@ spawn(function()
              pcall(function()
                     for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
                             if string.find(v.Name, "Chest") then
-                                print(v.Name)
                                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
                                 wait(.15)
                             end
@@ -5487,7 +5466,6 @@ spawn(function()
 										return
 									else
 										if _G.Auto_Elite_Hunter_Hop and game:GetService("ReplicatedStorage").Remotes["CommF_"]:InvokeServer("EliteHunter") == "I don't have anything for you right now. Come back later." and not ( game:GetService("Workspace").Enemies:FindFirstChild(_l1) or game:GetService("ReplicatedStorage"):FindFirstChild(_l1) ) then
-											print("Hop")
 											_G.Rejoin = false
 											wait(5)
 											Hop()
@@ -5759,7 +5737,6 @@ spawn(function()
 								end
 							end
 						end, function(x)
-							print("Auto Farm Material Error : " .. x)
 						end)
 					else
 						break;
@@ -5883,7 +5860,6 @@ spawn(function()
 								else
 									for _, _Mon in next, BoneTabel["Mon"] do
 										if game:GetService("Workspace").Enemies:FindFirstChild("Reborn Skeleton") or game:GetService("Workspace").Enemies:FindFirstChild("Living Zombie") or game:GetService("Workspace").Enemies:FindFirstChild("Demonic Soul") or game:GetService("Workspace").Enemies:FindFirstChild("Posessed Mummy") then
-											print(_Mon)
 											for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
 												if string.find(v.Name, _Mon) then
 													if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
@@ -5913,8 +5889,6 @@ spawn(function()
 														SetCFarmeBone = 1
 													end
 													SetCFarmeBone =  SetCFarmeBone + 1
-				
-													print(SetCFarmeBone)
 													wait(0.5)
 												end
 											else
@@ -8043,7 +8017,6 @@ end)
 											return
 										else
 											if game:GetService("ReplicatedStorage").Remotes["CommF_"]:InvokeServer("EliteHunter") == "I don't have anything for you right now. Come back later." and not ( game:GetService("Workspace").Enemies:FindFirstChild(_l1) or game:GetService("ReplicatedStorage"):FindFirstChild(_l1) ) then
-												print("Hop")
 												_G.Rejoin = false
 												wait(0.5)
 												Hop()
@@ -9387,7 +9360,6 @@ end
 											for _,_v1 in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
 												if _v1.Name == _l1 then
 													if _v1:FindFirstChild("Humanoid") and _v1:FindFirstChild("HumanoidRootPart") and _v1.Humanoid.Health > 0 then
-														print("Goooo")
 														repeat wait()
 															_v1.HumanoidRootPart.Size = Vector3.new(60,60,60)
 															_v1.HumanoidRootPart.CanCollide = false
