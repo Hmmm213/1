@@ -231,7 +231,7 @@ end
 			end
 			
 			spawn(function()
-				while _G.FastAttack do task.wait(0)
+				while _G.FastAttack do wait()
 					task.wait(0.035)
 					yakmefan()
 				end
@@ -12538,12 +12538,6 @@ MiscSection1:AddButton({
 	end
 })
 --loadstring(game:HttpGet("https://raw.githubusercontent.com/SSDAWGDFHTEHVFFSGXCVBSDFBFDGWGSDVDDSXC/d/main/hooks"))()
-spawn(function()
-	if setfflag then
-		setfflag("AbuseReportScreenshot", "False")
-		setfflag("AbuseReportScreenshotPercentage", "0")
-	end
-end)
 FakeDamage("Vector Hub")
 Vec("<Color=Yellow>Vector Hub loaded Finished<Color=/>")
 	--Vec("<Color=Yellow>:ENG:\n:If the gui doesn't load, use Fluxus in the Executor room:\n:TH:\n:ถ้าหน้าต่างโปรไม่โหลดให้ใช้ Fluxus ที่ผมแจกในห้อง Executor:<Color=/>")
