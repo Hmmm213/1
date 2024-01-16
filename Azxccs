@@ -127,15 +127,15 @@ if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7
 		W3 = true
 	end
 
-	if game:IsLoaded() then
-		pcall(function()
-			repeat wait()
-				game:GetService("ReplicatedStorage").Effect.Container.Respawn:Destroy()
-				game:GetService("ReplicatedStorage").Effect.Container.Death:Destroy()
-			until not game:GetService("ReplicatedStorage").Effect.Container:FindFirstChild("Death") or not game:GetService("ReplicatedStorage").Effect.Container:FindFirstChild("Respawn")
-		end)
+_G.DisDieffect = true
+if _G.DisDieffect then
+	if game:GetService("ReplicatedStorage").Effect.Container:FindFirstChild("Death") then
+		game:GetService("ReplicatedStorage").Effect.Container.Death:Destroy()
 	end
-	_G.DisDieffect  = true
+	if game:GetService("ReplicatedStorage").Effect.Container:FindFirstChild("Respawn") then
+		game:GetService("ReplicatedStorage").Effect.Container.Respawn:Destroy()
+	end
+end
 	spawn(function()
 		while  _G.DisDieffect do wait()
 			for i, v in pairs(game:GetService("Workspace")["_WorldOrigin"]:GetChildren()) do
@@ -193,13 +193,13 @@ if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7
 					end
 				end
 				return Hits
-				end
+			end
 		
 				function yakmefan()
 					local ac = CombatFrameworkR.activeController
 					if ac and ac.equipped then
 					 for Ryuen = 1, 1 do
-						local bladehit = getAllBladeHits(100)
+						local bladehit = getAllBladeHits(60)
 						if #bladehit > 0 then
 							local AcAttack8 = debug.getupvalue(ac.attack, 5)
 							local AcAttack9 = debug.getupvalue(ac.attack, 6)
@@ -229,14 +229,12 @@ if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7
 					end
 				end
 			end
-			_G.FastAttack = true
+			
 			spawn(function()
-					setscriptable(game.Players.LocalPlayer, "SimulationRadius", true)
-					sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
-					while _G.FastAttack do wait()
+				while _G.FastAttack do wait()
 					task.wait(0.035)
 					yakmefan()
-					end
+				end
 			end)
 
 	repeat wait(0) until game:IsLoaded()
@@ -3456,8 +3454,6 @@ function GetMaterial(matname)
 		
 		if _G.Bypass_TP then
 		if Distance > 3000 and not AutoFarmMaterial and not _G.AutoGodHumanand and not _G.AutoRaids and not (game.Players.LocalPlayer.Backpack:FindFirstChild("Special Microchip") or game.Players.LocalPlayer.Character:FindFirstChild("Special Microchip") or game.Players.LocalPlayer.Backpack:FindFirstChild("God's Chalice") or game.Players.LocalPlayer.Character:FindFirstChild("God's Chalice") or game.Players.LocalPlayer.Backpack:FindFirstChild("Hallow Essence") or game.Players.LocalPlayer.Character:FindFirstChild("Hallow Essence") or game.Players.LocalPlayer.Character:FindFirstChild("Sweet Chalice") or game.Players.LocalPlayer.Backpack:FindFirstChild("Sweet Chalice")) and not (Name == "Fishman Commando" or Name == "Fishman Warrior") then
-			repeat wait() game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(-5076.60107, 314.54129, -3152.13086, 0.351963997, -4.56893581e-08, -0.93601352, 6.84364423e-08, 1, -2.30789325e-08, 0.93601352, -5.59344855e-08, 0.351963997))  until (CFrame.new(-5076.60107, 314.54129, -3152.13086, 0.351963997, -4.56893581e-08, -0.93601352, 6.84364423e-08, 1, -2.30789325e-08, 0.93601352, -5.59344855e-08, 0.351963997).Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 3
-			wait(1)
 				pcall(function()
 				tween:Cancel()
 				fkwarp = false
@@ -3529,8 +3525,6 @@ function GetMaterial(matname)
 			end
 	
 			if TweenPlay > 3000 and _G.Bypass_TP then
-				repeat wait() game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(-5076.60107, 314.54129, -3152.13086, 0.351963997, -4.56893581e-08, -0.93601352, 6.84364423e-08, 1, -2.30789325e-08, 0.93601352, -5.59344855e-08, 0.351963997))  until (CFrame.new(-5076.60107, 314.54129, -3152.13086, 0.351963997, -4.56893581e-08, -0.93601352, 6.84364423e-08, 1, -2.30789325e-08, 0.93601352, -5.59344855e-08, 0.351963997).Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 3
-				wait(1)
 				pcall(function() 
 					pcall(function()
 						tot:Cancel()
@@ -3645,7 +3639,6 @@ function GetMaterial(matname)
 			tot:Cancel()
 			_G.StopTween = true
 			_G.UseSkill = false
-			--game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
 			if game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip") then
 				game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip"):Destroy()
 			end
@@ -4227,7 +4220,7 @@ end
 				end
 			end
 		end)
-	AttackRandomType_MonCFrame = 1
+		AttackRandomType_MonCFrame = 1
 	spawn(function()
 		while wait() do 
 			AttackRandomType_MonCFrame = math.random(1,5)
@@ -4266,8 +4259,7 @@ end
 													SetCFarme = 1
 												end
 												if not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, QuestCheck()[6]) then
-													--game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
-													print(321)
+													game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
 												else
 													PosMon = v.HumanoidRootPart.CFrame
 													v.HumanoidRootPart.Size = Vector3.new(60,60,60)
@@ -4277,10 +4269,11 @@ end
 													BringMobFarm = true
 													EquipWeapon(_G.Select_Weapon)
 													v.HumanoidRootPart.Transparency = 1
-													getgenv().ToTarget(v.HumanoidRootPart.CFrame * MethodFarm)
-
+													getgenv().ToTarget(v.HumanoidRootPart.CFrame * CFrame.new(0, 30, 5))
+	
 													if not _G.Auto_Farm_Level or not _G.Auto_Farm_LevelO or _G.Auto_Farm_Level or _G.Auto_Farm_LevelO then
-														_G.FastAttack = true
+														game:GetService("VirtualUser"):CaptureController()
+														game:GetService("VirtualUser"):Button1Down(Vector2.new(1280,672))
 													end
 												end
 											until not _G.Auto_Farm_Level or not v.Parent or v.Humanoid.Health <= 0 or QuestC.Visible == false or not v:FindFirstChild("HumanoidRootPart")
@@ -4288,9 +4281,9 @@ end
 									end
 								end
 							else
-								--UnEquipWeapon(_G.Select_Weapon)
+								UnEquipWeapon(_G.Select_Weapon)
 								if _G.Auto_CFrame and not _G.AutoFarmFast then
-									getgenv().ToTarget(QuestCheck()[7][SetCFarme] * MethodFarm)
+									getgenv().ToTarget(QuestCheck()[7][SetCFarme] * CFrame.new(0,30,5))
 									if (QuestCheck()[7][SetCFarme].Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 50 then
 										if SetCFarme == nil or SetCFarme == '' then
 											SetCFarme = 1
@@ -4328,7 +4321,7 @@ end
 								BringMobFarm = false
 								wait(0.2)
 								game:GetService('ReplicatedStorage').Remotes.CommF_:InvokeServer("StartQuest", QuestCheck()[4], QuestCheck()[1]) wait(0.5)
-								getgenv().ToTarget(QuestCheck()[7][1] * MethodFarm)
+								getgenv().ToTarget(QuestCheck()[7][1] * CFrame.new(0,30,20))
 							end
 						end
 					end
@@ -4352,10 +4345,10 @@ end
 			if MyLevel >= 15 and MyLevel <= 69 then
 				BringMobFarm = false
 				for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
-					if v.Name == "God's Guard" then
+					if v.Name == "God's Guard [Lv. 450]" then
 						if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
 							repeat task.wait()
-								--game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+								game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
 								v.HumanoidRootPart.CanCollide = false
 								v.Humanoid.WalkSpeed = 0
 								v.Head.CanCollide = false
@@ -4371,9 +4364,10 @@ end
 								PosMon = v.HumanoidRootPart.CFrame
 								v.HumanoidRootPart.Size = Vector3.new(60,60,60)
 								v.HumanoidRootPart.Transparency = 1
-								getgenv().ToTarget(v.HumanoidRootPart.CFrame * MethodFarm)
+								getgenv().ToTarget(v.HumanoidRootPart.CFrame * CFrame.new(0, 30, 5))
 								if not _G.Auto_Farm_Level or not _G.Auto_Farm_LevelO or _G.Auto_Farm_Level or _G.Auto_Farm_LevelO or _G.SuperFastAttack then
-									_G.FastAttack = true
+									game:GetService("VirtualUser"):CaptureController()
+									game:GetService("VirtualUser"):Button1Down(Vector2.new(1280,672))
 								end
 							until not v.Parent or not _G.Auto_Farm_Level or v.Humanoid.Health < 0
 						end
@@ -4412,7 +4406,8 @@ end
 								game:service('VirtualInputManager'):SendKeyEvent(false, "Z", false, game)
 	
 								if not _G.Auto_Farm_Level or not _G.Auto_Farm_LevelO or _G.Auto_Farm_Level or _G.Auto_Farm_LevelO or _G.SuperFastAttack then
-									_G.FastAttack = true
+									game:GetService("VirtualUser"):CaptureController()
+									game:GetService("VirtualUser"):Button1Down(Vector2.new(1280,672))
 								end
 
 								if game:GetService("Players")[getgenv().SelectPly].Character.Humanoid.Health <= 0 then
@@ -4446,6 +4441,27 @@ end
 			end
 		end)
 	end
+
+
+	spawn(function()
+		game:GetService("RunService").Heartbeat:Connect(function()
+			pcall(function()
+				if _G.BringNormal then
+					for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+						if _G.Auto_Farm_Level and BringMobFarm and v.Name == Mon and (v.HumanoidRootPart.Position - PosMon.Position).magnitude <= 225 then
+							v.HumanoidRootPart.CFrame = PosMon
+							v.HumanoidRootPart.CanCollide = false
+							v.HumanoidRootPart.Size = Vector3.new(60,60,60)
+							if v.Humanoid:FindFirstChild("Animator") then
+								v.Humanoid.Animator:Destroy()
+							end
+							sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius",  math.huge)
+						end
+					end
+				end
+			end)
+		end)
+	end)
 
 
 	
@@ -4945,11 +4961,6 @@ end
 												BringMobFarm = true
 												v.HumanoidRootPart.Transparency = 1
 												EquipWeapon(_G.SelectWeaponGun)
-												local args = {
-													[1] = v.HumanoidRootPart.Position,
-													[2] = v.HumanoidRootPart
-												}
-												game:GetService("Players").LocalPlayer.Character[_G.SelectWeaponGun].RemoteFunctionShoot:InvokeServer(unpack(args))
 											else
 												_G.UseSkill = false
 												v.HumanoidRootPart.Size = Vector3.new(120,120,120)
@@ -4961,7 +4972,8 @@ end
 												getgenv().ToTarget(v.HumanoidRootPart.CFrame * CFrame.new(0,_G.Settings.Distance,_G.Settings.DistanceY))
 												AutoHaki()
 												if (v.HumanoidRootPart.CFrame.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 50 then
-													_G.FastAttack = true
+													game:GetService("VirtualUser"):CaptureController()
+													game:GetService("VirtualUser"):Button1Down(Vector2.new(1280,672))
 												end
 											end
 										until not _G.Auto_Farm_Mastery_Gun or not v.Parent or v.Humanoid.Health <= 0 or QuestC.Visible == false or not v:FindFirstChild("HumanoidRootPart")
@@ -4970,8 +4982,9 @@ end
 							end
 						else
 							_G.UseSkill = false
+							UnEquipWeapon(_G.Select_Weapon)
 							if _G.Auto_CFrame then
-								getgenv().ToTarget(QuestCheck()[7][SetCFarme] * MethodFarm)
+								getgenv().ToTarget(QuestCheck()[7][SetCFarme] * CFrame.new(0,30,5))
 								if (QuestCheck()[7][SetCFarme].Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 50 then
 									if SetCFarme == nil or SetCFarme == '' then
 										SetCFarme = 1
@@ -5007,7 +5020,7 @@ end
 							BringMobFarm = false
 							wait(0.2)
 							game:GetService('ReplicatedStorage').Remotes.CommF_:InvokeServer("StartQuest", QuestCheck()[4], QuestCheck()[1]) wait(0.5)
-							getgenv().ToTarget(QuestCheck()[7][1] * MethodFarm)
+							getgenv().ToTarget(QuestCheck()[7][1] * CFrame.new(0,30,5))
 						end
 					end
 				end
@@ -5063,12 +5076,11 @@ end
 			end
 		end
 	end)
-
 	spawn(function()
 		while wait() do
 			if _G.Auto_Farm_Mastery_Gun then
-				game:GetService'VirtualUser':CaptureController()
-				game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672))
+				game:GetService("VirtualUser"):CaptureController()
+				game:GetService("VirtualUser"):Button1Down(Vector2.new(1280, 672))
 			end
 		end
 	end)
@@ -11966,7 +11978,7 @@ NewEvent:AddToggle({
 		MiscSection:AddToggle{
 			Name = "Auto Click\nออโต้คลิก",
 			Flag = "AutoClick",
-			Value = _G.Settings.No_clip,
+			Value = false,
 			Callback  = function(value)
 				_G.click = value
 			end}
@@ -11984,7 +11996,7 @@ NewEvent:AddToggle({
 		MiscSection:AddToggle{
 			Name = "Remove Fog\nลบหมอก",
 			Flag = "No_clip",
-			Value = _G.Settings.No_clip,
+			Value = false,
 			Callback  = function(value)
 				_G.Remove_Fog = value
 			while wait() do
@@ -12000,7 +12012,7 @@ NewEvent:AddToggle({
 	MiscSection:AddToggle{
 		Name = "No Clip\nตัวทะลุ",
 		Flag = "No_clip",
-		Value = _G.Settings.No_clip,
+		Value = false,
 		Callback  = function(value)
 			_G.No_clip = value
 			_G.Settings.No_clip = value
@@ -12025,7 +12037,7 @@ NewEvent:AddToggle({
 	MiscSection:AddToggle{
 		Name = "Walk On Water\nเดินบนน้ำ",
 		Flag = "Walk_On_Water",
-		Value = _G.WalkWater,
+		Value = false,
 		Callback  = function(value)
 			_G.WalkWater = value
 		end
@@ -12082,7 +12094,7 @@ NewEvent:AddToggle({
 		MiscSection:AddToggle{
 			Name = "Infinit Ability\nความสามารถไม่จำกัด",
 			Flag = "Infinit_Ability",
-			Value = _G.InfAbility,
+			Value = false,
 			Callback  = function(value)
 				_G.InfAbility = value
 				InfAbility()
@@ -12092,7 +12104,7 @@ NewEvent:AddToggle({
 	MiscSection:AddToggle{
 		Name = "Infinit Energy\nพลังงานไม่จำกัด",
 		Flag = "Infinit_Energy",
-		Value = _G.Settings.Infinit_Energy,
+		Value = false,
 		Callback  = function(value)
 			_G.Infinit_Energy = value
 			_G.Settings.Infinit_Energy = value
@@ -12116,6 +12128,8 @@ NewEvent:AddToggle({
 	
 	MiscSection:AddToggle({
 		Name = "Infinit Soru\nโซลไม่จำกัด",
+		Flag = "Infinit_Inf_Soru",
+		Value = false,
 		Callback = function(Value)
 			_G.Infinit_Inf_Soru = Value
 			_G.Settings.Infinit_Inf_Soru = value
