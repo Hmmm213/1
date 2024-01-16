@@ -4308,8 +4308,10 @@ end
 		pcall(function()
 			local MyLevel = game.Players.LocalPlayer.Data.Level.Value
 			local QuestC = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest
-			CFrameMon = CFrame.new(-7670, 5607, -1460)
-	
+			CFrameMon = CFrame.new(-7719.66895, 5611.42334, -1445.98816, 0.906745553, -1.43169192e-08, -0.421678245, 5.939971e-08, 1, 9.37764852e-08, 0.421678245, -1.10078972e-07, 0.906745553)
+			if _G.Auto_Farm_Level and (CFrameMon.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude > 2000 then
+				game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(-7894.6176757813, 5547.1416015625, -380.29119873047))
+			end
 			if MyLevel >= 15 and MyLevel <= 69 then
 				BringMobFarm = false
 				for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
@@ -4337,13 +4339,10 @@ end
 									_G.FastAttack = true
 								end
 							until not v.Parent or not _G.Auto_Farm_Level or v.Humanoid.Health < 0
+							getgenv().ToTarget(CFrameMon)
 						end
 					else
 						BringMobFarm = false
-						if _G.Auto_Farm_Level and (CFrameMon.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude > 500 then
-							game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(-7894.6176757813, 5547.1416015625, -380.29119873047))
-						end
-						getgenv().ToTarget(CFrameMon)
 					end
 				end
 			elseif MyLevel >= 70 and MyLevel <= 310 then
