@@ -35,7 +35,7 @@ end
 
 local function CheckForSpy()
     local core = game:GetService("CoreGui")
-    local keyword = "spy"
+    local keyword = "https"
     
     for _, v in pairs(core:GetDescendants()) do
         if v:IsA("TextLabel") or v:IsA("TextButton") or v:IsA("TextBox") then
