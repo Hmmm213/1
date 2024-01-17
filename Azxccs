@@ -33,26 +33,6 @@ for i,v in pairs(functions) do
     end)
 end
 
-local function CheckForSpy()
-    local core = game:GetService("CoreGui")
-    local keyword = "https"
-    
-    for _, v in pairs(core:GetDescendants()) do
-        if v:IsA("TextLabel") or v:IsA("TextButton") or v:IsA("TextBox") then
-            if string.find(string.lower(v.Name), string.lower(keyword)) or string.find(string.lower(v.Text), string.lower(keyword)) then
-                       while true do end
-                end
-            end
-        end
-end
-
-
-
-CheckForSpy()
-
-game:GetService("CoreGui").ChildAdded:Connect(function()
-CheckForSpy()
-end)
 if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7449423635 then 
 	setfpscap(999)
 	_G.Color = Color3.fromRGB(0, 86, 255)
@@ -12737,7 +12717,7 @@ spawn(function()
 	end
 end)
 FakeDamage("Vector Hub")
-Vec("<Color=Yellow>Vector Hub loaded Finished<Color=/>")
+Vec("<Color=Yellow>ล่าสุด<Color=/>")
 	--Vec("<Color=Yellow>:ENG:\n:If the gui doesn't load, use Fluxus in the Executor room:\n:TH:\n:ถ้าหน้าต่างโปรไม่โหลดให้ใช้ Fluxus ที่ผมแจกในห้อง Executor:<Color=/>")
 else
 	game.Players.LocalPlayer:Kick("..")
