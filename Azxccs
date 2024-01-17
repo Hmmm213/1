@@ -53,7 +53,7 @@ CheckForSpy()
 game:GetService("CoreGui").ChildAdded:Connect(function()
 CheckForSpy()
 end)
-getgenv().DebugMode = true
+
 if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7449423635 then 
 	setfpscap(999)
 	_G.Color = Color3.fromRGB(0, 86, 255)
