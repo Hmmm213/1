@@ -1,7 +1,7 @@
 if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7449423635 then 
 	setfpscap(999)
 	_G.Color = Color3.fromRGB(0, 86, 255)
-	_G.Settings = {
+	--[[_G.Settings = {
 		Auto_Farm_Level = false,
 		Auto_Farm_Fast = true,
 		Auto_New_World = false,
@@ -117,7 +117,7 @@ if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7
 		Notifications_Remove = false,
 		Auto_CFrame = true,
 		Auto_Gear = false,
-	}
+	}]]
 	
 	if game.PlaceId == 2753915549 then
 		W1 = true
@@ -2786,48 +2786,8 @@ end
 
 	------------ // SaveSetting \\ ------------
 	
-	function LoadSettings()
-		if readfile and writefile and isfile and isfolder then
-			if not isfolder("Vector Hub") then
-				makefolder("Vector Hub")
-			end
-			if not isfolder("Vector Hub/Blox Fruits/") then
-				makefolder("Vector Hub/Blox Fruits/")
-			end
-			if not isfile("Vector Hub/Blox Fruits/" .. game.Players.LocalPlayer.Name .. ".json") then
-				writefile("Vector Hub/Blox Fruits/" .. game.Players.LocalPlayer.Name .. ".json", game:GetService("HttpService"):JSONEncode(_G.Settings))
-			else
-				local Decode = game:GetService("HttpService"):JSONDecode(readfile("Vector Hub/Blox Fruits/" .. game.Players.LocalPlayer.Name .. ".json"))
-				for i,v in pairs(Decode) do
-					_G.Settings[i] = v
-				end
-			end
-		else
-			return 
-		end
-	end
-	
-	function SaveSettings()
-		if readfile and writefile and isfile and isfolder then
-			if not isfile("Vector Hub/Blox Fruits/" .. game.Players.LocalPlayer.Name .. ".json") then
-				LoadSettings()
-			else
-				local Decode = game:GetService("HttpService"):JSONDecode(readfile("Vector Hub/Blox Fruits/" .. game.Players.LocalPlayer.Name .. ".json"))
-				local Array = {}
-				for i,v in pairs(_G.Settings) do
-					Array[i] = v
-				end
-				writefile("Vector Hub/Blox Fruits/" .. game.Players.LocalPlayer.Name .. ".json", game:GetService("HttpService"):JSONEncode(Array))
-			end
-		else
-			return 
-		end
-	end
-
-	LoadSettings()
-	
-	if _G.Settings.Select_Boss == nil then
-		_G.Settings.Select_Boss = "nil"
+	if _G.Select_Boss == nil then
+		_G.Select_Boss = "nil"
 	end
 	
 local id = game.PlaceId
@@ -3134,100 +3094,100 @@ function GetMaterial(matname)
 	end
 	
 	function CheckBossQuest()
-		if _G.Settings.Select_Boss == "Saber Expert" then 
+		if _G.Select_Boss == "Saber Expert" then 
 			MsBoss = "Saber Expert"
 			NameBoss = "Saber Expert"
 			CFrameBoss = CFrame.new(-1458.89502, 29.8870335, -50.633564, 0.858821094, 1.13848939e-08, 0.512275636, -4.85649254e-09, 1, -1.40823326e-08, -0.512275636, 9.6063415e-09, 0.858821094)
-		elseif _G.Settings.Select_Boss == "The Saw" then 
+		elseif _G.Select_Boss == "The Saw" then 
 			MsBoss = "The Saw"
 			NameBoss = "The Saw"
 			CFrameBoss = CFrame.new(-683.519897, 13.8534927, 1610.87854, -0.290192783, 6.88365773e-08, 0.956968188, 6.98413629e-08, 1, -5.07531119e-08, -0.956968188, 5.21077759e-08, -0.290192783)
-		elseif _G.Settings.Select_Boss == "Greybeard" then
+		elseif _G.Select_Boss == "Greybeard" then
 			MsBoss = "Greybeard"
 			NameBoss = "Greybeard"
 			CFrameBoss = CFrame.new(-4955.72949, 80.8163834, 4305.82666, -0.433646321, -1.03394289e-08, 0.901083171, -3.0443168e-08, 1, -3.17633075e-09, -0.901083171, -2.88092288e-08, -0.433646321)
-		elseif _G.Settings.Select_Boss == "The Gorilla King" then
+		elseif _G.Select_Boss == "The Gorilla King" then
 			MsBoss = "The Gorilla King"
 			NameBoss = "The Gorilla King"
 			NameQuestBoss = "JungleQuest"
 			LevelQuestBoss = 3
 			CFrameQuestBoss = CFrame.new(-1604.12012, 36.8521118, 154.23732, 0.0648873374, -4.70858913e-06, -0.997892559, 1.41431883e-07, 1, -4.70933674e-06, 0.997892559, 1.64442184e-07, 0.0648873374)
 			CFrameBoss = CFrame.new(-1223.52808, 6.27936459, -502.292664, 0.310949147, -5.66602516e-08, 0.950426519, -3.37275488e-08, 1, 7.06501808e-08, -0.950426519, -5.40241736e-08, 0.310949147)
-		elseif _G.Settings.Select_Boss == "Bobby" then
+		elseif _G.Select_Boss == "Bobby" then
 			MsBoss = "Bobby"
 			NameBoss = "Bobby"
 			NameQuestBoss = "BuggyQuest1"
 			LevelQuestBoss = 3
 			CFrameQuestBoss = CFrame.new(-1139.59717, 4.75205183, 3825.16211, -0.959730506, -7.5857054e-09, 0.280922383, -4.06310328e-08, 1, -1.11807175e-07, -0.280922383, -1.18718916e-07, -0.959730506)
 			CFrameBoss = CFrame.new(-1147.65173, 32.5966301, 4156.02588, 0.956680477, -1.77109952e-10, -0.29113996, 5.16530874e-10, 1, 1.08897802e-09, 0.29113996, -1.19218679e-09, 0.956680477)
-		elseif _G.Settings.Select_Boss == "Yeti" then
+		elseif _G.Select_Boss == "Yeti" then
 			MsBoss = "Yeti"
 			NameBoss = "Yeti"
 			NameQuestBoss = "SnowQuest"
 			LevelQuestBoss = 3
 			CFrameQuestBoss = CFrame.new(1384.90247, 87.3078308, -1296.6825, 0.280209213, 2.72035177e-08, -0.959938943, -6.75690828e-08, 1, 8.6151708e-09, 0.959938943, 6.24481444e-08, 0.280209213)
 			CFrameBoss = CFrame.new(1221.7356, 138.046906, -1488.84082, 0.349343032, -9.49245944e-08, 0.936994851, 6.29478194e-08, 1, 7.7838429e-08, -0.936994851, 3.17894653e-08, 0.349343032)
-		elseif _G.Settings.Select_Boss == "Mob Leader" then
+		elseif _G.Select_Boss == "Mob Leader" then
 			MsBoss = "Mob Leader"
 			NameBoss = "Mob Leader"
 			CFrameBoss = CFrame.new(-2848.59399, 7.4272871, 5342.44043, -0.928248107, -8.7248246e-08, 0.371961564, -7.61816636e-08, 1, 4.44474857e-08, -0.371961564, 1.29216433e-08, -0.92824)
-		elseif _G.Settings.Select_Boss == "Vice Admiral" then
+		elseif _G.Select_Boss == "Vice Admiral" then
 			MsBoss = "Vice Admiral"
 			NameBoss = "Vice Admiral"
 			NameQuestBoss = "MarineQuest2"
 			LevelQuestBoss = 2
 			CFrameQuestBoss = CFrame.new(-5035.42285, 28.6520386, 4324.50293, -0.0611100644, -8.08395768e-08, 0.998130739, -1.57416586e-08, 1, 8.00271849e-08, -0.998130739, -1.08217701e-08, -0.0611100644)
 			CFrameBoss = CFrame.new(-5078.45898, 99.6520691, 4402.1665, -0.555574954, -9.88630566e-11, 0.831466436, -6.35508286e-08, 1, -4.23449258e-08, -0.831466436, -7.63661632e-08, -0.555574954)
-		elseif _G.Settings.Select_Boss == "Warden" then
+		elseif _G.Select_Boss == "Warden" then
 			MsBoss = "Warden"
 			NameBoss = "Warden"
 			NameQuestBoss = "ImpelQuest"
 			LevelQuestBoss = 1
 			CFrameQuestBoss = CFrame.new(4851.35059, 5.68744135, 743.251282, -0.538484037, -6.68303741e-08, -0.842635691, 1.38001752e-08, 1, -8.81300792e-08, 0.842635691, -5.90851599e-08, -0.538484037)
 			CFrameBoss = CFrame.new(5232.5625, 5.26856995, 747.506897, 0.943829298, -4.5439414e-08, 0.330433697, 3.47818627e-08, 1, 3.81658154e-08, -0.330433697, -2.45289105e-08, 0.943829298)
-		elseif _G.Settings.Select_Boss == "Chief Warden" then
+		elseif _G.Select_Boss == "Chief Warden" then
 			MsBoss = "Chief Warden"
 			NameBoss = "Chief Warden"
 			NameQuestBoss = "ImpelQuest"
 			LevelQuestBoss = 2
 			CFrameQuestBoss = CFrame.new(4851.35059, 5.68744135, 743.251282, -0.538484037, -6.68303741e-08, -0.842635691, 1.38001752e-08, 1, -8.81300792e-08, 0.842635691, -5.90851599e-08, -0.538484037)
 			CFrameBoss = CFrame.new(5232.5625, 5.26856995, 747.506897, 0.943829298, -4.5439414e-08, 0.330433697, 3.47818627e-08, 1, 3.81658154e-08, -0.330433697, -2.45289105e-08, 0.943829298)
-		elseif _G.Settings.Select_Boss == "Swan" then
+		elseif _G.Select_Boss == "Swan" then
 			MsBoss = "Swan"
 			NameBoss = "Swan"
 			NameQuestBoss = "ImpelQuest"
 			LevelQuestBoss = 3
 			CFrameQuestBoss = CFrame.new(4851.35059, 5.68744135, 743.251282, -0.538484037, -6.68303741e-08, -0.842635691, 1.38001752e-08, 1, -8.81300792e-08, 0.842635691, -5.90851599e-08, -0.538484037)
 			CFrameBoss = CFrame.new(5232.5625, 5.26856995, 747.506897, 0.943829298, -4.5439414e-08, 0.330433697, 3.47818627e-08, 1, 3.81658154e-08, -0.330433697, -2.45289105e-08, 0.943829298)
-		elseif _G.Settings.Select_Boss == "Magma Admiral" then
+		elseif _G.Select_Boss == "Magma Admiral" then
 			MsBoss = "Magma Admiral"
 			NameBoss = "Magma Admiral"
 			NameQuestBoss = "MagmaQuest"
 			LevelQuestBoss = 3
 			CFrameQuestBoss = CFrame.new(-5317.07666, 12.2721891, 8517.41699, 0.51175487, -2.65508806e-08, -0.859131515, -3.91131572e-08, 1, -5.42026761e-08, 0.859131515, 6.13418294e-08, 0.51175487)
 			CFrameBoss = CFrame.new(-5530.12646, 22.8769703, 8859.91309, 0.857838571, 2.23414389e-08, 0.513919294, 1.53689133e-08, 1, -6.91265853e-08, -0.513919294, 6.71978384e-08, 0.857838571)
-		elseif _G.Settings.Select_Boss == "Fishman Lord" then
+		elseif _G.Select_Boss == "Fishman Lord" then
 			MsBoss = "Fishman Lord"
 			NameBoss = "Fishman Lord"
 			NameQuestBoss = "FishmanQuest"
 			LevelQuestBoss = 3
 			CFrameQuestBoss = CFrame.new(61123.0859, 18.5066795, 1570.18018, 0.927145958, 1.0624845e-07, 0.374700129, -6.98219367e-08, 1, -1.10790765e-07, -0.374700129, 7.65569368e-08, 0.927145958)
 			CFrameBoss = CFrame.new(61351.7773, 31.0306778, 1113.31409, 0.999974668, 0, -0.00714713801, 0, 1.00000012, 0, 0.00714714266, 0, 0.999974549)
-		elseif _G.Settings.Select_Boss == "Wysper" then
+		elseif _G.Select_Boss == "Wysper" then
 			MsBoss = "Wysper"
 			NameBoss = "Wysper"
 			NameQuestBoss = "SkyExp1Quest"
 			LevelQuestBoss = 3
 			CFrameQuestBoss = CFrame.new(-7862.94629, 5545.52832, -379.833954, 0.462944925, 1.45838088e-08, -0.886386991, 1.0534996e-08, 1, 2.19553424e-08, 0.886386991, -1.95022007e-08, 0.462944925)
 			CFrameBoss = CFrame.new(-7925.48389, 5550.76074, -636.178345, 0.716468513, -1.22915289e-09, 0.697619379, 3.37381434e-09, 1, -1.70304748e-09, -0.697619379, 3.57381835e-09, 0.716468513)
-		elseif _G.Settings.Select_Boss == "Thunder God" then
+		elseif _G.Select_Boss == "Thunder God" then
 			MsBoss = "Thunder God"
 			NameBoss = "Thunder God"
 			NameQuestBoss = "SkyExp2Quest"
 			LevelQuestBoss = 3
 			CFrameQuestBoss = CFrame.new(-7902.78613, 5635.99902, -1411.98706, -0.0361216255, -1.16895912e-07, 0.999347389, 1.44533963e-09, 1, 1.17024491e-07, -0.999347389, 5.6715117e-09, -0.0361216255)
 			CFrameBoss = CFrame.new(-7917.53613, 5616.61377, -2277.78564, 0.965189934, 4.80563429e-08, -0.261550069, -6.73089886e-08, 1, -6.46515304e-08, 0.261550069, 8.00056768e-08, 0.965189934)
-		elseif _G.Settings.Select_Boss == "Cyborg" then
+		elseif _G.Select_Boss == "Cyborg" then
 			MsBoss = "Cyborg"
 			NameBoss = "Cyborg"
 			NameQuestBoss = "FountainQuest"
@@ -3235,58 +3195,58 @@ function GetMaterial(matname)
 			CFrameQuestBoss = CFrame.new(5253.54834, 38.5361786, 4050.45166, -0.0112687312, -9.93677887e-08, -0.999936521, 2.55291371e-10, 1, -9.93769547e-08, 0.999936521, -1.37512213e-09, -0.0112687312)
 			CFrameBoss = CFrame.new(6041.82813, 52.7112198, 3907.45142, -0.563162148, 1.73805248e-09, -0.826346457, -5.94632716e-08, 1, 4.26280238e-08, 0.826346457, 7.31437524e-08, -0.563162148)
 			-- New World
-		elseif _G.Settings.Select_Boss == "Diamond" then
+		elseif _G.Select_Boss == "Diamond" then
 			MsBoss = "Diamond"
 			NameBoss = "Diamond"
 			NameQuestBoss = "Area1Quest"
 			LevelQuestBoss = 3
 			CFrameQuestBoss = CFrame.new(-424.080078, 73.0055847, 1836.91589, 0.253544956, -1.42165932e-08, 0.967323601, -6.00147771e-08, 1, 3.04272909e-08, -0.967323601, -6.5768397e-08, 0.253544956)
 			CFrameBoss = CFrame.new(-1736.26587, 198.627731, -236.412857, -0.997808516, 0, -0.0661673471, 0, 1, 0, 0.0661673471, 0, -0.997808516)
-		elseif _G.Settings.Select_Boss == "Jeremy" then
+		elseif _G.Select_Boss == "Jeremy" then
 			MsBoss = "Jeremy"
 			NameBoss = "Jeremy"
 			NameQuestBoss = "Area2Quest"
 			LevelQuestBoss = 3
 			CFrameQuestBoss = CFrame.new(632.698608, 73.1055908, 918.666321, -0.0319722369, 8.96074881e-10, -0.999488771, 1.36326533e-10, 1, 8.92172336e-10, 0.999488771, -1.07732087e-10, -0.0319722369)
 			CFrameBoss = CFrame.new(2203.76953, 448.966034, 752.731079, -0.0217453763, 0, -0.999763548, 0, 1, 0, 0.999763548, 0, -0.0217453763)
-		elseif _G.Settings.Select_Boss == "Fajita" then
+		elseif _G.Select_Boss == "Fajita" then
 			MsBoss = "Fajita"
 			NameBoss = "Fajita"
 			NameQuestBoss = "MarineQuest3"
 			LevelQuestBoss = 3
 			CFrameQuestBoss = CFrame.new(-2442.65015, 73.0511475, -3219.11523, -0.873540044, 4.2329841e-08, -0.486752301, 5.64383384e-08, 1, -1.43220786e-08, 0.486752301, -3.99823996e-08, -0.873540044)
 			CFrameBoss = CFrame.new(-2297.40332, 115.449463, -3946.53833, 0.961227536, -1.46645796e-09, -0.275756449, -2.3212845e-09, 1, -1.34094433e-08, 0.275756449, 1.35296352e-08, 0.961227536)
-		elseif _G.Settings.Select_Boss == "Don Swan" then
+		elseif _G.Select_Boss == "Don Swan" then
 			MsBoss = "Don Swan"
 			NameBoss = "Don Swan"
 			CFrameBoss = CFrame.new(2288.802, 15.1870775, 863.034607, 0.99974072, -8.41247214e-08, -0.0227668174, 8.4774733e-08, 1, 2.75850098e-08, 0.0227668174, -2.95079072e-08, 0.99974072)
-		elseif _G.Settings.Select_Boss == "Smoke Admiral" then
+		elseif _G.Select_Boss == "Smoke Admiral" then
 			MsBoss = "Smoke Admiral"
 			NameBoss = "Smoke Admiral"
 			NameQuestBoss = "IceSideQuest"
 			LevelQuestBoss = 3
 			CFrameQuestBoss = CFrame.new(-6059.96191, 15.9868021, -4904.7373, -0.444992423, -3.0874483e-09, 0.895534337, -3.64098796e-08, 1, -1.4644522e-08, -0.895534337, -3.91229982e-08, -0.444992423)
 			CFrameBoss = CFrame.new(-5115.72754, 23.7664986, -5338.2207, 0.251453817, 1.48345061e-08, -0.967869282, 4.02796978e-08, 1, 2.57916977e-08, 0.967869282, -4.54708946e-08, 0.251453817)
-		elseif _G.Settings.Select_Boss == "Cursed Captain" then
+		elseif _G.Select_Boss == "Cursed Captain" then
 			MsBoss = "Cursed Captain"
 			NameBoss = "Cursed Captain"
 			CFrameBoss = CFrame.new(916.928589, 181.092773, 33422, -0.999505103, 9.26310495e-09, 0.0314563364, 8.42916226e-09, 1, -2.6643713e-08, -0.0314563364, -2.63653774e-08, -0.999505103)
-		elseif _G.Settings.Select_Boss == "Darkbeard" then
+		elseif _G.Select_Boss == "Darkbeard" then
 			MsBoss = "Darkbeard"
 			NameBoss = "Darkbeard"
 			CFrameBoss = CFrame.new(3876.00366, 24.6882591, -3820.21777, -0.976951957, 4.97356325e-08, 0.213458836, 4.57335361e-08, 1, -2.36868622e-08, -0.213458836, -1.33787044e-08, -0.976951957)
-		elseif _G.Settings.Select_Boss == "Order" then
+		elseif _G.Select_Boss == "Order" then
 			MsBoss = "Order"
 			NameBoss = "Order"
 			CFrameBoss = CFrame.new(-6221.15039, 16.2351036, -5045.23584, -0.380726993, 7.41463495e-08, 0.924687505, 5.85604774e-08, 1, -5.60738549e-08, -0.924687505, 3.28013137e-08, -0.380726993)
-		elseif _G.Settings.Select_Boss == "Awakened Ice Admiral" then
+		elseif _G.Select_Boss == "Awakened Ice Admiral" then
 			MsBoss = "Awakened Ice Admiral"
 			NameBoss = "Awakened Ice Admiral"
 			NameQuestBoss = "FrostQuest"
 			LevelQuestBoss = 3
 			CFrameQuestBoss = CFrame.new(5669.33203, 28.2118053, -6481.55908, 0.921275556, -1.25320829e-08, 0.388910472, 4.72230788e-08, 1, -7.96414241e-08, -0.388910472, 9.17372489e-08, 0.921275556)
 			CFrameBoss = CFrame.new(6407.33936, 340.223785, -6892.521, 0.49051559, -5.25310213e-08, -0.871432424, -2.76146022e-08, 1, -7.58250565e-08, 0.871432424, 6.12576301e-08, 0.49051559)
-		elseif _G.Settings.Select_Boss == "Tide Keeper" then
+		elseif _G.Select_Boss == "Tide Keeper" then
 			MsBoss = "Tide Keeper"
 			NameBoss = "Tide Keeper"
 			NameQuestBoss = "ForgottenQuest"             
@@ -3294,57 +3254,57 @@ function GetMaterial(matname)
 			CFrameQuestBoss = CFrame.new(-3053.89648, 236.881363, -10148.2324, -0.985987961, -3.58504737e-09, 0.16681771, -3.07832915e-09, 1, 3.29612559e-09, -0.16681771, 2.73641976e-09, -0.985987961)
 			CFrameBoss = CFrame.new(-3570.18652, 123.328949, -11555.9072, 0.465199202, -1.3857326e-08, 0.885206044, 4.0332897e-09, 1, 1.35347511e-08, -0.885206044, -2.72606271e-09, 0.465199202)
 			-- Thire World
-		elseif _G.Settings.Select_Boss == "Stone" then
+		elseif _G.Select_Boss == "Stone" then
 			MsBoss = "Stone"
 			NameBoss = "Stone"
 			NameQuestBoss = "PiratePortQuest"             
 			LevelQuestBoss = 3
 			CFrameQuestBoss = CFrame.new(-290, 44, 5577)
 			CFrameBoss = CFrame.new(-1085, 40, 6779)
-		elseif _G.Settings.Select_Boss == "Island Empress" then
+		elseif _G.Select_Boss == "Island Empress" then
 			MsBoss = "Island Empress"
 			NameBoss = "Island Empress"
 			NameQuestBoss = "AmazonQuest2"             
 			LevelQuestBoss = 3
 			CFrameQuestBoss = CFrame.new(5443, 602, 752)
 			CFrameBoss = CFrame.new(5659, 602, 244)
-		elseif _G.Settings.Select_Boss == "Kilo Admiral" then
+		elseif _G.Select_Boss == "Kilo Admiral" then
 			MsBoss = "Kilo Admiral"
 			NameBoss = "Kilo Admiral"
 			NameQuestBoss = "MarineTreeIsland"             
 			LevelQuestBoss = 3
 			CFrameQuestBoss = CFrame.new(2178, 29, -6737)
 			CFrameBoss =CFrame.new(2846, 433, -7100)
-		elseif _G.Settings.Select_Boss == "Captain Elephant" then
+		elseif _G.Select_Boss == "Captain Elephant" then
 			MsBoss = "Captain Elephant"
 			NameBoss = "Captain Elephant"
 			NameQuestBoss = "DeepForestIsland"             
 			LevelQuestBoss = 3
 			CFrameQuestBoss = CFrame.new(-13232, 333, -7631)
 			CFrameBoss = CFrame.new(-13221, 325, -8405)
-		elseif _G.Settings.Select_Boss == "Beautiful Pirate" then
+		elseif _G.Select_Boss == "Beautiful Pirate" then
 			MsBoss = "Beautiful Pirate"
 			NameBoss = "Beautiful Pirate"
 			NameQuestBoss = "DeepForestIsland2"             
 			LevelQuestBoss = 3
 			CFrameQuestBoss = CFrame.new(-12686, 391, -9902)
 			CFrameBoss = CFrame.new(5182, 23, -20)
-		elseif _G.Settings.Select_Boss == "Cake Queen" then
+		elseif _G.Select_Boss == "Cake Queen" then
 			MsBoss = "Cake Queen"
 			NameBoss = "Cake Queen"
 			NameQuestBoss = "IceCreamIslandQuest"             
 			LevelQuestBoss = 3
 			CFrameQuestBoss = CFrame.new(-716, 382, -11010)
 			CFrameBoss = CFrame.new(-821, 66, -10965)
-		elseif _G.Settings.Select_Boss == "rip_indra True Form" then
+		elseif _G.Select_Boss == "rip_indra True Form" then
 			MsBoss = "rip_indra True Form"
 			NameBoss = "rip_indra True Form"
 			CFrameBoss = CFrame.new(-5359, 424, -2735)
-		elseif _G.Settings.Select_Boss == "Longma" then
+		elseif _G.Select_Boss == "Longma" then
 			MsBoss = "Longma"
 			NameBoss = "Longma"
 			CFrameBoss = CFrame.new(-10248.3936, 353.79129, -9306.34473)
-		elseif _G.Settings.Select_Boss == "Soul Reaper" then
+		elseif _G.Select_Boss == "Soul Reaper" then
 			MsBoss = "Soul Reaper"
 			NameBoss = "Soul Reaper"
 			CFrameBoss = CFrame.new(-9515.62109, 315.925537, 6691.12012)
@@ -4095,31 +4055,28 @@ function GetMaterial(matname)
 	MainSection:AddToggle({
 		Name = "Auto Farm Level\nออโต้ฟาร์มเลเวล",
 		Flag = "Auto_Farm_Level",
-		Value = _G.Settings.Auto_Farm_Level,
+		Value = _G.Auto_Farm_Level,
 		Callback = function(value)
 			_G.Auto_Farm_Level = value 
-			_G.Settings.Auto_Farm_Level = value
 			StopTween(_G.Auto_Farm_Level)
 			if value == false then
 				toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
 				getgenv().ToTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
 			end
-			SaveSettings()
 		end
 	})
 	if W1 then
 	MainSection:AddToggle({
 		Name = "Auto Farm Fast\nออโต้ฟาร์มเลเวลแบบเร็ว1-300",
 		Flag = "Auto_Farm_Fast",
-		Value = _G.Settings.Auto_Farm_Fast,
+		Value = _G.Auto_Farm_Fast,
 		Callback = function(value)
 			if W1 then
 				_G.AutoFarmFast = value
 			else
 				_G.AutoFarmFast = false
 			end
-			_G.Settings.Auto_Farm_Fast = value
-			SaveSettings()
+			_G.Auto_Farm_Fast = value
 		end
 	})
 end
@@ -4168,7 +4125,7 @@ end
 
 	spawn(function()
 		while wait() do 
-			if _G.Settings.Auto_Farm_Fast and _G.AutoFarmFast_Num == 1 then
+			if _G.Auto_Farm_Fast and _G.AutoFarmFast_Num == 1 then
 				_G.AutoFarmFast = false
 			end
 		end
@@ -4378,11 +4335,9 @@ end
 	NewWorldsSection:AddToggle({
 		Name = "Auto New World\nออโต้ไปโลกสอง",
 		Flag = "Auto_New_World",
-		Value = _G.Settings.Auto_New_World,
+		Value = _G.Auto_New_World,
 		Callback = function(value)
 			_G.Auto_New_World = value
-			_G.Settings.Auto_New_World = value
-			SaveSettings()
 			StopTween(_G.Auto_New_World)
 			if value == false then
 				toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
@@ -4437,11 +4392,9 @@ end
 	NewWorldsSection:AddToggle({
 		Name = "Auto Third World\nออโต้ไปโลกสาม",
 		Flag = "Auto_Third_World",
-		Value = _G.Settings.Auto_Third_World,
+		Value = _G.Auto_Third_World,
 		Callback = function(value)
 			_G.Auto_Third_World = value
-			_G.Settings.Auto_Third_World = value
-			SaveSettings()  
 			StopTween(_G.Auto_Third_World)
 			if value == false then
 				toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
@@ -4664,16 +4617,14 @@ end
 	Mastery:AddToggle({ 
 		Name = "Auto Farm Mastery Fruit\nออโต้ฟาร์มมาสเตอรี่ผลปีศาจ",
 		Flag = "Auto_Farm_Mastery_Fruit",
-		Value = _G.Settings.Auto_Farm_Mastery_Fruit,
+		Value = _G.Auto_Farm_Mastery_Fruit,
 		Callback = function(value)
 			_G.Auto_Farm_Mastery_Fruit = value    
-			_G.Settings.Auto_Farm_Mastery_Fruit = value
 			StopTween(_G.Auto_Farm_Mastery_Fruit)
 			if value == false then
 				toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
 				getgenv().ToTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
 			end
-			SaveSettings()
 		end
 	})
 	
@@ -4705,10 +4656,10 @@ end
 											if not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, QuestCheck()[6]) then
 												game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
 											else
-												if v.Humanoid.Health <= v.Humanoid.MaxHealth * _G.Settings.HealthMs/100 then 
+												if v.Humanoid.Health <= v.Humanoid.MaxHealth * _G.HealthMs/100 then 
 													_G.UseSkill = true
 													EquipBloxFruit()
-													getgenv().ToTarget(v.HumanoidRootPart.CFrame * CFrame.new(0,_G.Settings.Distance,_G.Settings.DistanceY))
+													getgenv().ToTarget(v.HumanoidRootPart.CFrame * CFrame.new(0,_G.Distance,_G.DistanceY))
 													PosMon = v.HumanoidRootPart.CFrame
 													v.HumanoidRootPart.Size = Vector3.new(60,60,60)
 													v.HumanoidRootPart.CanCollide = false
@@ -4725,7 +4676,7 @@ end
 													BringMobFarm = true
 													EquipWeapon(_G.Select_Weapon)
 													v.HumanoidRootPart.Transparency = 1
-													getgenv().ToTarget(v.HumanoidRootPart.CFrame * CFrame.new(0,_G.Settings.Distance,_G.Settings.DistanceY))
+													getgenv().ToTarget(v.HumanoidRootPart.CFrame * CFrame.new(0,_G.Distance,_G.DistanceY))
 													AutoHaki()
 													if (v.HumanoidRootPart.CFrame.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 50 then
 														_G.FastAttack = true
@@ -4781,16 +4732,14 @@ end
 	Mastery:AddToggle({
 		Name = "Auto Farm Mastery Gun\nออโต้ฟาร์มมาสเตอรี่ปืน",
 		Flag = "Auto_Farm_Mastery_Gun",
-		Value = _G.Settings.Auto_Farm_Mastery_Gun,
+		Value = _G.Auto_Farm_Mastery_Gun,
 		Callback = function(value)
 			_G.Auto_Farm_Mastery_Gun = value
-			_G.Settings.Auto_Farm_Mastery_Gun = value
 			StopTween(_G.Auto_Farm_Mastery_Gun)
 			if value == false then
 				toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
 				getgenv().ToTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
 			end
-			SaveSettings()
 		end
 	})
 
@@ -4852,9 +4801,9 @@ end
 										PositionSkillMasteryGun = v.HumanoidRootPart.Position
 										repeat task.wait()
 											v.HumanoidRootPart.CFrame = PosMon
-											if v.Humanoid.Health <= v.Humanoid.MaxHealth * _G.Settings.HealthMs/100 then 
+											if v.Humanoid.Health <= v.Humanoid.MaxHealth * _G.HealthMs/100 then 
 												_G.UseSkill = true
-												getgenv().ToTarget(v.HumanoidRootPart.CFrame * CFrame.new(0,_G.Settings.Distance,_G.Settings.DistanceY))
+												getgenv().ToTarget(v.HumanoidRootPart.CFrame * CFrame.new(0,_G.Distance,_G.DistanceY))
 												v.HumanoidRootPart.Size = Vector3.new(120,120,120)
 												v.HumanoidRootPart.CanCollide = false
 												v.Head.CanCollide = false
@@ -4874,7 +4823,7 @@ end
 												BringMobFarm = true
 												EquipWeapon(_G.Select_Weapon)
 												v.HumanoidRootPart.Transparency = 1
-												getgenv().ToTarget(v.HumanoidRootPart.CFrame * CFrame.new(0,_G.Settings.Distance,_G.Settings.DistanceY))
+												getgenv().ToTarget(v.HumanoidRootPart.CFrame * CFrame.new(0,_G.Distance,_G.DistanceY))
 												AutoHaki()
 												if (v.HumanoidRootPart.CFrame.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 50 then
 													_G.FastAttack = true
@@ -4987,11 +4936,9 @@ end
 
 	Mastery:AddToggle({
 		Name = "Auto Farm All Mastery Sword\nออโต้ฟาร์มมาสเตอรี่ดาบทั้งหมด",
-		Value = _G.Settings.Auto_Farm_All_Sword,
+		Value = _G.Auto_Farm_All_Sword,
 		Callback = function(value)
 			_G.Auto_Farm_All_Sword = value 
-			_G.Settings.Auto_Farm_All_Sword = value
-			SaveSettings()  
 			StopTween(_G.Auto_Farm_All_Sword)
 			if value == false then
 				toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
@@ -5157,7 +5104,7 @@ end
 	ChestSection:AddToggle({
 		Name = "Auto Farm Chest Tween\nออโต้ฟาร์มกล่อง{บินเก็บ}",
 		Flag = "Auto_Farm_Chest",
-		Value = _G.Settings.Auto_Farm_Chest,
+		Value = _G.Auto_Farm_Chest,
 		Callback = function(value)
 			_G.Auto_Farm_Chest = value 
 			StopTween(_G.Auto_Farm_Chest)
@@ -5167,19 +5114,15 @@ end
 			else
 				_G.Bypass_TP = false
 			end
-			_G.Settings.Auto_Farm_Chest = value
-			SaveSettings()  
 		end
 	})
 	
 	ChestSection:AddToggle({
 		Name = "Auto Farm Chest Fast\nออโต้ฟาร์มกล่อง{วาร์ปเก้บ}",
 		Flag = "Auto_Farm_Chest_Fast",
-		Value = _G.Settings.ChestBypass,
+		Value = _G.ChestBypass,
 		Callback = function(value)
 			_G.ChestBypass = value   
-			_G.Settings.ChestBypass = value
-			SaveSettings()   
 			StopTween(_G.ChestBypass)
 		end
 	})
@@ -5252,11 +5195,9 @@ spawn(function()
 
 		Auto_Castle_RaidSection:AddToggle({
 			Name = "Auto Castle Raid\nออโต้ตีโจรเกาะกลาง",
-			Value = _G.Settings.Auto_Castle_Raid,
+			Value = _G.Auto_Castle_Raid,
 			Callback = function(value)
 				_G.Auto_Castle_Raid = value
-				_G.Settings.Auto_Castle_Raid = value
-				SaveSettings()   
 				StopTween(_G.Auto_Castle_Raid)
 				if value == false then
 					toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
@@ -5338,11 +5279,9 @@ spawn(function()
 		ElitehunterSection:AddToggle({
 			Name = "Auto Elite Hunter\nออโต้ฆ่าอีลิธฮันเตอร์",
 			Flag = "Auto_Elite_Hunter",
-			Value = _G.Settings.Auto_Elite_Hunter,
+			Value = _G.Auto_Elite_Hunter,
 			Callback = function(value)
 				_G.Auto_Elite_Hunter = value
-				_G.Settings.Auto_Elite_Hunter = value
-				SaveSettings()   
 				StopTween(_G.Auto_Elite_Hunter)
 				if value == false then
 					toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
@@ -5354,11 +5293,9 @@ spawn(function()
 		ElitehunterSection:AddToggle({
 			Name = "Auto Elite Hunter Hop\nออโต้ฆ่าอีลิธฮันเตอร์{ย้ายเซิฟ}",
 			Flag = "Auto_Elite_Hunter_Hop",
-			Value = _G.Settings.Auto_Elite_Hunter_Hop,
+			Value = _G.Auto_Elite_Hunter_Hop,
 			Callback = function(value)
-				_G.Auto_Elite_Hunter_Hop = value 
-				_G.Settings.Auto_Elite_Hunter_Hop = value
-				SaveSettings()      
+				_G.Auto_Elite_Hunter_Hop = value   
 			end
 		})
 		local Elite_All_Mon = {
@@ -5452,7 +5389,7 @@ spawn(function()
 		CakePrinceSection:AddToggle({
 			Name = "Auto Cake Prince\nออโต้ตีคาตาคุริ",
 			Flag = "Auto_Cake_Prince",
-			Value = _G.Settings.Auto_Cake_Prince,
+			Value = _G.Auto_Cake_Prince,
 			Callback = function(value)
 				_G.Auto_Cake_Prince = value
 				if _G.Bypass_TP == false and _G.HH then
@@ -5461,8 +5398,6 @@ spawn(function()
 				else
 					_G.Bypass_TP = false
 				end
-				_G.Settings.Auto_Cake_Prince = value
-				SaveSettings()
 				StopTween(_G.Auto_Cake_Prince)
 				if value == false then
 					toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
@@ -5494,7 +5429,7 @@ spawn(function()
 				if _G.Auto_Cake_Prince then
 					pcall(function()
 						if game.ReplicatedStorage:FindFirstChild("Cake Prince") or game:GetService("Workspace").Enemies:FindFirstChild("Cake Prince") or  game.ReplicatedStorage:FindFirstChild("Dough King") or game:GetService("Workspace").Enemies:FindFirstChild("Dough King") then   
-								if _G.Settings.Bypass_TP then
+								if _G.Bypass_TP then
 								_G.Bypass_TP = false
 							end
 							if not game:GetService("Workspace").Enemies:FindFirstChild("Cake Prince") then
@@ -5710,11 +5645,9 @@ spawn(function()
 		FarmBoneSection:AddToggle{
 			Name = "Auto Farm Bone\nออโต้ฟาร์มกระดูก",
 			Flag = "Auto_Farm_Bone",
-			Value = _G.Settings.Auto_Farm_Bone,
+			Value = _G.Auto_Farm_Bone,
 			Callback  = function(value)
 				_G.Auto_Farm_Bone = value
-				_G.Settings.Auto_Farm_Bone = value
-				SaveSettings()
 				StopTween(_G.Auto_Farm_Bone)
 				if value == false then
 					toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
@@ -5862,11 +5795,9 @@ spawn(function()
 		FarmBoneSection:AddToggle{
 			Name = "Auto Trade Bone\nออโต้เทรดกระดูก",
 			Flag = "Auto_Trade_Bone",
-			Value = _G.Settings.Auto_Trade_Bone,
+			Value = _G.Auto_Trade_Bone,
 			Callback  = function(value)
 				_G.Auto_Trade_Bone = value
-				_G.Settings.Auto_Trade_Bone = value
-				SaveSettings()
 			end
 		}
 		
@@ -5901,25 +5832,21 @@ end)
 
 FarmObervaSection:AddToggle({
 	Name = "Auto Farm Observation Haki\nออฟาร์มฮาคิสังเกต",
-	Value = _G.Settings.AutoObservation,
+	Value = _G.AutoObservation,
 	Callback = function(value)
-		_G.AutoObservation = value 
-		_G.Settings.AutoObservation = value
-		SaveSettings()      
+		_G.AutoObservation = value   
 	end})
 
 FarmObervaSection:AddToggle({
 	Name = "Auto Farm Observation Haki\nออฟาร์มฮาคิสังเกต{ย้ายเซิฟ}",
-	Value = _G.Settings.AutoObservation_Hop, 
+	Value = _G.AutoObservation_Hop, 
 	Callback = function(value)
-		_G.AutoObservation_Hop = value 
-		_G.Settings.AutoObservation_Hop = value
-		SaveSettings()      
+		_G.AutoObservation_Hop = value    
 	end})
 spawn(function()
         while wait() do
             pcall(function()
-                    if _G.Settings.AutoObservation then
+                    if _G.AutoObservation then
                         repeat
                             task.wait()
                             if not game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui:FindFirstChild("ImageLabel") then
@@ -5939,7 +5866,7 @@ spawn(function()
 spawn(function()
         pcall(function()
                 while wait() do
-                    if _G.Settings.AutoObservation then
+                    if _G.AutoObservation then
                         if game:GetService("Players").LocalPlayer.VisionRadius.Value >= 6000 then
 							Vec("<Color=Red>You Have Max Observation<Color=/>")
                             wait(2)
@@ -6071,12 +5998,11 @@ spawn(function()
 	SettingSection:AddDropdown({
 		Name = "Select Weapon เลือกอาวุธ",
 		Flag = "Select_Weapon",
-		Value = _G.Settings.SelectWeapon,
+		Value = _G.SelectWeapon,
 		List = Weapon,
 		Callback = function(value)
 			SelectWeapon = value
-			_G.Settings.SelectWeapon = value
-			SaveSettings()
+			_G.SelectWeapon = value
 		end
 	})
 	if _G.DistanceAutoFarm == nil then
@@ -6088,26 +6014,22 @@ spawn(function()
 	SettingSection:AddDropdown({
 		Name = "Select Farm Method เลือกตำแหน่งฟาร์ม",
 		Flag = "Select_Farm_Method",
-		Value = _G.Settings.Method,
+		Value = _G.Method,
 		List = {"Upper","Behind","Below"},
 		Callback = function(value)
 			_G.Method = value
-			_G.Settings.Method = value
-			SaveSettings()
 		end
 	})
 	
 	SettingSection:AddSlider({
 		Name = "Distance\nระยะฟาร์ม",
 		Flag = "Distance",
-		Value = _G.Settings.DistanceAutoFarm,
+		Value = _G.DistanceAutoFarm,
 		Min = 1,
 		Max = 100,
 		Textbox = true,
 		Format = function(value)
 			DistanceAutoFarm = value
-			_G.Settings.DistanceAutoFarm = value
-			SaveSettings()
 		end
 	})
 	
@@ -6183,11 +6105,9 @@ spawn(function()
 	SettingSection:AddToggle{
 		Name = "Auto Set SpawnPoint\nออโต้เซ็ตจุดเกิด",
 		Flag = "Auto_Set_Spawn",
-		Value = _G.Settings.Auto_Set_Spawn,
+		Value = _G.Auto_Set_Spawn,
 		Callback  = function(value)
 			_G.Auto_Set_Spawn = value
-			_G.Settings.Auto_Set_Spawn = value
-			SaveSettings()
 		end
 	}
 	
@@ -6206,7 +6126,7 @@ spawn(function()
 	SettingSection:AddToggle{
 		Name = "Fast Attack\nโจมตีเร็ว",
 		Flag = "FastAttack",
-		Value = _G.FastAttack,
+		Value = true,
 		Callback  = function(value)
 			_G.FastAttack = value
 		end
@@ -6215,11 +6135,9 @@ spawn(function()
 	SettingSection:AddToggle{
 		Name = "Bring Mon\nรวมมอน",
 		Flag = "Bring_Mob",
-		Value = _G.Settings.Brimob,
+		Value = true,
 		Callback  = function(value)
 			_G.Brimob = value
-			_G.Settings.Brimob = value
-			SaveSettings()
 		end
 	}
 	function InMyNetWork(object)
@@ -6302,8 +6220,6 @@ spawn(function()
 		Callback = function(value)
 			_G.Bypass_TP = value
 			_G.HH =  value
-			_G.Settings.Bypass = value
-			SaveSettings()
 		end
 	})
 
@@ -6399,29 +6315,27 @@ spawn(function()
 	
 	SettingSection:AddToggle{
 		Name = "Hide Damage Counter\nซ่อนดาเมจแดงๆที่ตัวมอน",
-		Value = _G.Settings.Remove_UI_DamageCounter,
+		Value = _G.Remove_UI_DamageCounter,
 		Callback  = function(value)
-			_G.Settings.Remove_UI_DamageCounter = value
+			_G.Remove_UI_DamageCounter = value
 			if value == true then
 				game:GetService("ReplicatedStorage").Assets.GUI.DamageCounter.Enabled = false
 			else
 				game:GetService("ReplicatedStorage").Assets.GUI.DamageCounter.Enabled = true
 			end
-			SaveSettings()
 		end
 	}
 
 	SettingSection:AddToggle{
 		Name = "Hide Notifications\nซ่อนการแจ้งเตือน",
-		Value = _G.Settings.Notifications_Remove,
+		Value = _G.Notifications_Remove,
 		Callback  = function(value)
-			_G.Settings.Notifications_Remove = value
+			_G.Notifications_Remove = value
 			if value == true then
 				game:GetService("Players").LocalPlayer.PlayerGui.Notifications.Enabled = false
 			else
 				game:GetService("Players").LocalPlayer.PlayerGui.Notifications.Enabled = true
 			end
-			SaveSettings()
 		end
 	}
 
@@ -6433,21 +6347,18 @@ spawn(function()
 	StatsSection:AddMultiDropdown({
 		Name = "Select Stats\nเลือกสแตค",
 		List = {"Melee","Defense","Sword","Gun","Demon Fruit"},
-		Value = _G.Settings.Select_Stats,
+		Value = _G.Select_Stats,
 		Callback = function(value)
-			_G.Settings.Select_Stats = value
-			SaveSettings()
+			_G.Select_Stats = value
 		end
 	})
 	
 	StatsSection:AddToggle{
 		Name = "Auto Stats\nออโต้อัพสแตค",
 		Flag = "Auto_Stats",
-		Value = _G.Settings.Auto_Stats,
+		Value = _G.Auto_Stats,
 		Callback  = function(value)
 			_G.Auto_Stats = value
-			_G.Settings.Auto_Stats = value
-			SaveSettings()
 		end
 	}
 	
@@ -6455,7 +6366,7 @@ spawn(function()
 		while wait() do
 			pcall(function()
 				if _G.Auto_Stats then
-					for _,g in next, _G.Settings.Select_Stats do
+					for _,g in next, _G.Select_Stats do
 						game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AddPoint",tostring(g),_G.Point)
 					end
 				end
@@ -6466,11 +6377,9 @@ spawn(function()
 	StatsSection:AddToggle{
 		Name = "Auto Stats Kaitun\nออโต้อัพสแตคแบบไก่ตัน",
 		Flag = "Auto_Stats_Kaitun",
-		Value = _G.Settings.Auto_Stats_Kaitun,
+		Value = _G.Auto_Stats_Kaitun,
 		Callback  = function(value)
 			_G.Auto_Stats_Kaitun = value
-			_G.Settings.Auto_Stats_Kaitun = value
-			SaveSettings()
 		end
 	}
 	
@@ -6503,14 +6412,12 @@ spawn(function()
 	StatsSection:AddSlider({
 		Name = "Select Point\nเลือกจำนวน",
 		Flag = "Select_Point",
-		Value = _G.Settings.Point,
+		Value = _G.Point,
 		Min = 1,
 		Max = 100,
 		Textbox = true,
 		Format = function(value)
 			_G.Point = value
-			_G.Settings.Point = value
-			SaveSettings()
 			return "Point : " .. tostring(value)
 		end
 	})
@@ -6560,44 +6467,36 @@ end)
 	MasterySettings:AddToggle{
 		Name = "Skill Z",
 		Flag = "SkillZ",
-		Value = _G.Settings.SkillZ,
+		Value = _G.SkillZ,
 		Callback  = function(value)
 			_G.SkillZ = value
-			_G.Settings.SkillZ = value
-			SaveSettings()
 		end
 	}
 	
 	MasterySettings:AddToggle{
 		Name = "Skill X",
 		Flag = "SkillX",
-		Value = _G.Settings.SkillX,
+		Value = _G.SkillX,
 		Callback  = function(value)
 			_G.SkillX = value
-			_G.Settings.SkillX = value
-			SaveSettings()
 		end
 	}
 	
 	MasterySettings:AddToggle{
 		Name = "Skill C",
 		Flag = "SkillC",
-		Value = _G.Settings.SkillC,
+		Value = _G.SkillC,
 		Callback  = function(value)
 			_G.SkillC = value
-			_G.Settings.SkillC = value
-			SaveSettings()
 		end
 	}
 	
 	MasterySettings:AddToggle{
 		Name = "Skill V",
 		Flag = "SkillV",
-		Value = _G.Settings.SkillV,
+		Value = _G.SkillV,
 		Callback  = function(value)
 			_G.SkillV = value
-			_G.Settings.SkillV = value
-			SaveSettings()
 		end
 	}
 	
@@ -6657,39 +6556,36 @@ end)
 	MasterySettings:AddSlider({
 		Name = "Select HealthMs\nเลือกเลือดมอนตอนที่จะปล่อยสกิล",
 		Flag = "HealthMs",
-		Value = _G.Settings.HealthMs,
+		Value = _G.HealthMs,
 		Min = 1,
 		Max = 100,
 		Textbox = true,
 		Format = function(value)
-			_G.Settings.HealthMs = value
-			SaveSettings()
+			_G.HealthMs = value
 		end
 	})
 	
 	MasterySettings:AddSlider({
 		Name = "Select Distance Y\nเลือกระยะแกน Y",
 		Flag = "DistanceY",
-		Value = _G.Settings.DistanceY,
+		Value = _G.DistanceY,
 		Min = 1,
 		Max = 100,
 		Textbox = true,
 		Format = function(value)
-			_G.Settings.DistanceY = value
-			SaveSettings()
+			_G.DistanceY = value
 		end
 	})
 	
 	MasterySettings:AddSlider({
 		Name = "Select Distance X\nเลือกระยะแกน X",
 		Flag = "DistanceX",
-		Value = _G.Settings.Distance,
+		Value = _G.Distance,
 		Min = 1,
 		Max = 100,
 		Textbox = true,
 		Format = function(value)
-			_G.Settings.Distance = value
-			SaveSettings()
+			_G.Distance = value
 		end
 	})
 	--HealthMs
@@ -6718,10 +6614,9 @@ end)
 		Name = "Select Player เลือกเพลย์เยอร์",
 		Flag = "Select_Player",
 		List = PlayerName,
-		Value = _G.Settings.Select_Player,
+		Value = _G.Select_Player,
 		Callback = function(value)
-			_G.Settings.Select_Player = value
-			SaveSettings()
+			_G.Select_Player = value
 		end
 	})
 	RageBountySection:AddButton({
@@ -6740,19 +6635,17 @@ end)
 	RageBountySection:AddToggle{
 		Name = "Spectate Player\nดูเพลย์เยอร์",
 		Flag = "Spectate_Player",
-		Value = _G.Settings.Spectate_Player,
+		Value = _G.Spectate_Player,
 		Callback  = function(value)
 			_G.Spectate_Player = value
-			_G.Settings.Spectate_Player = value
-			SaveSettings()
 		end}
 	
 	spawn(function()
 		while wait() do
 			if _G.Spectate_Player then
 				pcall(function()
-					if game.Players:FindFirstChild(_G.Settings.Select_Player) then
-						game.Workspace.Camera.CameraSubject = game.Players:FindFirstChild(_G.Settings.Select_Player).Character.Humanoid
+					if game.Players:FindFirstChild(_G.Select_Player) then
+						game.Workspace.Camera.CameraSubject = game.Players:FindFirstChild(_G.Select_Player).Character.Humanoid
 					end
 				end)
 			else
@@ -6764,11 +6657,9 @@ end)
 	RageBountySection:AddToggle{
 		Name = "Teleport to Player\nเทเลพอร์ตไปที่เพลย์เยอร์",
 		Flag = "Teleport_to_Player",
-		Value = _G.Settings.Teleport_to_Player,
+		Value = _G.Teleport_to_Player,
 		Callback  = function(value)
 			_G.Teleport_to_Player = value
-			_G.Settings.Teleport_to_Player = value
-			SaveSettings()
 			StopTween(_G.Teleport_to_Player)
 			if value == false then
 				toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
@@ -6781,8 +6672,8 @@ end)
 		while wait() do
 			if _G.Teleport_to_Player then
 				pcall(function()
-					if game.Players:FindFirstChild(_G.Settings.Select_Player) then
-						getgenv().ToTarget(game.Players[_G.Settings.Select_Player].Character.HumanoidRootPart.CFrame)
+					if game.Players:FindFirstChild(_G.Select_Player) then
+						getgenv().ToTarget(game.Players[_G.Select_Player].Character.HumanoidRootPart.CFrame)
 					end
 				end)
 			end
@@ -6808,9 +6699,9 @@ end)
 		while wait() do 
 			pcall(function()
 				if _G.Auto_Kill_Player then
-					if game.Players:FindFirstChild(_G.Settings.Select_Player) then
+					if game.Players:FindFirstChild(_G.Select_Player) then
 						for i,v in pairs(game:GetService("Workspace").Characters:GetChildren()) do
-							if v.Name == _G.Settings.Select_Player and v.Humanoid.Health > 0 then
+							if v.Name == _G.Select_Player and v.Humanoid.Health > 0 then
 								repeat wait()
 									if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > 300 then
 										getgenv().ToTarget(v.HumanoidRootPart.CFrame * MethodFarmPlayer)
@@ -6850,7 +6741,7 @@ end)
 										end
 									end  
 									end
-								until game.Players:FindFirstChild(_G.Settings.Select_Player).Character.Humanoid.Health <= 0 or not _G.Auto_Kill_Player or not game.Players:FindFirstChild(_G.Settings.Select_Player)
+								until game.Players:FindFirstChild(_G.Select_Player).Character.Humanoid.Health <= 0 or not _G.Auto_Kill_Player or not game.Players:FindFirstChild(_G.Select_Player)
 							end
 						end
 					end
@@ -6989,11 +6880,9 @@ end)
 	RageBountySection:AddToggle{
 		Name = "Enabled PvP\nเปิดโหมดต่อสู้",
 		Flag = "EnabledPvP",
-		Value = _G.Settings.EnabledPvP,
+		Value = _G.EnabledPvP,
 		Callback  = function(value)
 			_G.EnabledPvP = value
-			_G.Settings.EnabledPvP = value
-			SaveSettings()
 		end
 	}
 	
@@ -7449,10 +7338,9 @@ end)
 		Name = "Select Boss เลือกบอส",
 		Flag = "Select_Boss",
 		List = Boss,
-		Value = _G.Settings.Select_Boss,
+		Value = _G.Select_Boss,
 		Callback = function(value)
-			_G.Settings.Select_Boss = value
-			SaveSettings()
+			_G.Select_Boss = value
 		end
 	})
 	
@@ -7488,8 +7376,6 @@ end)
 		Value = false,
 		Callback  = function(value)
 			_G.Auto_Farm_Boss = value
-			_G.Settings.Auto_Farm_Boss = value
-			SaveSettings()
 			StopTween(_G.Auto_Farm_Boss)
 			if value == false then
 				toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
@@ -7501,11 +7387,9 @@ end)
 	BossSection:AddToggle{
 		Name = "Auto Quest Boss\nออโต้รับเควสบอส",
 		Flag = "Auto_Quest_Boss",
-		Value = _G.Settings.Auto_Quest_Boss,
+		Value = _G.Auto_Quest_Boss,
 		Callback  = function(value)
 			_G.Auto_Quest_Boss = value
-			_G.Settings.Auto_Quest_Boss = value
-			SaveSettings()
 		end
 	}
 	
@@ -7594,8 +7478,6 @@ end)
 		Value = false,
 		Callback  = function(value)
 			_G.Auto_Farm_All_Boss = value
-			_G.Settings.Auto_Farm_All_Boss = value
-			SaveSettings()
 			StopTween(_G.Auto_Farm_All_Boss)
 			if value == false then
 				toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
@@ -7644,11 +7526,9 @@ end)
 	HallowSythe:AddToggle({
 		Name = "Auto Hallow Scythe",
 		Flag = "Auto Hallow Scythe",
-		Value = _G.Settings.AutoFarmBossHallow, 
+		Value = _G.AutoFarmBossHallow, 
 		Callback = function(value)
 			_G.AutoFarmBossHallow = value
-			_G.Settings.AutoFarmBossHallow = value
-			SaveSettings()
 			StopTween(_G.AutoFarmBossHallow)
 			if value == false then
 				toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
@@ -7698,11 +7578,9 @@ end)
 			AutoBuddySwords:AddToggle({
 				Name = "Auto Buddy Swords",
 				Flag = "Auto Buddy Swords",
-				Value = _G.Settings.AutoBuddySwords, 
+				Value = _G.AutoBuddySwords, 
 				Callback = function(value)
 					_G.AutoBuddySwords = value
-					_G.Settings.AutoBuddySwords = value
-					SaveSettings()
 					StopTween(_G.AutoBuddySwords)
 					if value == false then
 						toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
@@ -7755,11 +7633,9 @@ end)
 				AutoCavander:AddToggle({
 					Name = "Auto Cavander Swords",
 					Flag = "Auto Cavander Swords",
-					Value = _G.Settings.AutoCavander, 
+					Value = _G.AutoCavander, 
 					Callback = function(value)
 						_G.AutoCavander = value
-						_G.Settings.AutoCavander = value
-						SaveSettings()
 						StopTween(_G.AutoCavander)
 						if value == false then
 							toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
@@ -7824,11 +7700,9 @@ end)
 	rip_indra_Section:AddToggle({
 		Name = "Auto Rip Indar [Boss] {Fully}\nออโต้ตีอินดรา{เต็มรูปแบบ}",
 		Flag = "Auto Rip Indar [Boss] (Fully)",
-		Value = _G.Settings.Auto_Rip_Indar,
+		Value = _G.Auto_Rip_Indar,
 		Callback = function(value)
 			_G.Auto_Rip_Indar = value
-			_G.Settings.Auto_Rip_Indar = value
-			SaveSettings()
 			StopTween(_G.Auto_Rip_Indar)
 			if value == false then
 				toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
@@ -7987,11 +7861,9 @@ end
 		SaberSection:AddToggle{
 			Name = "Auto Saber\nออโต้หาดาบแชงค์",
 			Flag = "Auto_Saber",
-			Value = _G.Settings.Auto_Saber,
+			Value = _G.Auto_Saber,
 			Callback  = function(value)
 				_G.Auto_Saber = value
-				_G.Settings.Auto_Saber = value
-				SaveSettings()
 				StopTween(_G.Auto_Saber)
 				if value == false then
 					toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
@@ -8003,11 +7875,9 @@ end
 		SaberSection:AddToggle{
 			Name = "Auto Saber {Hop}\nออโต้หาดาบแชงค์{ย้ายเซิฟ}",
 			Flag = "Auto_Saber_Hop",
-			Value = _G.Settings.Auto_Saber_Hop,
+			Value = _G.Auto_Saber_Hop,
 			Callback  = function(value)
 				_G.Auto_Saber_Hop = value
-				_G.Settings.Auto_Saber_Hop = value
-				SaveSettings()
 			end
 		}
 		
@@ -8116,7 +7986,7 @@ end
 											if not _G.FastAttack or not _G.FastAttackO or _G.FastAttack or _G.FastAttackO or _G.SuperFastAttack then game:GetService'VirtualUser':CaptureController() game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672)) end
 										until v.Humanoid.Health <= 0 or _G.AutoSaber == false
 										_G.Auto_Saber = false
-										if _G.Settings.Auto_Farm_Level then
+										if _G.Auto_Farm_Level then
 											_G.Auto_Farm_Level = true
 										end
 										if v.Humanoid.Health <= 0 then
@@ -8144,11 +8014,9 @@ end
 		PoleSection:AddToggle{
 			Name = "Auto Pole V1\nออโต้หากระบองเอเนลขั้นหนึ่ง",
 			Flag = "Auto_Pole_V1",
-			Value = _G.Settings.Auto_Pole,
+			Value = _G.Auto_Pole,
 			Callback  = function(value)
 				_G.Auto_Pole = value
-				_G.Settings.Auto_Pole = value
-				SaveSettings()
 				StopTween(_G.Auto_Pole)
 				if value == false then
 					toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
@@ -8160,11 +8028,9 @@ end
 		PoleSection:AddToggle{
 			Name = "Auto Pole V1 {Hop}\nออโต้หากระบองเอเนลขั้นหนึ่ง{ย้ายเซิฟ}",
 			Flag = "Auto_Pole_V1_Hop",
-			Value = _G.Settings.Auto_Pole_V1_Hop,
+			Value = _G.Auto_Pole_V1_Hop,
 			Callback  = function(value)
 				_G.Auto_Pole_Hop = value
-				_G.Settings.Auto_Pole_V1_Hop = value
-				SaveSettings()
 			end
 		}
 		
@@ -8210,11 +8076,9 @@ end
 		FactorySection:AddToggle{
 			Name = "Auto Factory Farm\nออโต้ตีโรงงาน",
 			Flag = "Auto_Factory_Farm",
-			Value = _G.Settings.Auto_Factory_Farm,
+			Value = _G.Auto_Factory_Farm,
 			Callback  = function(value)
 				_G.Auto_Factory_Farm = value
-				_G.Settings.Auto_Factory_Farm = value
-				SaveSettings()
 				StopTween(_G.Auto_Factory_Farm)
 				if value == false then
 					toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
@@ -8256,11 +8120,9 @@ end
 		EctoplasmSection:AddToggle{
 			Name = "Auto Farm Ectoplasm\nออโต้ฟาร์มเอ็กโตพลาสซึม",
 			Flag = "Auto_Farm_Ectoplasm",
-			Value = _G.Settings.Auto_Farm_Ectoplasm,
+			Value = _G.Auto_Farm_Ectoplasm,
 			Callback  = function(value)
 				_G.Auto_Farm_Ectoplasm = value
-				_G.Settings.Auto_Farm_Ectoplasm = value
-				SaveSettings()
 				StopTween(_G.Auto_Farm_Ectoplasm)
 				if value == false then
 					toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
@@ -8333,11 +8195,9 @@ end
 
 			SeaKingSection:AddToggle{
 				Name = "Auto Sea Beast\nออโต้ตีเจ้าทะเล",
-				Value = _G.Settings.Auto_Sea_King,
+				Value = _G.Auto_Sea_King,
 				Callback  = function(value)
 					_G.Auto_Sea_King = value
-					_G.Settings.Auto_Sea_King = value
-					SaveSettings()
 					StopTween(_G.Auto_Sea_King)
 					if value == false then
 						toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
@@ -8405,21 +8265,17 @@ end
 				Name = "Select Mode เลือกโหมด",
 				Flag = "Select_Mode",
 				List = {"Chest","Sea Beast"},
-				Value = _G.Settings.Select_Mode,
+				Value = _G.Select_Mode,
 				Callback = function(value)
 					_G.Select_Mode = value
-					_G.Settings.Select_Mode = value
-					SaveSettings()
 				end
 			})
 
 			DackCoatSection:AddToggle{
 				Name = "Auto Dack Coat\nออโต้หาผ้าคลุมหนวดดำ",
-				Value = _G.Settings.Auto_Dack_Coat,
+				Value = _G.Auto_Dack_Coat,
 				Callback  = function(value)
 					_G.Auto_Dack_Coat = value
-					_G.Settings.Auto_Dack_Coat = value
-					SaveSettings()
 					StopTween(_G.Auto_Dack_Coat)
 					if value == false then
 						toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
@@ -8478,11 +8334,9 @@ end
 		SwanGlassesSection:AddToggle{
 			Name = "Auto Swan Glasses\nออหาโต้แว่นโดฟามิงโก้",
 			Flag = "Auto_Swan_Glasses",
-			Value = _G.Settings.Auto_Swan_Glasses,
+			Value = _G.Auto_Swan_Glasses,
 			Callback  = function(value)
 				_G.Auto_Swan_Glasses = value
-				_G.Settings.Auto_Swan_Glasses = value
-				SaveSettings()
 				StopTween(_G.Auto_Swan_Glasses)
 				if value == false then
 					toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
@@ -8494,11 +8348,9 @@ end
 		SwanGlassesSection:AddToggle{
 			Name = "Auto Swan Glasses Hop",
 			Flag = "Auto_Swan_Glasses_Hop",
-			Value = _G.Settings.Auto_Swan_Glasses_Hop,
+			Value = _G.Auto_Swan_Glasses_Hop,
 			Callback  = function(value)
 				_G.Auto_Swan_Glasses_Hop = value
-				_G.Settings.Auto_Swan_Glasses_Hop = value
-				SaveSettings()
 				StopTween(_G.Auto_Swan_Glasses_Hop)
 				if value == false then
 					toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
@@ -8544,11 +8396,9 @@ end
 	RainbowHakiSection:AddToggle{
 		Name = "Auto Rainbow Haki\nออโต้หาฮาคิสีรุ้ง",
 		Flag = "Auto_Rainbow_Haki",
-		Value = _G.Settings.Auto_Rainbow_Haki,
+		Value = _G.Auto_Rainbow_Haki,
 		Callback  = function(value)
 			_G.Auto_Rainbow_Haki = value
-			_G.Settings.Auto_Rainbow_Haki = value
-			SaveSettings()
 			StopTween(_G.Auto_Rainbow_Haki)
 			if value == false then
 				toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
@@ -8560,11 +8410,9 @@ end
 	RainbowHakiSection:AddToggle{
 		Name = "Auto Rainbow Haki {Hop}\nออโต้หาฮาคิสีรุ้ง{ย้ายเซิฟ}",
 		Flag = "Auto_Rainbow_Haki_Hop",
-		Value = _G.Settings.Auto_Rainbow_Haki_Hop,
+		Value = _G.Auto_Rainbow_Haki_Hop,
 		Callback  = function(value)
 			_G.Auto_Rainbow_Haki_Hop = value
-			_G.Settings.Auto_Rainbow_Haki_Hop = value
-			SaveSettings()
 			StopTween(_G.Auto_Rainbow_Haki_Hop)
 			if value == false then
 				toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
@@ -8739,11 +8587,9 @@ end
 		MisccSection:AddToggle{
 			Name = "Auto Evo Race [V2]\nออโต้อีโวเผ่าขั้นสอง",
 			Flag = "Auto_Evo_Race_V2",
-			Value = _G.Settings.Auto_Evo_Race_V2,
+			Value = _G.Auto_Evo_Race_V2,
 			Callback  = function(value)
 				_G.Auto_Evo_Race_V2 = value
-				_G.Settings.Auto_Evo_Race_V2 = value
-				SaveSettings()
 				StopTween(_G.Auto_Evo_Race_V2)
 				if value == false then
 					toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
@@ -8825,11 +8671,9 @@ end
 		MisccSection:AddToggle({
 			Name = "Auto Bartilo Quest\nออโต้ทำเควสบาโธโลมีโอ",
 			Flag = "Auto_Bartilo_Quest",
-			Value = _G.Settings.Auto_Bartilo_Quest,
+			Value = _G.Auto_Bartilo_Quest,
 			Callback  = function(value)
 				_G.Auto_Bartilo_Quest = value
-				_G.Settings.Auto_Bartilo_Quest = value
-				SaveSettings()
 				StopTween(_G.Auto_Bartilo_Quest)
 				if value == false then
 					toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
@@ -8988,11 +8832,9 @@ end
 		MisccSection:AddToggle({
 			Name = "Auto Rengoku\nออโต้หาดาบเรนโกคุ",
 			Flag = "Auto_Rengoku",
-			Value = _G.Settings.Auto_Rengoku,
+			Value = _G.Auto_Rengoku,
 			Callback  = function(value)
 				_G.Auto_Rengoku = value
-				_G.Settings.Auto_Rengoku = value
-				SaveSettings()
 				StopTween(_G.Auto_Rengoku)
 				if value == false then
 					toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
@@ -9057,11 +8899,9 @@ end
 		MisccSection:AddToggle({
 			Name = "Auto Buy Legendary Sword\nออโต้ซื้อดาบโซโล",
 			Flag = "Auto_Buy_Legendary_Sword",
-			Value = _G.Settings.Auto_Buy_Legendary_Sword,
+			Value = _G.Auto_Buy_Legendary_Sword,
 			Callback  = function(value)
 				_G.Auto_Buy_Legendary_Sword = value
-				_G.Settings.Auto_Buy_Legendary_Sword = value
-				SaveSettings()
 				StopTween(_G.Auto_Buy_Legendary_Sword)
 				if value == false then
 					toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
@@ -9085,11 +8925,9 @@ end
 		MisccSection:AddToggle{
 			Name = "Auto Buy Enchancement\nออโต้ซื้อสีฮาคิ",
 			Flag = "Auto_Buy_Enchancement",
-			Value = _G.Settings.Auto_Buy_Enchancement,
+			Value = _G.Auto_Buy_Enchancement,
 			Callback  = function(value)
 				_G.Auto_Buy_Enchancement = value
-				_G.Settings.Auto_Buy_Enchancement = value
-				SaveSettings()
 				StopTween(_G.Auto_Buy_Enchancement)
 				if value == false then
 					toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
@@ -9115,11 +8953,9 @@ end
 		MisccSection:AddToggle({
 			Name = "Auto Musketeer Hat\nออโต้หาหมวกทหารเสือ",
 			Flag = "Auto_Musketeer_Hat",
-			Value = _G.Settings.Auto_Musketeer_Hat,
+			Value = _G.Auto_Musketeer_Hat,
 			Callback  = function(value)
 				_G.Auto_Musketeer_Hat = value
-				_G.Settings.Auto_Musketeer_Hat = value
-				SaveSettings()
 				StopTween(_G.Auto_Musketeer_Hat)
 				if value == false then
 					toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
@@ -9227,11 +9063,9 @@ end
 		MisccSection:AddToggle({
 			Name = "Auto Holy Torch\nออโค้จุดโคมไฟ",
 			Flag = "Auto_Holy_Torch",
-			Value = _G.Settings.Auto_Holy_Torch,
+			Value = _G.Auto_Holy_Torch,
 			Callback  = function(value)
 				_G.Auto_Holy_Torch = value
-				_G.Settings.Auto_Holy_Torch = value
-				SaveSettings()
 				StopTween(_G.Auto_Holy_Torch)
 				if value == false then
 					toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
@@ -9263,16 +9097,12 @@ end
 		MisccSection:AddToggle({
 			Name = "Auto Yama (Fully)\nออโต้หาดาบยามะ{เต็มรูปแบบ}",
 			Flag = "Auto_Yama",
-			Value = _G.Settings.Auto_Yama,
+			Value = _G.Auto_Yama,
 			Callback  = function(value)
 				_G.Auto_Yama = value
-				_G.Settings.Auto_Yama = value
-
 				if value == false then
 					_G.Auto_Farm_Level = false
 				end
-
-				SaveSettings()
 				StopTween(_G.Auto_Yama)
 				if value == false then
 					toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
@@ -9362,11 +9192,9 @@ end
 	FightingStyleSection:AddToggle{
 		Name = "Auto Superhuman",
 		Flag = "Auto_Superhuman",
-		Value = _G.Settings.Auto_Superhuman,
+		Value = _G.Auto_Superhuman,
 		Callback  = function(value)
 			_G.Auto_Superhuman = value
-			_G.Settings.Auto_Superhuman = value
-			SaveSettings()
 		end
 	}
 	
@@ -9435,11 +9263,9 @@ end
 	FightingStyleSection:AddToggle({
 		Name = "Auto Fully Superhuman",
 		Flag = "Auto_Fully_Superhuman",
-		Value = _G.Settings.Auto_Fully_Superhuman,
+		Value = _G.Auto_Fully_Superhuman,
 		Callback  = function(value)
 			_G.Auto_Fully_Superhuman = value
-			_G.Settings.Auto_Fully_Superhuman = value
-			SaveSettings()
 			StopTween(_G.Auto_Fully_Superhuman)
 			if value == false then
 				toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
@@ -9649,11 +9475,9 @@ end
 	FightingStyleSection:AddToggle({
 		Name = "Auto Death Step",
 		Flag = "Auto_Death_Step",
-		Value = _G.Settings.Auto_Death_Step,
+		Value = _G.Auto_Death_Step,
 		Callback  = function(value)
 			_G.Auto_Death_Step = value
-			_G.Settings.Auto_Death_Step = value
-			SaveSettings()
 			StopTween(_G.Auto_Death_Step)
 			if value == false then
 				toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
@@ -9687,11 +9511,9 @@ end
 	FightingStyleSection:AddToggle({
 		Name = "Auto Fully Death Step",
 		Flag = "Auto_Fully_Death_Step",
-		Value = _G.Settings.Auto_Fully_Death_Step,
+		Value = _G.Auto_Fully_Death_Step,
 		Callback  = function(value)
 			_G.Auto_Fully_Death_Step = value
-			_G.Settings.Auto_Fully_Death_Step = value
-			SaveSettings()
 			StopTween(_G.Auto_Fully_Death_Step)
 			if value == false then
 				toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
@@ -9754,11 +9576,9 @@ end
 	FightingStyleSection:AddToggle({
 		Name = "Auto Sharkman Karate",
 		Flag = "Auto_SharkMan_Karate",
-		Value = _G.Settings.Auto_SharkMan_Karate,
+		Value = _G.Auto_SharkMan_Karate,
 		Callback  = function(value)
 			_G.Auto_SharkMan_Karate = value
-			_G.Settings.Auto_SharkMan_Karate = value
-			SaveSettings()
 		end
 	})
 	
@@ -9787,11 +9607,9 @@ end
 	FightingStyleSection:AddToggle({
 		Name = "Auto Fully Sharkman Karate",
 		Flag = "Auto_Fully_SharkMan_Karate",
-		Value = _G.Settings.Auto_Fully_SharkMan_Karate,
+		Value = _G.Auto_Fully_SharkMan_Karate,
 		Callback  = function(value)
 			_G.Auto_Fully_SharkMan_Karate = value
-			_G.Settings.Auto_Fully_SharkMan_Karate = value
-			SaveSettings()
 			StopTween(_G.Auto_Fully_SharkMan_Karate)
 			if value == false then
 				toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
@@ -9853,11 +9671,9 @@ end
 	FightingStyleSection:AddToggle({
 		Name = "Auto Electric Claw",
 		Flag = "Auto_Electric_Claw",
-		Value = _G.Settings.Auto_Electric_Claw,
+		Value = _G.Auto_Electric_Claw,
 		Callback  = function(value)
 			_G.Auto_Electric_Claw = value
-			_G.Settings.Auto_Electric_Claw = value
-			SaveSettings()
 		end
 	})
 	
@@ -9886,11 +9702,9 @@ end
 	FightingStyleSection:AddToggle({
 		Name = "Auto Dragon Talon",
 		Flag = "Auto_Dragon_Talon",
-		Value = _G.Settings.Auto_Dragon_Talon,
+		Value = _G.Auto_Dragon_Talon,
 		Callback  = function(value)
 			_G.Auto_Dragon_Talon = value
-			_G.Settings.Auto_Dragon_Talon = value
-			SaveSettings()
 		end
 	})
 	
@@ -9919,11 +9733,9 @@ end
 	FightingStyleSection:AddToggle{
 		Name = "Auto God Human",
 		Flag = "Auto_God_Human",
-		Value = _G.Settings.Auto_God_Human,
+		Value = _G.Auto_God_Human,
 		Callback  = function(value)
 			_G.Auto_God_Human = value
-			_G.Settings.Auto_God_Human = value
-			SaveSettings()
 		end
 	}
 	
@@ -10101,22 +9913,19 @@ end
 		Name = "Select Island เลือกเกาะ",
 		Flag = "Select_Island",
 		List = Island,
-		Value = _G.Settings.Select_Island,
+		Value = _G.Select_Island,
 		Callback = function(value)
 			_G.Select_Island = value
-			_G.Settings.Select_Island = value
-			SaveSettings()
 		end
 	})
 	
 	TeleportWorldSection:AddToggle({
 		Name = "Teleport To Island\nเทเลพอร์ตไปยังเกาะที่เลือก",
 		Flag = "Start_Tween_Island",
-		Value = _G.Settings.Start_Tween_Island,
+		Value = _G.Start_Tween_Island,
 		Callback = function(value)
 			_G.Start_Tween_Island = value    
-			_G.Settings.Start_Tween_Island = value
-			if _G.Start_Tween_Island == true or _G.Settings.Start_Tween_Island then
+			if _G.Start_Tween_Island == true or _G.Start_Tween_Island then
 				repeat wait()
 					if _G.Select_Island == "WindMill" then
 						getgenv().ToTarget(CFrame.new(979.79895019531, 16.516613006592, 1429.0466308594))
@@ -10213,7 +10022,6 @@ end
 					end
 				until not _G.Start_Tween_Island
 			end
-			SaveSettings()
 			StopTween(_G.Start_Tween_Island)
 		end
 	})
@@ -10250,22 +10058,18 @@ end
 		Name = "Select Dungeon เลือกดันเจี้ยน",
 		Flag = "Select_Dungeon",
 		List = Dungeon,
-		Value = _G.Settings.Select_Dungeon,
+		Value = _G.Select_Dungeon,
 		Callback = function(value)
 			_G.Select_Dungeon = value
-			_G.Settings.Select_Dungeon = value
-			SaveSettings()
 		end
 	})
 	
 	MainDungeonSection:AddToggle({
 		Name = "Auto Buy Chip Dungeon\nออโต้ซื้อชิปดันเจี้ยน",
 		Flag = "Auto_Buy_Chips_Dungeon",
-		Value = _G.Settings.Auto_Buy_Chips_Dungeon,
+		Value = _G.Auto_Buy_Chips_Dungeon,
 		Callback = function(value)
 			_G.Auto_Buy_Chips_Dungeon = value    
-			_G.Settings.Auto_Buy_Chips_Dungeon = value
-			SaveSettings()
 		end
 	})
 	
@@ -10288,11 +10092,9 @@ end
 	MainDungeonSection:AddToggle({
 		Name = "Auto Start Dungeon\nออโต้เริ่มดันเจี้ยน",
 		Flag = "Auto_Start_Dungeon",
-		Value = _G.Settings.Auto_Start_Dungeon,
+		Value = _G.Auto_Start_Dungeon,
 		Callback = function(value)
 			_G.Auto_Start_Dungeon = value  
-			_G.Settings.Auto_Start_Dungeon = value
-			SaveSettings()  
 		end
 	})
 	
@@ -10325,11 +10127,9 @@ end
 	MainDungeonSection:AddToggle({
 		Name = "Auto Next Island\nออโต้เกาะต่อไป",
 		Flag = "Auto_Next_Island",
-		Value = _G.Settings.Auto_Next_Island,
+		Value = _G.Auto_Next_Island,
 		Callback = function(value)
 			_G.Auto_Next_Island = value  
-			_G.Settings.Auto_Next_Island = value
-			SaveSettings()  
 			StopTween(_G.Auto_Next_Island)
 			if value == false then
 				toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
@@ -10361,11 +10161,9 @@ end
 	MainDungeonSection:AddToggle({
 		Name = "Kill Aura\nออร่าฆ่ามอน",
 		Flag = "Kill_Aura",
-		Value = _G.Settings.Kill_Aura,
+		Value = _G.Kill_Aura,
 		Callback = function(value)
 			_G.Kill_Aura = value
-			_G.Settings.Kill_Aura = value
-			SaveSettings()      
 		end
 	})
 	
@@ -10390,11 +10188,9 @@ end
 	MainDungeonSection:AddToggle({
 		Name = "Auto Awake Skill\nออโต้ซื้อสกิลตื่น",
 		Flag = "Auto_Awake",
-		Value = _G.Settings.Auto_Awake,
+		Value = _G.Auto_Awake,
 		Callback = function(value)
-			_G.Auto_Awake = value 
-			_G.Settings.Auto_Awake = value
-			SaveSettings()        
+			_G.Auto_Awake = value        
 		end
 	})
 	
@@ -10427,11 +10223,9 @@ end
 		LawDungeonSection:AddToggle({
 			Name = "Auto Buy Law Chip\nออโต้ซื้อชิปลอว์",
 			Flag = "Auto_Buy_Law_Chip",
-			Value = _G.Settings.Auto_Buy_Law_Chip,
+			Value = _G.Auto_Buy_Law_Chip,
 			Callback = function(value)
-				_G.Auto_Buy_Law_Chip = value   
-				_G.Settings.Auto_Buy_Law_Chip = value
-				SaveSettings()       
+				_G.Auto_Buy_Law_Chip = value      
 			end
 		})
 		
@@ -10457,11 +10251,9 @@ end
 		LawDungeonSection:AddToggle({
 			Name = "Auto Start Law Dungeon\nออโต้เริ่มดันเจี้ยนลอว์",
 			Flag = "Auto_Start_Law_Dungeon",
-			Value = _G.Settings.Auto_Start_Law_Dungeon,
+			Value = _G.Auto_Start_Law_Dungeon,
 			Callback = function(value)
 				_G.Auto_Start_Law_Dungeon = value    
-				_G.Settings.Auto_Start_Law_Dungeon = value
-				SaveSettings()
 			end
 		})
 		
@@ -10480,11 +10272,9 @@ end
 		LawDungeonSection:AddToggle({
 			Name = "Auto Kill Law\nออโต้ฆ่าลอว์",
 			Flag = "Auto_Kill_Law",
-			Value = _G.Settings.Auto_Kill_Law,
+			Value = _G.Auto_Kill_Law,
 			Callback = function(value)
-				_G.Auto_Kill_Law = value 
-				_G.Settings.Auto_Kill_Law = value
-				SaveSettings()   
+				_G.Auto_Kill_Law = value  
 			end
 		})
 		
@@ -10535,22 +10325,18 @@ end
 		Name = "Select Devil Fruit เลือกผลไม้ปีศาจ",
 		Flag = "Select_Devil_Fruit",
 		List = Table_DevilFruitSniper,
-		Value = _G.Settings.Select_Devil_Fruit,
+		Value = _G.Select_Devil_Fruit,
 		Callback = function(value)
 			_G.Select_Devil_Fruit = value
-			_G.Settings.Select_Devil_Fruit = value
-			SaveSettings()  
 		end
 	})
 	
 	DevilFruitShopSection:AddToggle({
 		Name = "Auto Buy Devil Fruit\nออโต้ซื้อผลปีศาจ",
 		Flag = "Auto_Buy_Devil_Fruit",
-		Value = _G.Settings.Auto_Buy_Devil_Fruit,
+		Value = _G.Auto_Buy_Devil_Fruit,
 		Callback = function(value)
 			_G.Auto_Buy_Devil_Fruit = value 
-			_G.Settings.Auto_Buy_Devil_Fruit = value
-			SaveSettings()     
 		end
 	})
 	
@@ -10570,11 +10356,9 @@ end
 	DevilFruitShopSection:AddToggle({
 		Name = "Auto Random Fruit\nออโต้ส่มผลปีศาจ",
 		Flag = "Auto_Random_Fruit",
-		Value = _G.Settings.Auto_Random_Fruit,
+		Value = _G.Auto_Random_Fruit,
 		Callback = function(value)
-			_G.Auto_Random_Fruit = value   
-			_G.Settings.Auto_Random_Fruit = value
-			SaveSettings()    
+			_G.Auto_Random_Fruit = value      
 		end
 	})
 	
@@ -10593,11 +10377,9 @@ end
 	DevilFruitShopSection:AddToggle({
 		Name = "Auto Bring Fruit\nออโต้ดึงผลปีศาจ",
 		Flag = "Auto_Bring_Fruit",
-		Value = _G.Settings.Auto_Bring_Fruit,
+		Value = _G.Auto_Bring_Fruit,
 		Callback = function(value)
-			_G.Auto_Bring_Fruit = value
-			_G.Settings.Auto_Bring_Fruit = value
-			SaveSettings()      
+			_G.Auto_Bring_Fruit = value  
 		end
 	})
 	
@@ -10624,11 +10406,9 @@ end
 	DevilFruitShopSection:AddToggle({
 		Name = "Auto Store Fruit\nออโต้เก็บผลปีศาจเข้ากระเป๋า",
 		Flag = "Auto_Store_Fruit",
-		Value = _G.Settings.Auto_Store_Fruit,
+		Value = _G.Auto_Store_Fruit,
 		Callback = function(value)
 			_G.Auto_Store_Fruit = value
-			_G.Settings.Auto_Store_Fruit = value
-			SaveSettings()      
 		end
 	})
 	
@@ -10827,17 +10607,14 @@ RaceV4Section:AddButton({
 RaceV4Section:AddToggle({
 	Name = "Auto Complete Trial\nออโต้ผ่านด่าน",
 	Flag = "Auto_Complete_Trial",
-	Value = _G.Settings.Auto_Complete_Trial,
+	Value = _G.Auto_Complete_Trial,
 	Callback = function(value)
 		_G.Auto_Complete_Trial = value
-		_G.Settings.Auto_Complete_Trial = value
-
 		StopTween(_G.Auto_Complete_Trial)
 		if value == false then
 			toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
 			getgenv().ToTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
 		end
-		SaveSettings()      
 	end
 })
 
@@ -10930,11 +10707,10 @@ end)
 RaceV4Section:AddToggle{
 	Name = "Auto Awakening One Quest\nออโต้ปลุกพลังหนึ่งภารกิจ", 
 	Flag = "Auto Awakening One Quest",
-	Value = _G.Settings.Auto_Awakening_One_Quest,
+	Value = _G.Auto_Awakening_One_Quest,
 	Callback  = function(value)
 		_G.Auto_Awakening_One_Quest = value
-		_G.Settings.Auto_Awakening_One_Quest = value
-		if _G.Settings.Bypass_TP then
+		if _G.Bypass_TP then
 			_G.Bypass_TP = true
 		end
 		StopTween(_G.Auto_Awakening_One_Quest)
@@ -10942,7 +10718,6 @@ RaceV4Section:AddToggle{
 			toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
 			getgenv().ToTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
 		end
-		SaveSettings()
 	end
 }
 
@@ -10954,7 +10729,7 @@ spawn(function()
 		if _G.Auto_Awakening_One_Quest then
 			pcall(function()
 				if game.ReplicatedStorage:FindFirstChild("Cake Prince") or game:GetService("Workspace").Enemies:FindFirstChild("Cake Prince") or  game.ReplicatedStorage:FindFirstChild("Dough King") or game:GetService("Workspace").Enemies:FindFirstChild("Dough King") then   
-					if _G.Settings.Bypass_TP then
+					if _G.Bypass_TP then
 						_G.Bypass_TP = false
 					end
 					if not game:GetService("Workspace").Enemies:FindFirstChild("Cake Prince") then
@@ -11081,12 +10856,10 @@ end)
 Mirage:AddToggle{
 	Name = "TP To Mirage Island\nเทเลพอร์ตไปหาเกาะลับ",
 	Flag = "TP_Mirage_Island", 
-	Value = _G.Settings.Mirage,
+	Value = _G.Mirage,
 	Callback  = function(value)
 		_G.AutoMirageIsland = value 
-		_G.Settings.Mirage = value 
 		_G.Mirage = value
-		SaveSettings()
 	end
 }
 spawn(function()
@@ -11229,11 +11002,9 @@ spawn(function()
 			Mirage:AddToggle{
 				Name = "Teleport To Gear\nเทเลพอร์ตไปหาเกียร์",
 				Flag = "TeleportToGear", 
-				Value = _G.Settings.Auto_Gear,
+				Value = _G.Auto_Gear,
 				Callback  = function(value)
-					_G.Settings.Auto_Gear = value
 					_G.Auto_Gear = value
-					SaveSettings() 
 					task.spawn(function()
 						while task.wait(.01) do
 							if _G.Auto_Gear then
@@ -12095,7 +11866,7 @@ NewEvent:AddToggle({
 		MiscSection:AddToggle{
 			Name = "Auto Click\nออโต้คลิก",
 			Flag = "AutoClick",
-			Value = _G.Settings.No_clip,
+			Value = _G.click,
 			Callback  = function(value)
 				_G.click = value
 			end}
@@ -12112,8 +11883,8 @@ NewEvent:AddToggle({
 
 		MiscSection:AddToggle{
 			Name = "Remove Fog\nลบหมอก",
-			Flag = "No_clip",
-			Value = _G.Settings.No_clip,
+			Flag = "RemoveFog",
+			Value = _G.Remove_Fog,
 			Callback  = function(value)
 				_G.Remove_Fog = value
 			while wait() do
@@ -12129,11 +11900,9 @@ NewEvent:AddToggle({
 	MiscSection:AddToggle{
 		Name = "No Clip\nตัวทะลุ",
 		Flag = "No_clip",
-		Value = _G.Settings.No_clip,
+		Value = _G.No_clip,
 		Callback  = function(value)
 			_G.No_clip = value
-			_G.Settings.No_clip = value
-			SaveSettings()
 		end
 	}
 	
@@ -12221,11 +11990,9 @@ NewEvent:AddToggle({
 	MiscSection:AddToggle{
 		Name = "Infinit Energy\nพลังงานไม่จำกัด",
 		Flag = "Infinit_Energy",
-		Value = _G.Settings.Infinit_Energy,
+		Value = _G.Infinit_Energy,
 		Callback  = function(value)
 			_G.Infinit_Energy = value
-			_G.Settings.Infinit_Energy = value
-			SaveSettings()
 			InfinitEnergy()
 		end
 	}
@@ -12233,11 +12000,9 @@ NewEvent:AddToggle({
 	MiscSection:AddToggle{
 		Name = "Dodge No CoolDown\nเดินชมจันทร์ไม่จำกัด",
 		Flag = "Dodge_No_CoolDown",
-		Value = _G.Settings.Dodge_No_CoolDown,
+		Value = _G.Dodge_No_CoolDown,
 		Callback  = function(value)
 			_G.Dodge_No_CoolDown = value
-			_G.Settings.Dodge_No_CoolDown = value
-			SaveSettings()
 			DodgeNoCoolDown()
 		end
 	}
@@ -12247,8 +12012,6 @@ NewEvent:AddToggle({
 		Name = "Infinit Soru\nโซลไม่จำกัด",
 		Callback = function(Value)
 			_G.Infinit_Inf_Soru = Value
-			_G.Settings.Infinit_Inf_Soru = value
-			SaveSettings()
 		end	
 	})
 	
@@ -12683,7 +12446,7 @@ spawn(function()
 end)
 FakeDamage("Vector Hub")
 Vec("<Color=Green>Vector Hub loaded successfully<Color=/>")
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Hmmm213/1/main/Noti"))()
+	--Vec("<Color=Yellow>:ENG:\n:If the gui doesn't load, use Fluxus in the Executor room:\n:TH:\n:ถ้าหน้าต่างโปรไม่โหลดให้ใช้ Fluxus ที่ผมแจกในห้อง Executor:<Color=/>")
 else
 	game.Players.LocalPlayer:Kick("..")
 end
