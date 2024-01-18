@@ -1,3 +1,68 @@
+if debug.info(1, "l") ~= 1 then
+    game.Players.LocalPlayer:Kick("Safe dude..")
+        while true do end
+else
+    ---handle----
+end
+
+local CheckHttp
+CheckHttp = hookfunction(writefile,appendfile, function(file, content)
+    if(string.find(string.lower(content), 'https://') or string.find(string.lower(content), '//')) then
+        while true do end
+        return
+    end
+    return CheckHttp(file, content)
+end)
+
+hookfunction(print, function(a)
+	if string.find(a:lower(), "http") then
+	while true do end
+	end
+	end)
+pcall(game.HttpGet, game, setmetatable({}, {
+    __tostring = function()
+        print("Kick Player")
+        return ""
+    end,
+}))
+
+local functions = {print,warn,error,writefile,makefolder,rconsoleprint,setclipboard,rconsoleerr,rconsolewarn}
+local hell_nah = {"githubusercontent","Yourgithubusername"}
+for i,v in pairs(functions) do
+    local old
+    old = hookfunction(v, function(...)
+        local content = {...}
+        for i2,v2 in pairs(content) do
+            for i3,v3 in pairs(hell_nah) do
+                if string.find(string.lower(tostring(i2)),string.lower(tostring(v3))) or string.find(string.lower(tostring(v2)),string.lower(tostring(v3))) then
+                    content = " So Let's raise the bar"
+                    while true do end
+                    return
+                end
+            end
+        end
+        return old(...)
+    end)
+end
+
+local function CheckForSpy()
+    local core = game:GetService("CoreGui")
+    local keyword = "spy"
+    
+    for _, v in pairs(core:GetDescendants()) do
+        if v:IsA("TextLabel") or v:IsA("TextButton") or v:IsA("TextBox") then
+            if string.find(string.lower(v.Name), string.lower(keyword)) or string.find(string.lower(v.Text), string.lower(keyword)) then
+                       while true do end
+                end
+            end
+        end
+    end
+
+CheckForSpy()
+
+game:GetService("CoreGui").ChildAdded:Connect(function()
+CheckForSpy()
+end)
 if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7449423635 then 
 	setfpscap(999)
 	_G.Color = Color3.fromRGB(0, 86, 255)
