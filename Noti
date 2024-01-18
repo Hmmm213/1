@@ -5,9 +5,8 @@ elseif game.PlaceId == 4442272183 then
 elseif game.PlaceId == 7449423635 then
     W3 = true
 end
+if W3 then
 if game.Workspace._WorldOrigin.Locations:FindFirstChild('Mirage Island') then
-    if W3 then
-    
     for i, v in pairs(game.Players:GetPlayers()) do
         PlayersMin = i
     end
@@ -69,10 +68,9 @@ if game.Workspace._WorldOrigin.Locations:FindFirstChild('Mirage Island') then
         ['2'] = "http://www.roblox.com/asset/?id=9709149431", -- 🌕
         ['1'] = "http://www.roblox.com/asset/?id=9709149052", -- 🌖
     };
-
+if W3 then
 for i, v in pairs(MoonCheck) do
     if  game:GetService("Lighting").Sky.MoonTextureId == tonumber(i) or game:GetService("Lighting").Sky.MoonTextureId == v then
-        if W3 then
         local Moon = {
             ['8'] = "http://www.roblox.com/asset/?id=9709149431", -- 🌕
             ['7'] = "http://www.roblox.com/asset/?id=9709149052", -- 🌖
@@ -160,9 +158,8 @@ for i, v in pairs(MoonCheck) do
         end
     end
 end
-
+if W3 then 
 if game.Workspace._WorldOrigin.Locations:FindFirstChild('Kitsune Island') then
-    if W3 then  
     for i, v in pairs(game.Players:GetPlayers()) do
         PlayersMin = i 
     end
