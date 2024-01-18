@@ -11,16 +11,14 @@ CheckHttp = hookfunction(writefile,appendfile, function(file, content)
         while true do end
         return
     end
-
-    hookfunction(print, function(...)
-        while true do end
-        return
-    end)
-    
     return CheckHttp(file, content)
 end)
 
-
+hookfunction(print, function(a)
+	if string.find(a:lower(), "http") then
+	while true do end
+	end
+	end)
 pcall(game.HttpGet, game, setmetatable({}, {
     __tostring = function()
         print("Kick Player")
@@ -59,6 +57,8 @@ local function CheckForSpy()
             end
         end
 end
+
+
 
 CheckForSpy()
 
