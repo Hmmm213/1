@@ -2805,42 +2805,45 @@ end
 	
 	function LoadSettings()
 		if readfile and writefile and isfile and isfolder then
-			if not isfolder("VectorHub") then
-				makefolder("VectorHub")
+			if not isfolder("Vector Hub") then
+				makefolder("Vector Hub")
 			end
-			if not isfolder("VectorHub/Blox Fruits/") then
-				makefolder("VectorHub/Blox Fruits/")
+			if not isfolder("Vector Hub/Blox Fruits/") then
+				makefolder("Vector Hub/Blox Fruits/")
 			end
-			if not isfile("VectorHub/Blox Fruits/" .. game.Players.LocalPlayer.Name .. ".json") then
-				writefile("VectorHub/Blox Fruits/" .. game.Players.LocalPlayer.Name .. ".json", game:GetService("HttpService"):JSONEncode(_G.Settings))
+			if not isfile("Vector Hub/Blox Fruits/" .. game.Players.LocalPlayer.Name .. ".json") then
+				writefile("Vector Hub/Blox Fruits/" .. game.Players.LocalPlayer.Name .. ".json",
+					game:GetService("HttpService"):JSONEncode(_G.Settings))
 			else
-				local Decode = game:GetService("HttpService"):JSONDecode(readfile("Vector Hub/Blox Fruits/" .. game.Players.LocalPlayer.Name .. ".json"))
-				for i,v in pairs(Decode) do
+				local Decode = game:GetService("HttpService"):JSONDecode(readfile("Vector Hub/Blox Fruits/" ..
+					game.Players.LocalPlayer.Name .. ".json"))
+				for i, v in pairs(Decode) do
 					_G.Settings[i] = v
 				end
 			end
 		else
-			return print("Status : Undetected Executor")
+			return warn("Status : Undetected Executor")
 		end
 	end
-	
 	function SaveSettings()
 		if readfile and writefile and isfile and isfolder then
 			if not isfile("Vector Hub/Blox Fruits/" .. game.Players.LocalPlayer.Name .. ".json") then
 				LoadSettings()
 			else
-				local Decode = game:GetService("HttpService"):JSONDecode(readfile("Vector Hub/Blox Fruits/" .. game.Players.LocalPlayer.Name .. ".json"))
+				local Decode = game:GetService("HttpService"):JSONDecode(readfile("Vector Hub/Blox Fruits/" ..
+					game.Players.LocalPlayer.Name .. ".json"))
 				local Array = {}
-				for i,v in pairs(_G.Settings) do
+				for i, v in pairs(_G.Settings) do
 					Array[i] = v
 				end
-				writefile("Vector Hub/Blox Fruits/" .. game.Players.LocalPlayer.Name .. ".json", game:GetService("HttpService"):JSONEncode(Array))
+				writefile("Vector Hub/Blox Fruits/" .. game.Players.LocalPlayer.Name .. ".json",
+					game:GetService("HttpService"):JSONEncode(Array))
 			end
 		else
-			return print("Status : Undetected Executor")
+			return warn("Status : Undetected Executor")
 		end
 	end
-
+	
 	LoadSettings()
 	
 	if _G.Settings.Select_Boss == nil then
@@ -5862,7 +5865,11 @@ spawn(function()
 		end
 	end)
 	
-	SettingSection:AddDropdown({Name = "Select Weapon เลือกอาวุธ",Flag = "Select_Weapon",Value = _G.Settings.SelectWeapon,List = Weapon,Callback = function(value)
+	SettingSection:AddDropdown({Name = "Select Weapon เลือกอาวุธ",
+	Flag = "Select_Weapon",
+	Value = _G.Settings.SelectWeapon,
+	List = Weapon,
+	Callback = function(value)
 			SelectWeapon = value
 			_G.Settings.SelectWeapon = value
 			SaveSettings()
