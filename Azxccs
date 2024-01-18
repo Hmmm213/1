@@ -1,4 +1,4 @@
-print(2)
+print(3)
 if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7449423635 then 
 	setfpscap(999)
 	_G.Color = Color3.fromRGB(0, 86, 255)
@@ -12684,7 +12684,7 @@ spawn(function()
 end)
 FakeDamage("Vector Hub")
 Vec("<Color=Green>Vector Hub loaded successfully<Color=/>")
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Hmmm213/1/main/Noti"))()
+	--Vec("<Color=Yellow>:ENG:\n:If the gui doesn't load, use Fluxus in the Executor room:\n:TH:\n:ถ้าหน้าต่างโปรไม่โหลดให้ใช้ Fluxus ที่ผมแจกในห้อง Executor:<Color=/>")
 else
 	game.Players.LocalPlayer:Kick("..")
 end
