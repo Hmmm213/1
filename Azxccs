@@ -1,3 +1,4 @@
+print(1)
 if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7449423635 then 
 	setfpscap(999)
 	_G.Color = Color3.fromRGB(0, 86, 255)
@@ -9,7 +10,6 @@ if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7
 	elseif game.PlaceId == 7449423635 then
 		W3 = true
 	end
-
 	_G.DisDieffect = true
 	if _G.DisDieffect then
 		if game:GetService("ReplicatedStorage").Effect.Container:FindFirstChild("Death") then
@@ -226,16 +226,13 @@ local ImageButton = Instance.new("ImageButton")
 local RobloxButton = Enum.ButtonStyle.RobloxButton
 ScreenGui.Parent = game.CoreGui:WaitForChild("RobloxGui"):WaitForChild("Modules")
 ScreenGui.Name = "dsfwefwfwdfsfasdadaxczcw"
--- กำหนดตำแหน่งและขนาดของ ImageButton
 ImageButton.Parent = ScreenGui
 ImageButton.Position = UDim2.new(0.120833337, 0, 0.0952890813, 0)
 ImageButton.Size = UDim2.new(0, 45, 0, 45)
--- กำหนดค่าอื่นๆ ของ ImageButton
 ImageButton.Draggable = true
 ImageButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 ImageButton.BackgroundTransparency = 1
-ImageButton.Image = "rbxassetid://14645512457" -- กำหนดรูปภาพให้กับ ImageButton 
--- เมื่อคลิกปุ่มใน ImageButton
+ImageButton.Image = "rbxassetid://14645512457" 
 function LoadFunction()    
         ImageButton.MouseEnter:Connect(function()
         TweenService:Create(
@@ -289,7 +286,6 @@ end
     game:GetService("VirtualInputManager"):SendKeyEvent(true,Enum.KeyCode.F1,false,game)
     game:GetService("VirtualInputManager"):SendKeyEvent(false,Enum.KeyCode.F1,false,game)
     end)
-
 	function Vec(text)
 		local Notification = require(game.ReplicatedStorage.Notification)
 		local notification = Notification.new(text)
@@ -304,7 +300,6 @@ end
 		end
 		return false
 	end
-	
 	local ActualTypes = {
 		RoundFrame = "ImageLabel",
 		Shadow = "ImageLabel",
@@ -319,7 +314,6 @@ end
 		Menu = "ImageButton",
 		NavBar = "ImageButton"
 	}
-	
 	local Properties = {
 		RoundFrame = {
 			BackgroundTransparency = 1,
@@ -401,7 +395,6 @@ end
 			AutoButtonColor = false
 		}
 	}
-	
 	local Types = {
 		"RoundFrame",
 		"Shadow",
@@ -1177,11 +1170,6 @@ end
 					Section.Size = UDim2.new(1, 0, 0, UIListLayout_2.AbsoluteContentSize.Y + 35)
 				end
 				)
-	
-	
-			
-		
-	
 				local functionitem = {}
 	
 				function functionitem:AddLabelX(options)
@@ -1457,8 +1445,6 @@ end
 					local default = options.Value
 					local Flag = options.Flag
 					local callback = options.Callback or function() end
-					--Name, default, callback
-	
 					local ToglFunc = {}
 					local Tgo = default or false 
 					local MainToggle = Instance.new("Frame")
@@ -1616,7 +1602,6 @@ end
 					Textbox.ClipsDescendants = true
 					Textbox.Size = UDim2.new(0, 265, 0, 60)
 					Textbox.ZIndex = 16
-					--InputEnded
 					local UIStroke96 = Instance.new("UIStroke")
 					UIStroke96.Thickness = 1.2
 					UIStroke96.Parent = Textbox
@@ -1735,7 +1720,6 @@ end
 				end
 	
 				function functionitem:AddDropdown(options)
-					--text, list, default, callback
 					local text = options.Name
 					local Flag = options.Flag
 					local default = options.Value or ""
@@ -2292,7 +2276,6 @@ end
 				end
 	
 				function functionitem:AddSlider(options)
-					--text,floor,min,max,de,callback
 					local text = options.Name
 					local floor = options.floor or false
 					local Flag = options.Flag
@@ -2751,21 +2734,18 @@ end
 		end
 		return tabs
 	end
-
-	
-
 	------------ // SaveSetting \\ ------------
 	
 	function LoadSettings()
 		if readfile and writefile and isfile and isfolder then
-			if not isfolder("Vector Hub") then
-				makefolder("Vector Hub")
+			if not isfolder("VectorHub") then
+				makefolder("VectorHub")
 			end
-			if not isfolder("Vector Hub/Blox Fruits/") then
-				makefolder("Vector Hub/Blox Fruits/")
+			if not isfolder("VectorHub/Blox Fruits/") then
+				makefolder("VectorHub/Blox Fruits/")
 			end
-			if not isfile("Vector Hub/Blox Fruits/" .. game.Players.LocalPlayer.Name .. ".json") then
-				writefile("Vector Hub/Blox Fruits/" .. game.Players.LocalPlayer.Name .. ".json", game:GetService("HttpService"):JSONEncode(_G.Settings))
+			if not isfile("VectorHub/Blox Fruits/" .. game.Players.LocalPlayer.Name .. ".json") then
+				writefile("VectorHub/Blox Fruits/" .. game.Players.LocalPlayer.Name .. ".json", game:GetService("HttpService"):JSONEncode(_G.Settings))
 			else
 				local Decode = game:GetService("HttpService"):JSONDecode(readfile("Vector Hub/Blox Fruits/" .. game.Players.LocalPlayer.Name .. ".json"))
 				for i,v in pairs(Decode) do
@@ -4022,13 +4002,13 @@ function GetMaterial(matname)
 			end
 			SaveSettings()
 		end})
+		local MyLeveli = game.Players.LocalPlayer.Data.Level.Value
 	MainSection:AddToggle({Name = "Auto Farm Fast Lv.1-300\nออโต้ฟาร์มเลเวลแบบเร็ว Lv.1-300",Flag = "Auto_Farm_Fast",Value = _G.Settings.Auto_Farm_Fast,Callback = function(value)
-			if W1 then
+			if W1 or MyLeveli <= 300 then
 				_G.AutoFarmFast = value
-			else
+			elseif not W1 or MyLeveli >= 301 then
 				_G.AutoFarmFast = false
 			end
-			_G.Settings.Auto_Farm_Fast = value
 			SaveSettings()
 		end})
 
