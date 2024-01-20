@@ -12338,8 +12338,8 @@ MiscSection1:AddTextbox({
 })
 
 MiscSection1:AddButton({
-	Name = "TP Job ID",
-	Callback = function(v)
+	Name = "TP Job ID2",
+	Callback = function()
 		game.ReplicatedStorage['__ServerBrowser']:InvokeServer('teleport',_G.JobID)
 	end
 })
