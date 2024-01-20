@@ -8808,9 +8808,15 @@ page3:Seperator("📊")
 page3:Dropdown("Select Stats",{"Melee","Defense","Sword","Gun","Fruit"},function(value)
     _G.SelectStats = value
 end)
+if _G.Mode == "English" then
 page3:Toggle("Auto Stats", _G.EnabledAutoStats, function(value)
     _G.EnabledAutoStats = value
 end)
+else
+page3:Toggle("ออโต้อัพสแตค", _G.EnabledAutoStats, function(value)
+    _G.EnabledAutoStats = value
+end)
+end
 spawn(function()
     pcall(function()
         while task.wait() do
@@ -8855,10 +8861,15 @@ spawn(function()
         end
     end)
 end)
+if _G.Mode == "English" then
 page3:Toggle("Auto Stat Kaitun", _G.AutoStatsKaitun, function(value)
     _G.AutoStatsKaitun = value
 end)
-
+else
+    page3:Toggle("ออโต้อัพสแตคแบบไก่ตัน", _G.AutoStatsKaitun, function(value)
+        _G.AutoStatsKaitun = value
+    end)
+end
 spawn(function()
     while task.wait() do
         if _G.AutoStatsKaitun then
@@ -17297,14 +17308,9 @@ end
 if game.workspace:FindFirstChild("WaterWalk") then
     game.workspace:FindFirstChild("WaterWalk"):Destroy()
 end
-platform = Instance.new("Part")
-platform.Name = "WaterWalk"
-platform.Size = Vector3.new(math.huge, 1, math.huge)
-platform.Transparency = 1
-platform.Anchored = true
-platform.Parent = game.workspace
+
 if _G.Mode == "English" then
-    page12:Toggle("Walk on Water",true,function(value)
+    page12:Toggle("Walk on Water",fasle,function(value)
         _G.WalkWater = value
     end)
     
@@ -17324,7 +17330,7 @@ page12:Toggle("InfAbility", false, function(value)
     InfAbility()
 end)
 else
-    page12:Toggle("เดินบนน้ำ",true,function(value)
+    page12:Toggle("เดินบนน้ำ",false,function(value)
         _G.WalkWater = value
     end)
     
