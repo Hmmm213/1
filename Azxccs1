@@ -26,7 +26,7 @@ pcall(game.HttpGet, game, setmetatable({}, {
     end,
 }))
 
-local functions = {print,warn,error,setclipboard,rconsoleprint,rconsoleerr,rconsolewarn}
+local functions = {print,warn,error,setclipboard,rconsoleprint,rconsoleerr,rconsolewarn,hookfunction}
 local hell_nah = {"githubusercontent","Yourgithubusername"}
 for i,v in pairs(functions) do
     local old
