@@ -863,13 +863,19 @@ repeat wait() until game.Players.LocalPlayer.Character:WaitForChild("Humanoid").
 end
 
 local tweenfunc = {}
-local Distance = (RealTarget.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position)
-.Magnitude
-if Distance < 1000 then
-Speed = 315
+local Distance = (RealTarget.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).Magnitude
+if Distance < 70 then
+    Speed = 615
+elseif Distance < 250 then
+    Speed = 590
+elseif Distance < 500 then
+    Speed = 580
+elseif Distance < 750 then
+    Speed = 400
 elseif Distance >= 1000 then
-Speed = 300
+    Speed = 350
 end
+
 
 if _G.BypassTP then
 if Distance > 3000 and not AutoFarmMaterial and not _G.AutoGodHumanand and not _G.AutoRaids and not (game.Players.LocalPlayer.Backpack:FindFirstChild("Special Microchip") or game.Players.LocalPlayer.Character:FindFirstChild("Special Microchip") or game.Players.LocalPlayer.Backpack:FindFirstChild("God's Chalice") or game.Players.LocalPlayer.Character:FindFirstChild("God's Chalice") or game.Players.LocalPlayer.Backpack:FindFirstChild("Hallow Essence") or game.Players.LocalPlayer.Character:FindFirstChild("Hallow Essence") or game.Players.LocalPlayer.Character:FindFirstChild("Sweet Chalice") or game.Players.LocalPlayer.Backpack:FindFirstChild("Sweet Chalice")) and not (Name == "Fishman Commando" or Name == "Fishman Warrior") then
@@ -17060,15 +17066,7 @@ function Fly()
         Close.Position =  UDim2.new(0, 0, -1, 27)
     end)
 end
-if _G.Mode == "English" then
-page12:Button("Fly", function()
-    Fly()
-end)
-else
-page12:Button("บิน", function()
-    Fly()
-end)
-end
+
 function FPSBOOSTER()
 setfpscap(9999)
         local decalsyeeted = true
@@ -17109,7 +17107,42 @@ setfpscap(9999)
             end
         end
     end
+    if _G.Mode == "English" then 
+        page12:Toggle("Remove Fog",false,function(value)
+            _G.Remove_Fog = value
+            while wait() do
+                if _G.Remove_Fog then
+                    game:GetService("Lighting").FogEnd = 9e99
+                else
+                    game:GetService("Lighting").FogEnd = 1500
+                end
+            end			
+    end)
+       else
+        page12:Toggle("ลบหมอก",false,function(value)
+        _G.Remove_Fog = value
+        while wait() do
+            if _G.Remove_Fog then
+                game:GetService("Lighting").FogEnd = 9e99
+            else
+                game:GetService("Lighting").FogEnd = 1500
+            end
+        end			
+       end)
+    end
 if _G.Mode == "English" then
+     page12:Button("Fly", function()
+    Fly()
+end)
+    else
+    page12:Button("บิน", function()
+     Fly()
+    end)
+end
+
+
+if _G.Mode == "English" then
+
 page12:Button("FPS Booster", function()
     FPSBOOSTER()
 end)
