@@ -26,7 +26,7 @@ pcall(game.HttpGet, game, setmetatable({}, {
     end,
 }))
 
-local functions = {print,warn,error,setclipboard,rconsoleprint,rconsoleerr,rconsolewarn,hookfunction}
+local functions = {print,warn,error,rconsoleprint,setclipboard,rconsoleerr,rconsolewarn}
 local hell_nah = {"githubusercontent","Yourgithubusername"}
 for i,v in pairs(functions) do
     local old
@@ -596,27 +596,55 @@ task.spawn(function()
         pcall(function()
             if StartMagnet then
                 for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
-                    if not string.find(v.Name,"Boss") and (v.HumanoidRootPart.Position - PosMon.Position).magnitude <= 500 then
+                    if not string.find(v.Name,"Boss") and (v.HumanoidRootPart.Position - PosMon.Position).magnitude <= 300 then
                         if InMyNetWork(v.HumanoidRootPart) then
                             v.HumanoidRootPart.CFrame = PosMon
                             v.Humanoid.JumpPower = 0
                             v.Humanoid.WalkSpeed = 0
-                            v.HumanoidRootPart.Size = Vector3.new(100,100,100)
+                            v.HumanoidRootPart.Size = Vector3.new(60,60,60)
                             v.HumanoidRootPart.Transparency = 1
                             v.HumanoidRootPart.CanCollide = false
                             v.Head.CanCollide = false
-                            --[[if v.Humanoid:FindFirstChild("Animator") then
+                            if v.Humanoid:FindFirstChild("Animator") then
                                 v.Humanoid.Animator:Destroy()
-                            end]]
+                            end
                             v.Humanoid:ChangeState(11)
                             v.Humanoid:ChangeState(14)
+                            sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius",  math.huge)
                         end
                     end
                 end
             end
         end)
     end
-end)			
+end)	
+
+
+task.spawn(function()
+    while task.wait() do
+        pcall(function()
+            if StartMagnet then
+                for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
+                    if not string.find(v.Name,"Boss") and (v.HumanoidRootPart.Position - PosMon.Position).magnitude <= 300 then
+                            v.HumanoidRootPart.CFrame = PosMon
+                            v.Humanoid.JumpPower = 0
+                            v.Humanoid.WalkSpeed = 0
+                            v.HumanoidRootPart.Size = Vector3.new(60,60,60)
+                            v.HumanoidRootPart.Transparency = 1
+                            v.HumanoidRootPart.CanCollide = false
+                            v.Head.CanCollide = false
+                            if v.Humanoid:FindFirstChild("Animator") then
+                                v.Humanoid.Animator:Destroy()
+                            end
+                            v.Humanoid:ChangeState(11)
+                            v.Humanoid:ChangeState(14)
+                            sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius",  math.huge)
+                    end
+                end
+            end
+        end)
+    end
+end)
 function InMyNetWork(object)
     if isnetworkowner then
         return isnetworkowner(object)
@@ -7644,9 +7672,9 @@ end
                     while task.wait() do
                         pcall(function()
                            if game:GetService("ReplicatedStorage"):FindFirstChild("Diablo") or game:GetService("ReplicatedStorage"):FindFirstChild("Deandre") or game:GetService("ReplicatedStorage"):FindFirstChild("Urban") or game:GetService("Workspace").Enemies:FindFirstChild("Diablo") or game:GetService("Workspace").Enemies:FindFirstChild("Deandre") or game:GetService("Workspace").Enemies:FindFirstChild("Urban") then
-                                Elite_Hunter_Status:Set("Status : Spawned")
+                                Elite_Hunter_Status:Set("Status : 🟢") 
                             else
-                                Elite_Hunter_Status:Set("Status : Not Spawned")
+                                Elite_Hunter_Status:Set("Status : 🔴")
                             end
                         end)
                     end
@@ -8510,14 +8538,13 @@ task.spawn(function()
                     pcall(function()
                         --Ryu.activeController.timeToNextAttack = -(math.huge^math.huge^math.huge)
                         Ryu.activeController.timeToNextAttack = 0
-                        Ryu.activeController.hitboxMagnitude = 200
                         Ryu.activeController.active = false
                         Ryu.activeController.timeToNextBlock = 0
                         Ryu.activeController.focusStart = 0
                         Ryu.activeController.increment = 4
                         Ryu.activeController.blocking = false
                         Ryu.activeController.attacking = false
-                        Ryu.activeController.humanoid.AutoRotate = true
+                        Ryu.activeController.humanoid.AutoRotate = false
                         end)
                     end
                 end
@@ -14555,7 +14582,7 @@ pcall(function()
         if game.Workspace._WorldOrigin.Locations:FindFirstChild('Mirage Island') then
             Mirragecheck:Set('🏝️ : Mirage Island is Spawning 🟢')
         else
-            Mirragecheck:Set('🏝️ : Mirage Island Not Found ❌')
+            Mirragecheck:Set('🏝️ : Mirage Island Not Found 🔴')
         end
     end
 end)
@@ -14568,7 +14595,7 @@ pcall(function()
         if game.Workspace._WorldOrigin.Locations:FindFirstChild('Mirage Island') or game.Workspace._WorldOrigin.Locations:FindFirstChild('MirageIsland') then
             Mirragecheck:Set('🏝️ : เกาะลับเกิด 🟢')
         else
-            Mirragecheck:Set('🏝️ : เกาะลับไม่เกิด ❌')
+            Mirragecheck:Set('🏝️ : เกาะลับไม่เกิด 🔴')
         end
     end
 end)
@@ -15815,7 +15842,7 @@ spawn(function()
             if game.Workspace._WorldOrigin.Locations:FindFirstChild('Kitsune Island') then
                 Kitsunecheck:Set('🦊 : Kitsune Island is Spawning 🟢')
             else
-                Kitsunecheck:Set('🦊 : Kitsune Island Not Found ❌')
+                Kitsunecheck:Set('🦊 : Kitsune Island Not Found 🔴')
             end
         end
     end)
@@ -15828,7 +15855,7 @@ end)
                 if game.Workspace._WorldOrigin.Locations:FindFirstChild('Kitsune Island') then
                     Kitsunecheck:Set('🦊 : เกาะจิ้งจอกเกิด 🟢')
                 else
-                    Kitsunecheck:Set('🦊 : เกาะจิ้งจอกไม่เกิด ❌')
+                    Kitsunecheck:Set('🦊 : เกาะจิ้งจอกไม่เกิด 🔴')
                 end
             end
         end)
