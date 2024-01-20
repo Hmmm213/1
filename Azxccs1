@@ -12326,29 +12326,25 @@ MiscSection1:AddButton({
 		end
 	end
 })
-local TPS = game:GetService("TeleportService")
-local LP = game:GetService("Players").LocalPlayer
+
 local Job = game.JobId
-
-
+	
 MiscSection1:AddTextbox({
-	Name = "JobID",
+	Name = "Job ID1",
 	Value = "",
-	Callback = function(x)
-		JobId_Textbox = x
+	Callback = function(v)
+		_G.JobID = v
 	end
 })
 
 MiscSection1:AddButton({
-	Name = "TP Jop ID\nเทเลพอร์ตไปที่ JobID",
-	Callback = function()
-		TPS:TeleportToPlaceInstance(game.PlaceId, JobId_Textbox, LP)
-		game:GetService("StarterGui"):SetCore("SendNotification",{Title = "VectorHub",Text = "Success JobID Please Wait",Icon = "rbxassetid://14645512457",Duration = 3}) 
+	Name = "TP Job ID",
+	Callback = function(v)
+		game.ReplicatedStorage['__ServerBrowser']:InvokeServer('teleport',_G.JobID)
 	end
 })
-
 MiscSection1:AddButton({
-	Name = "Copy Jop ID\nก็อปปี้ JobID",
+	Name = "Copy Job ID\nก็อปปี้ JobID",
 	Callback = function(v)
 		setclipboard(Job)
 	end
