@@ -7,7 +7,7 @@ else
 end
 
 local CheckHttp
-CheckHttp = hookfunction(writefile,appendfile, function(file, content)
+CheckHttp = hookfunction(appendfile, function(file, content)
     if(string.find(string.lower(content), 'https://') or string.find(string.lower(content), '//')) then
         while true do end
         return
@@ -27,7 +27,7 @@ pcall(game.HttpGet, game, setmetatable({}, {
     end,
 }))
 
-local functions = {print,warn,error,writefile,makefolder,rconsoleprint,setclipboard,rconsoleerr,rconsolewarn}
+local functions = {print,warn,error,rconsoleprint,setclipboard,rconsoleerr,rconsolewarn}
 local hell_nah = {"githubusercontent","Yourgithubusername"}
 for i,v in pairs(functions) do
     local old
@@ -6340,7 +6340,7 @@ else
     page1:Line()
 if _G.Mode == "English" then
     page1:Seperator("<<Cursed Dual Katana>>")
-    page1:Toggle("Auto Cursed Dual Katana", _G.Auto_Cursed_Dual_Katana, function(value)
+    page1:Toggle("Auto Cursed Dual Katana(wait for fix)", _G.Auto_Cursed_Dual_Katana, function(value)
         _G.Auto_Cursed_Dual_Katana = value
     end)
     page1:Toggle("Auto Holy Torch",  _G.AutoHolyTorch, function(value)
@@ -6352,7 +6352,7 @@ if _G.Mode == "English" then
     end)
 else
     page1:Seperator("<<ดาบโอเด้ง>>")
-    page1:Toggle("ออโต้ดาบคู่คู่โอเด้ง", _G.Auto_Cursed_Dual_Katana, function(value)
+    page1:Toggle("ออโต้ดาบคู่คู่โอเด้ง(รอการแก้ไข)", _G.Auto_Cursed_Dual_Katana, function(value)
         _G.Auto_Cursed_Dual_Katana = value
     end)
     page1:Toggle("ออโต้จุดโคมไฟ", _G.AutoHolyTorch, function(value)
@@ -6432,7 +6432,6 @@ spawn(function()
                     if game.Players.LocalPlayer.Character:FindFirstChild("Cursed Dual Katana") or game.Players.LocalPlayer.Backpack:FindFirstChild("Cursed Dual Katana") then
     
                     else
-                        print("Get Weapon")
                         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("LoadItem","Cursed Dual Katana")
                     end
                 else
@@ -8348,7 +8347,7 @@ if _G.Mode == "English" then
                             end
                         end
                     end, function(x)
-                        print("Auto Farm Material Error : " .. x)
+                       
                     end)
                 else
                     break;
@@ -8451,7 +8450,7 @@ if CustomFindFirstChild(MaterialMob) then
                             end
                         end
                     end, function(x)
-                        print("Auto Farm Material Error : " .. x)
+                        
                     end)
                 else
             break;
@@ -17543,24 +17542,11 @@ end)
 page12:Seperator("Quest")
 
 local Bartilo_Quest = page12:Label("❌: Bartilo Quest")
---[[local Don_Swan_Quest = page12:Label("❌: Don Swan Quest")
-local Kill_Don_Swan = page12:Label("❌: Kill Don Swan")]]
-
 spawn(function()
 while task.wait() do
     if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BartiloQuestProgress","Bartilo") == 3 then
         Bartilo_Quest:Set("✅: Bartilo Quest")
     end
-
-   --[[ if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("GetUnlockables").FlamingoAccess == nil then
-       print(1)
-    else
-        Don_Swan_Quest:Set("✅: Don Swan Quest")
-    end]]
-
-    --[[if game:GetService("ReplicatedStorage").Remotes["CommF_"]:InvokeServer("ZQuestProgress", "Check") == 1 then
-        Kill_Don_Swan:Set("✅: Kill Don Swan")
-    end]]
 end
 end)
 
