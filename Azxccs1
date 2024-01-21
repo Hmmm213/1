@@ -1957,16 +1957,19 @@ end
 
 page1:Line()
 if _G.Mode == "English" then
-page1:Toggle("Auto Farm Chest", _G.Settings.AutoFarmChest, function(value)
-    _G.AutoFarmChest = value
-    _G.Settings.AutoFarmChest = value
-        SaveSettings()
+page1:Toggle("Auto Farm Chest {Tween}", _G.Settings.AutoFarmChest, function(value)
+_G.AutoFarmChest = value
+_G.Settings.AutoFarmChest = value
+ SaveSettings()
 if value == false then
     toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
 end
 end)
+page1:Toggle("Auto Farm Chest {Fast:Risk}", _G.ChestBypass, function(value)
+_G.ChestBypass = value
+end)
 else
-page1:Toggle("ฟาร์มกล่อง", _G.Settings.AutoFarmChest, function(value)
+page1:Toggle("ฟาร์มกล่อง {บินเก็บ}", _G.Settings.AutoFarmChest, function(value)
 _G.AutoFarmChest = value
 _G.Settings.AutoFarmChest = value
 SaveSettings()
@@ -1974,25 +1977,66 @@ if value == false then
     toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
 end
 end)
+page1:Toggle("ออโต้ฟาร์มกล่อง {เร็ว:เสี่ยง}", _G.ChestBypass, function(value)
+    _G.ChestBypass = value
+    end)
 end
 
-spawn(function() 
-while wait() do 
-    if _G.Settings.AutoFarmChest or _G.AutoFarmChest then
-        for _, child in ipairs(Workspace:GetChildren()) do
-            if string.find(child.Name, "Chest") then
-                toTarget(child.CFrame * CFrame.new(0,0,0))
-                if (child.CFrame.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 1 then
-                    UnEquipWeapon(_G.SelectWeapon)
-                else
-                    EquipWeapon(_G.SelectWeapon)
-                end
+_G.MagnitudeAdd = 0
+spawn(function()
+    while wait() do 
+        if _G.AutoFarmChest then
+            for i,v in pairs(game:GetService("Workspace"):GetChildren()) do 
+                if v.Name:find("Chest") then
+                    if game:GetService("Workspace"):FindFirstChild(v.Name) then
+                        if (v.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 5000+_G.MagnitudeAdd then
+                            repeat wait()
+                                if game:GetService("Workspace"):FindFirstChild(v.Name) then
+                                    EquipWeapon(_G.SelectWeapon)
+                                    toTarget(v.CFrame)
+                                    UnEquipWeapon(_G.SelectWeapon)
+                                end
+                            until _G.AutoFarmChest == false or not v.Parent
+                            toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
+                            _G.MagnitudeAdd = _G.MagnitudeAdd+3000
+                            break
+                        end
+                    end
                 end
             end
         end
     end
 end)
 
+spawn(function()
+    while wait() do
+    if _G.ChestBypass then
+             pcall(function()
+                    for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
+                            if string.find(v.Name, "Chest") then
+                                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
+                                wait(.15)
+                            end
+                        end
+                        for _,v in pairs(game:GetService("Workspace"):GetDescendants()) do
+                        if string.find(v.Name, "Chest") and v:IsA("TouchTransmitter") then
+                        firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 0) --0 is touch
+                        wait()
+                        firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 1) -- 1 is untouch
+                        end
+                    end
+                end)
+            end
+        end
+    end)
+    
+spawn(function()
+    while task.wait() do
+        if _G.ChestBypass then
+            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(ohString1, ohString2)
+         end
+    end
+end)
 
 
 -- [World 1 Main Page]
@@ -3165,10 +3209,7 @@ task.spawn(
 
 
 if _G.Mode == "English" then
-    page1:Toggle(
-        "Auto Ectoplasm",
-        _G.AutoEctoplasm,
-        function(value)
+    page1:Toggle("Auto Ectoplasm",_G.AutoEctoplasm,function(value)
             _G.AutoEctoplasm = value
             if value == false then
                 task.wait()
@@ -3178,10 +3219,7 @@ if _G.Mode == "English" then
         end
     )
 else
-    page1:Toggle(
-        "ออโต้เอ็กโตพลาสซึม",
-        _G.AutoEctoplasm,
-        function(value)
+    page1:Toggle("ออโต้เอ็กโตพลาสซึม",_G.AutoEctoplasm,function(value)
             _G.AutoEctoplasm = value
             if value == false then
                 task.wait()
@@ -5231,7 +5269,6 @@ end
                         end
                     end)
                 end 
-                
                         spawn(function()
                             while wait() do
                                 pcall(function()
@@ -5914,7 +5951,8 @@ if CustomFindFirstChild(MaterialMob) then
         end
     end)
 end)   
-end                                                                             
+end              
+Vec("<Color=Yellow>Vector Hub loaded successfully<Color=/>")                                                               
 page2:Seperator("⚙️")
 if _G.Mode == "English"then
 local FastAttackType = {
@@ -15181,5 +15219,4 @@ spawn(function()
 		setfflag("AbuseReportScreenshotPercentage", "0")
 	end
 end)
-Vec("<Color=Yellow>Vector Hub loaded successfully<Color=/>")
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Hmmm213/1/main/Noti"))()
