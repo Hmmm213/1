@@ -1530,7 +1530,7 @@ function CheckOldQuest(LevelFarm)
              end
         end
     end
-    
+
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 --noclip
 function Noclip()
@@ -2989,11 +2989,11 @@ function CheckNotifyComplete()
     return false
     end
     _G.DoubleQuest = true
-local questData = QuestCheck()
+
 local NoLoopDuplicate = false
 local SubQuest = false
-local oldmob = questData[6]
-local oldcheckquest = questData[3]
+local oldmob = QuestCheck()[6]
+local oldcheckquest = QuestCheck()[3]
 task.spawn(function()
     while wait() do
         pcall(function()
@@ -3007,8 +3007,8 @@ task.spawn(function()
                         end
                     else
                         
-                        oldmob = questData[6]
-                        oldcheckquest = questData[3]
+                        oldmob = QuestCheck()[6]
+                        oldcheckquest = QuestCheck()[3]
                         spawn(function()
                             pcall(function()
                                 if NoLoopDuplicate == false then
@@ -14041,7 +14041,24 @@ if _G.Mode == "English" then
                    StopBoatF()
                 end
             end)
-
+  page14:Toggle("Increaseboatspeed",_G.increaseboatspeed, function(value)
+            _G.increaseboatspeed = value
+                local vehicleSeats = {}
+                for i, v in pairs(game.Workspace.Boats:GetDescendants()) do
+                    if v:IsA("VehicleSeat") then
+                        table.insert(vehicleSeats, v)
+                    end
+                end
+                if _G.increaseboatspeed then
+                    for _, v in pairs(vehicleSeats) do
+                        v.MaxSpeed = 350
+                    end
+                else
+                    for _, v in pairs(vehicleSeats) do
+                        v.MaxSpeed = 100
+                    end
+                end
+        end)
     page14:Toggle("AutoSail",_G.AutoSail, function(value)
         _G.AutoSail = value
         while _G.AutoSail do task.wait(0)
