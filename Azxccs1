@@ -165,6 +165,13 @@ _G.Settings = {
     AutoNextPlace = false
 }
 
+function Vec(text)
+    local Notification = require(game.ReplicatedStorage.Notification)
+    local notification = Notification.new(text)
+    notification.Duration = 10
+    notification:Display()
+end
+
 --[[Perpid]]
 local Ui = game.CoreGui:WaitForChild("RobloxGui"):WaitForChild("Modules"):FindFirstChild("dsfwefwfwdfsfasdadaxczcw")
 if Ui then
@@ -602,172 +609,63 @@ local function QuestCheck()
     }
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
---noclip
-function Noclip()
-game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0, 0, 0) -- ทำให้ตัวละครลอยตัว
-for _, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
-if v:IsA("BasePart") and v.CanCollide == true then
-    v.CanCollide = false -- ทำให้วัตถุทั้งหมดในตัวละครทะลุผ่านกำแพง
-end
-end
-end
-Noclip()
--- [Body Gyro]
-task.spawn(function()
-game:GetService("RunService").Stepped:Connect(function()
-pcall(function()
-    --[World 1]
-    if _G.AutoFarm or _G.TptoKisuneIsland or _G.TptoEventIsland or _G.TptoKisuneshrine or _G.ColletEmber or _G.NeareastFarm or _G.Mirage or _G.AutoEvent or _G.Auto_Gear or _G.TeleportGear or _G.AutoNewWorld or _G.TweenToFruitSpawn or
-    _G.AutoSaber or _G.AutoPole or  _G.TeleportIsland or
-    --[World 2]
-    _G.AutoThirdSea or _G.AutoBartiloQuest or _G.Auto_Evo_Race_V2  or _G.AutoDarkCoat or _G.AutoSwanGlasses or
-    _G.AutoTrueTriplKatana or _G.AutoRengoku or _G.AutoEctoplasm or
-    _G.AutoFactory or
-    --[World 3]
-    _G.AutoRainbowHaki or _G.AutoEliteHunter or _G.AutoCastleRaid or _G.AutoMusketeerHat or _G.AutoBuddySword or
-    _G.AutoFarmBone or _G.SpawnBossHallow or _G.AutoKenHakiV2 or _G.AutoObservation  or _G.AutoGodHuman or _G.AutoCavander or
-    _G.AutoCursedDualKatana or _G.AutoYamaSword or _G.AutoTushitaSword or _G.AutoSerpentBowor or
-    _G.AutoDarkDagger or _G.AutoCakePrince or _G.AutoDoughV2 or _G.AutoHolyTorch or
-    _G.AutoBuddySwords or _G.AutoFarmBossHallow or MobAura or YamaQuest2 or YamaQuest1 or Auto_Cursed_Dual_Katana or
-    Tushita_Quest2 or Tushita_Quest1 or
-    _G.TeleporttoSeaBeast  or _G.TPTOBOAT or 
-    Tushita_Quest2 or Tushita_Quest1 or AutoFarmMaterial or teleporttop or _G.AutoFarmChest or
-    --[Boss]
-    _G.AutoAllBoss or _G.AutoBossSelect or _G.AutoFarmBoss  or
-    --[Mastery]
-    _G.AutoFarmFruitMastery or _G.AutoFarmGunMastery or _G.FarmMasterySwordList or
-    --[Raids]
-    _G.AutoRaids or _G.AutoNextPlace
-    then
-        if not game.Players.LocalPlayer.Character:FindFirstChild("Highlight") then
-            local Highlight = Instance.new("Highlight")
-            Highlight.FillColor = Color3.new(0.266667, 0.854902, 0.921569)
-            Highlight.OutlineColor = Color3.new(0.266667, 0.854902, 0.921569)
-            Highlight.Parent = game.Players.LocalPlayer.Character;
-            end
-        if syn then
-            setfflag("HumanoidParallelRemoveNoPhysics", "False")
-            setfflag("HumanoidParallelRemoveNoPhysicsNoSimulate2", "False")
-            game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
-        else
-            if game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
-                if not game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyVelocity1") then
-                    local BodyVelocity = Instance.new("BodyVelocity")
-                    BodyVelocity.Name = "BodyVelocity1"
-                    BodyVelocity.Parent = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-                    BodyVelocity.MaxForce = Vector3.new(10000, 10000, 10000)
-                    BodyVelocity.Velocity = Vector3.new(0, 0, 0)
+spawn(function()
+    pcall(function() --velocity
+        game:GetService("RunService").Stepped:Connect(function()
+            if _G.AutoFarm or _G.TptoKisuneIsland or _G.TptoEventIsland or _G.TptoKisuneshrine or _G.ColletEmber or _G.NeareastFarm or _G.Mirage or _G.AutoEvent or _G.Auto_Gear or _G.TeleportGear or _G.AutoNewWorld or _G.TweenToFruitSpawn or
+            _G.AutoSaber or _G.AutoPole or  _G.TeleportIsland or
+            --[World 2]
+            _G.AutoThirdSea or _G.AutoBartiloQuest or _G.Auto_Evo_Race_V2  or _G.AutoDarkCoat or _G.AutoSwanGlasses or
+            _G.AutoTrueTriplKatana or _G.AutoRengoku or _G.AutoEctoplasm or
+            _G.AutoFactory or
+            --[World 3]
+            _G.AutoRainbowHaki or _G.AutoEliteHunter or _G.AutoCastleRaid or _G.AutoMusketeerHat or _G.AutoBuddySword or
+            _G.AutoFarmBone or _G.SpawnBossHallow or _G.AutoKenHakiV2 or _G.AutoObservation  or _G.AutoGodHuman or _G.AutoCavander or
+            _G.AutoCursedDualKatana or _G.AutoYamaSword or _G.AutoTushitaSword or _G.AutoSerpentBowor or
+            _G.AutoDarkDagger or _G.AutoCakePrince or _G.AutoDoughV2 or _G.AutoHolyTorch or
+            _G.AutoBuddySwords or _G.AutoFarmBossHallow or MobAura or YamaQuest2 or YamaQuest1 or Auto_Cursed_Dual_Katana or
+            Tushita_Quest2 or Tushita_Quest1 or
+            _G.TeleporttoSeaBeast  or _G.TPTOBOAT or 
+            Tushita_Quest2 or Tushita_Quest1 or AutoFarmMaterial or teleporttop or _G.AutoFarmChest or
+            --[Boss]
+            _G.AutoAllBoss or _G.AutoBossSelect or _G.AutoFarmBoss  or
+            --[Mastery]
+            _G.AutoFarmFruitMastery or _G.AutoFarmGunMastery or _G.FarmMasterySwordList or
+            --[Raids]
+            _G.AutoRaids or _G.AutoNextPlace
+            then
+                if not game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip") then
+                    local Noclip = Instance.new("BodyVelocity")
+                    Noclip.Name = "BodyClip"
+                    Noclip.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
+                    Noclip.MaxForce = Vector3.new(100000,100000,100000)
+                    Noclip.Velocity = Vector3.new(0,0,0)
+                end
+                if not game.Players.LocalPlayer.Character:FindFirstChild("Highlight") then
+                    local Highlight = Instance.new("Highlight")
+                    Highlight.FillColor = Color3.new(0, 86, 255)
+                    Highlight.OutlineColor = Color3.new(0,86,255)
+                    Highlight.Parent = game.Players.LocalPlayer.Character
+                end
+            else	
+                if game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip") then
+                    game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip"):Destroy()
+                end
+                if game.Players.LocalPlayer.Character:FindFirstChild('Highlight') then
+                    game.Players.LocalPlayer.Character:FindFirstChild('Highlight'):Destroy()
                 end
             end
-            for _, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
-                if v:IsA("BasePart") then
-                    v.CanCollide = false
-                end
-            end
-        end
-    else
-        game.Players.LocalPlayer.Character:FindFirstChild("Highlight"):Destroy();
-        if game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyVelocity1") then
-            game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyVelocity1"):Destroy();
-        end
-    end
-end)
-end)
+        end)
+    end)
 end)
 
 spawn(function()
-while wait(.1) do
-pcall(function()
-    if _G.AutoFarm or _G.TptoKisuneIsland or _G.TptoEventIsland or _G.TptoKisuneshrine or _G.ColletEmber or _G.NeareastFarm or _G.Mirage or _G.AutoEvent or _G.Auto_Gear or _G.TeleportGear or _G.AutoNewWorld or _G.TweenToFruitSpawn or
-    _G.AutoSaber or _G.AutoPole or  _G.TeleportIsland or
-    --[World 2]
-    _G.AutoThirdSea or _G.AutoBartiloQuest or _G.Auto_Evo_Race_V2 or _G.AutoDarkCoat or _G.AutoSwanGlasses or
-    _G.AutoTrueTriplKatana or _G.AutoRengoku or _G.AutoEctoplasm or
-    _G.AutoFactory or
-    --[World 3]
-    _G.AutoRainbowHaki or _G.AutoEliteHunter or _G.AutoCastleRaid or _G.AutoMusketeerHat or _G.AutoBuddySword or
-    _G.AutoFarmBone or _G.SpawnBossHallow or _G.AutoKenHakiV2 or _G.AutoObservation  or _G.AutoGodHuman or _G.AutoCavander or
-    _G.AutoCursedDualKatana or _G.AutoYamaSword or _G.AutoTushitaSword or _G.AutoSerpentBowor or
-    _G.AutoDarkDagger or _G.AutoCakePrince or _G.AutoDoughV2 or _G.AutoHolyTorch or
-    _G.AutoBuddySwords or _G.AutoFarmBossHallow or MobAura or YamaQuest2 or YamaQuest1 or Auto_Cursed_Dual_Katana or
-    Tushita_Quest2 or Tushita_Quest1 or
-    _G.TeleporttoSeaBeast  or
-    _G.TPTOBOAT or 
-    Tushita_Quest2 or Tushita_Quest1 or AutoFarmMaterial or teleporttop or _G.AutoFarmChest or
-    --[Boss]
-    _G.AutoAllBoss or _G.AutoBossSelect or _G.AutoFarmBoss  or
-    --[Mastery]
-    _G.AutoFarmFruitMastery or _G.AutoFarmGunMastery or _G.FarmMasterySwordList or
-    --[Raids]
-    _G.AutoRaids or _G.AutoNextPlace
-then
-        PIO = false
-        if not game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyVelocity") then
-            local L_1 = Instance.new("BodyVelocity")
-            L_1.Name = "BodyGyrozz"
-            L_1.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
-            L_1.MaxForce = Vector3.new(1000000000, 1000000000, 1000000000)
-            L_1.Velocity = Vector3.new(0, 0, 0)
-        end
-    elseif PIO == false then
-        for i, v in pairs(game.Players.LocalPlayer.Character.HumanoidRootPart:GetChildren()) do
-            if v.Name == "BodyGyrozz" then
-                v:Destroy()
-                PIO = true
-            end
-        end
-    end
-end)
-end
-end)
-
-spawn(function()
-game:GetService("RunService").Stepped:Connect(function()
-    if _G.AutoFarm or _G.TptoKisuneIsland or _G.TptoEventIsland or _G.TptoKisuneshrine or _G.ColletEmber or _G.NeareastFarm or _G.Mirage or _G.AutoEvent or _G.Auto_Gear or _G.TeleportGear or _G.AutoNewWorld or _G.TweenToFruitSpawn or
-_G.AutoSaber or _G.AutoPole or  _G.TeleportIsland or
---[World 2]
-_G.AutoThirdSea or _G.AutoBartiloQuest or _G.Auto_Evo_Race_V2 or _G.AutoDarkCoat or _G.AutoSwanGlasses or
-_G.AutoTrueTriplKatana or _G.AutoRengoku or _G.AutoEctoplasm or
-_G.AutoFactory or
---[World 3]
-_G.AutoRainbowHaki or _G.AutoEliteHunter or _G.AutoCastleRaid or _G.AutoMusketeerHat or _G.AutoBuddySword or
-_G.AutoFarmBone or _G.SpawnBossHallow or _G.AutoKenHakiV2 or _G.AutoObservation  or _G.AutoGodHuman or _G.AutoCavander or
-_G.AutoCursedDualKatana or _G.AutoYamaSword or _G.AutoTushitaSword or _G.AutoSerpentBowor or
-_G.AutoDarkDagger or _G.AutoCakePrince or _G.AutoDoughV2 or _G.AutoHolyTorch or
-_G.AutoBuddySwords or _G.AutoFarmBossHallow or MobAura or YamaQuest2 or YamaQuest1 or Auto_Cursed_Dual_Katana or
-Tushita_Quest2 or Tushita_Quest1 or
-_G.TeleporttoSeaBeast   or
-_G.TPTOBOAT or 
-Tushita_Quest2 or Tushita_Quest1 or AutoFarmMaterial or teleporttop or _G.AutoFarmChest or
---[Boss]
-_G.AutoAllBoss or _G.AutoBossSelect or _G.AutoFarmBoss  or
---[Mastery]
-_G.AutoFarmFruitMastery or _G.AutoFarmGunMastery or _G.FarmMasterySwordList or
---[Raids]
-_G.AutoRaids or _G.AutoNextPlace
-then
-    for _, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
-        if v:IsA("BasePart") then
-            v.CanCollide = false
-        end
-    end
-end
-end)
-end)
-
-function changestate()
-game.Workspace["Part"].CFrame = CFrame.new(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.X,
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Y - 3.92,
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Z)
-end
-
-spawn(function()
-while task.wait() do
-pcall(function()
-    if _G.AutoFarm or _G.TptoKisuneIsland or _G.TptoEventIsland or _G.TptoKisuneshrine or _G.ColletEmber or _G.NeareastFarm or _G.Mirage or _G.AutoEvent or _G.Auto_Gear or _G.TeleportGear or _G.AutoNewWorld or _G.TweenToFruitSpawn or
+    pcall(function()
+        game:GetService("RunService").Stepped:Connect(function()
+            if _G.AutoFarm or _G.TptoKisuneIsland or _G.TptoEventIsland or _G.TptoKisuneshrine or _G.ColletEmber or _G.NeareastFarm or _G.Mirage or _G.AutoEvent or _G.Auto_Gear or _G.TeleportGear or _G.AutoNewWorld or _G.TweenToFruitSpawn or
         _G.AutoSaber or _G.AutoPole or  _G.TeleportIsland or
         --[World 2]
-        _G.AutoThirdSea or _G.AutoBartiloQuest or _G.Auto_Evo_Race_V2 or _G.AutoDarkCoat or _G.AutoSwanGlasses or
+        _G.AutoThirdSea or _G.AutoBartiloQuest or _G.Auto_Evo_Race_V2  or _G.AutoDarkCoat or _G.AutoSwanGlasses or
         _G.AutoTrueTriplKatana or _G.AutoRengoku or _G.AutoEctoplasm or
         _G.AutoFactory or
         --[World 3]
@@ -777,8 +675,7 @@ pcall(function()
         _G.AutoDarkDagger or _G.AutoCakePrince or _G.AutoDoughV2 or _G.AutoHolyTorch or
         _G.AutoBuddySwords or _G.AutoFarmBossHallow or MobAura or YamaQuest2 or YamaQuest1 or Auto_Cursed_Dual_Katana or
         Tushita_Quest2 or Tushita_Quest1 or
-        _G.TeleporttoSeaBeast  or
-        _G.TPTOBOAT or 
+        _G.TeleporttoSeaBeast  or _G.TPTOBOAT or 
         Tushita_Quest2 or Tushita_Quest1 or AutoFarmMaterial or teleporttop or _G.AutoFarmChest or
         --[Boss]
         _G.AutoAllBoss or _G.AutoBossSelect or _G.AutoFarmBoss  or
@@ -786,19 +683,15 @@ pcall(function()
         _G.AutoFarmFruitMastery or _G.AutoFarmGunMastery or _G.FarmMasterySwordList or
         --[Raids]
         _G.AutoRaids or _G.AutoNextPlace
-then
-        if not game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip") then
-            local Noclip = Instance.new("BodyVelocity")
-            Noclip.Name = "BodyClip"
-            Noclip.Parent = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-            Noclip.MaxForce = Vector3.new(100000, 100000, 100000)
-            Noclip.Velocity = Vector3.new(0, 0, 0)
-        end
-    else
-        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip"):Destroy()
-    end
-end)
-end
+        then
+                for _, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+                    if v:IsA("BasePart") then
+                        v.CanCollide = false    
+                    end
+                end
+            end
+        end)
+    end)
 end)
 
 -- [BringMon]
@@ -999,19 +892,10 @@ if ac and ac.equipped then
         debug.setupvalue(ac.attack, 6, AcAttack9)
         debug.setupvalue(ac.attack, 4, AcAttack7)
         debug.setupvalue(ac.attack, 7, AcAttack10)
-        --[[for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
-            local Highlight = Instance.new("Highlight")
-            Highlight.FillColor = Color3.new(255, 0, 0)
-            Highlight.OutlineColor = Color3.new(255, 0, 0)
-            Highlight.Parent = v
-        end]]
-        for k, v in pairs(ac.animator.anims.basic) do
-            v:Play(0.01, 0.01, 0.01)
-        end
         if game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool") and ac.blades and ac.blades[1] then
             game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("weaponChange",tostring(CurrentWeapon()))
             game.ReplicatedStorage.Remotes.Validator:FireServer(math.floor(NumberAc12 / 1099511627776 * 16777215), AcAttack10)
-            game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("hit", bladehit, 2, "") 
+            game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("hit", bladehit, Ryuen, "") 
         end
     end
 end
@@ -5452,15 +5336,6 @@ if _G.Mode == "English" then
 								if game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(_Item) or game:GetService("Players").LocalPlayer.Character:FindFirstChild(_Item) then
 									EquipWeapon(_Item)
 									toTarget(workspace.Map["Haunted Castle"].Summoner.Detection.CFrame)
-								elseif GetQuestBone.Visible == false and _G.AccetpQuestBone then
-								if GetQuestBone.Visible == false and _G.AccetpQuestBone then
-									CFrameQuestBone = CFrame.new(-9513, 172, 6079)
-									if (CFrameQuestBone.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 20 then
-										game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest", "HauntedQuest2", 2)
-								else
-									toTarget(CFrameQuestBone)
-								end
-							elseif GetQuestBone.Visible == true or not _G.AccetpQuestBone then
 									for _, _Mon in next, BoneTabel["Mon"] do
 										if game:GetService("Workspace").Enemies:FindFirstChild("Reborn Skeleton") or game:GetService("Workspace").Enemies:FindFirstChild("Living Zombie") or game:GetService("Workspace").Enemies:FindFirstChild("Demonic Soul") or game:GetService("Workspace").Enemies:FindFirstChild("Posessed Mummy") then
 											for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
@@ -5494,34 +5369,30 @@ if _G.Mode == "English" then
 													SetCFarmeBone =  SetCFarmeBone + 1
 													wait(0.5)
 												end
-											    else
-                                                    if AttackRandomType_MonCFrame == 1 then
-                                                        toTarget(GetBone_CFrame_Mon()[1] * CFrame.new(0,30,20))
-                                                    elseif AttackRandomType_MonCFrame == 2 then
-                                                        toTarget(GetBone_CFrame_Mon()[1] * CFrame.new(0,30,-20))
-                                                    elseif AttackRandomType_MonCFrame == 3 then
-                                                        toTarget(GetBone_CFrame_Mon()[1] * CFrame.new(20,30,0))
-                                                    elseif AttackRandomType_MonCFrame == 4 then
-                                                        toTarget(GetBone_CFrame_Mon()[1] * CFrame.new(0,30,-20))
-                                                    elseif AttackRandomType_MonCFrame == 5 then
-                                                        toTarget(GetBone_CFrame_Mon()[1] * CFrame.new(-20,30,0))
-                                                    else
-                                                        toTarget(GetBone_CFrame_Mon()[1] * CFrame.new(0,30,20))
-                                                    end
-                                                end
-                                            end
-                                        end
-                                    end
-                                end
-                            end
-                        end
+											else
+												if AttackRandomType_MonCFrame == 1 then
+													toTarget(GetBone_CFrame_Mon()[1] * CFrame.new(0,30,20))
+												elseif AttackRandomType_MonCFrame == 2 then
+													toTarget(GetBone_CFrame_Mon()[1] * CFrame.new(0,30,-20))
+												elseif AttackRandomType_MonCFrame == 3 then
+													toTarget(GetBone_CFrame_Mon()[1] * CFrame.new(20,30,0))
+												elseif AttackRandomType_MonCFrame == 4 then
+													toTarget(GetBone_CFrame_Mon()[1] * CFrame.new(0,30,-20))
+												elseif AttackRandomType_MonCFrame == 5 then
+													toTarget(GetBone_CFrame_Mon()[1] * CFrame.new(-20,30,0))
+												else
+													toTarget(GetBone_CFrame_Mon()[1] * CFrame.new(0,30,20))
+												end
+											end
+										end
+									end
+								end
+							end
+						end
 					end
 				end)
 			end
 		end)
-    end)
-    page1:Toggle("Accepting Quests During Bone Farms", _G.AccetpQuestBone, function(value)
-        _G.AccetpQuestBone = value
     end)
     page1:Toggle("Auto Random Bone", _G.AutoRandomBone, function(value)
         _G.AutoRandomBone = value
@@ -5576,15 +5447,6 @@ else
 								if game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(_Item) or game:GetService("Players").LocalPlayer.Character:FindFirstChild(_Item) then
 									EquipWeapon(_Item)
 									toTarget(workspace.Map["Haunted Castle"].Summoner.Detection.CFrame)
-								elseif GetQuestBone.Visible == false and _G.AccetpQuestBone then
-								if GetQuestBone.Visible == false and _G.AccetpQuestBone then
-									CFrameQuestBone = CFrame.new(-9513, 172, 6079)
-									if (CFrameQuestBone.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 20 then
-										game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest", "HauntedQuest2", 2)
-								else
-									toTarget(CFrameQuestBone)
-								end
-							elseif GetQuestBone.Visible == true or not _G.AccetpQuestBone then
 									for _, _Mon in next, BoneTabel["Mon"] do
 										if game:GetService("Workspace").Enemies:FindFirstChild("Reborn Skeleton") or game:GetService("Workspace").Enemies:FindFirstChild("Living Zombie") or game:GetService("Workspace").Enemies:FindFirstChild("Demonic Soul") or game:GetService("Workspace").Enemies:FindFirstChild("Posessed Mummy") then
 											for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
@@ -5618,34 +5480,30 @@ else
 													SetCFarmeBone =  SetCFarmeBone + 1
 													wait(0.5)
 												end
-											    else
-                                                    if AttackRandomType_MonCFrame == 1 then
-                                                        toTarget(GetBone_CFrame_Mon()[1] * CFrame.new(0,30,20))
-                                                    elseif AttackRandomType_MonCFrame == 2 then
-                                                        toTarget(GetBone_CFrame_Mon()[1] * CFrame.new(0,30,-20))
-                                                    elseif AttackRandomType_MonCFrame == 3 then
-                                                        toTarget(GetBone_CFrame_Mon()[1] * CFrame.new(20,30,0))
-                                                    elseif AttackRandomType_MonCFrame == 4 then
-                                                        toTarget(GetBone_CFrame_Mon()[1] * CFrame.new(0,30,-20))
-                                                    elseif AttackRandomType_MonCFrame == 5 then
-                                                        toTarget(GetBone_CFrame_Mon()[1] * CFrame.new(-20,30,0))
-                                                    else
-                                                        toTarget(GetBone_CFrame_Mon()[1] * CFrame.new(0,30,20))
-                                                    end
-                                                end
-                                            end
-                                        end
-                                    end
-                                end
-                            end
-                        end
+											else
+												if AttackRandomType_MonCFrame == 1 then
+													toTarget(GetBone_CFrame_Mon()[1] * CFrame.new(0,30,20))
+												elseif AttackRandomType_MonCFrame == 2 then
+													toTarget(GetBone_CFrame_Mon()[1] * CFrame.new(0,30,-20))
+												elseif AttackRandomType_MonCFrame == 3 then
+													toTarget(GetBone_CFrame_Mon()[1] * CFrame.new(20,30,0))
+												elseif AttackRandomType_MonCFrame == 4 then
+													toTarget(GetBone_CFrame_Mon()[1] * CFrame.new(0,30,-20))
+												elseif AttackRandomType_MonCFrame == 5 then
+													toTarget(GetBone_CFrame_Mon()[1] * CFrame.new(-20,30,0))
+												else
+													toTarget(GetBone_CFrame_Mon()[1] * CFrame.new(0,30,20))
+												end
+											end
+										end
+									end
+								end
+							end
+						end
 					end
 				end)
 			end
 		end)
-    end)
-    page1:Toggle("รับเควสระหว่างฟาร์มกระดูก", _G.AccetpQuestBone, function(value)
-        _G.AccetpQuestBone = value
     end)
     page1:Toggle("ออโต้สุ่มกระดูก", _G.AutoRandomBone, function(value)
         _G.AutoRandomBone = value
@@ -5659,24 +5517,6 @@ spawn(function()
         end
     end
 end)
-        if _G.Mode == "English" then
-            page1:Toggle("SpawnBoss Soul Reaper", _G.SpawnBossHallow, function(value)
-                _G.SpawnBossHallow = value
-                toTarget(CFrame.new(-8933.0537109375, 146.79251098632812, 6063.353515625))
-                if value == false then
-                    toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
-                end
-            end)
-        else
-            page1:Toggle("เสกบอส Soul Reaper", _G.SpawnBossHallow, function(value)
-                _G.SpawnBossHallow = value
-                toTarget(CFrame.new(-8933.0537109375, 146.79251098632812, 6063.353515625))
-                if value == false then
-                    toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
-                end
-
-            end)
-        end
         if _G.Mode == "English" then
             page1:Seperator("<<DOUGH>>")  
             local MobKilledLabel = page1:Label("NeedkillMon : Loading...", true)
@@ -9700,16 +9540,12 @@ spawn(function()
     end
 )
 if _G.Mode == "English" then
-page1:Toggle("Auto Farm Observation Hop",_G.Settings.AutoObservation_Hop,function(value)
+page1:Toggle("Auto Farm Observation Hop",_G.AutoObservation_Hop,function(value)
         _G.AutoObservation_Hop = value
-        _G.Settings.AutoObservation_Hop = value
-        SaveSettings() 
     end)
 else
-    page1:Toggle("ออโด้ฟาร์มฮาคิสังเกต&ย้ายเซิฟ",_G.Settings.AutoObservation_Hop,function(value)
+    page1:Toggle("ออโด้ฟาร์มฮาคิสังเกต&ย้ายเซิฟ",_G.AutoObservation_Hop,function(value)
         _G.AutoObservation_Hop = value
-        _G.Settings.AutoObservation_Hop = value
-        SaveSettings() 
     end)
 end
 spawn(function()
@@ -12330,13 +12166,13 @@ end
 end)
 else
 _G.Mode = "Thai"
-page9:Toggle("ออโต้หาเกาะลับแบบย้ายเซิฟ", _G.Settings.MirageHop, function(value)
+page9:Toggle("ออโต้หาเกาะลับแบบย้ายเซิฟ", _G.MirageHop, function(value)
     _G.MirageHop = value
-    _G.Settings.MirageHop = value
     _G.AutoMirageIslandHop = value
 game:GetService("StarterGui"):SetCore("SendNotification",{Title = "VectorHub",Text = "กำลังย้ายเซิฟ...",Icon = "rbxassetid://14645512457",Duration = 5})
 if _G.MirageHop and not game.Workspace._WorldOrigin.Locations:FindFirstChild('Mirage Island') then
-    while _G.MirageHop do wait(10)
+    while _G.MirageHop do wait()
+        wait(10)
     repeat task.wait() until game:IsLoaded() and game.Players.LocalPlayer
     local HttpService, TPService = game:GetService "HttpService", game:GetService "TeleportService";
     local OtherServers = HttpService:JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/" ..
@@ -12521,6 +12357,19 @@ end
 
 
 if _G.Mode == "English" then
+page9:Toggle("Teleport To Advanced Fruit Dealer", _G.TPNPCDF, function(value)
+    spawn(function()
+        pcall(function()
+        while wait() do
+            if _G.TPNPCDF then
+                if game:GetService("Workspace").NPCs:FindFirstChild("Advanced Fruit Dealer") then
+                    toTarget(CFrame.new(game:GetService("Workspace").NPCs["Advanced Fruit Dealer"].HumanoidRootPart.Position))
+                    end
+                end
+            end
+        end)
+    end)
+end)
 page9:Toggle("Teleport To Gear", _G.Settings.Auto_Gear, function(value)
     _G.Auto_Gear = value
     _G.Settings.Auto_Gear = value
@@ -12541,6 +12390,19 @@ page9:Toggle("Teleport To Gear", _G.Settings.Auto_Gear, function(value)
     end)
 end)
 else
+page9:Toggle("เทเลพอร์ตไปหาคนขายผลเกาะลับ", _G.TPNPCDF, function(value)
+        spawn(function()
+            pcall(function()
+            while wait() do
+                if _G.TPNPCDF then
+                    if game:GetService("Workspace").NPCs:FindFirstChild("Advanced Fruit Dealer") then
+                        toTarget(CFrame.new(game:GetService("Workspace").NPCs["Advanced Fruit Dealer"].HumanoidRootPart.Position))
+                        end
+                    end
+                end
+            end)
+        end)
+    end)
 page9:Toggle("เทเลพอร์ตไปหาเกียร์", _G.Settings.Auto_Gear, function(value)
     _G.Auto_Gear = value
     _G.Settings.Auto_Gear = value
@@ -13695,14 +13557,12 @@ while task.wait() do
 end
 end)
 end)
-page11:Toggle("ออโต้ซื้อดาบโซโล&ย้ายเซิฟเวอร์", _G.Settings.AutoBuyLegendarySwordHop, function(value)
+page11:Toggle("ออโต้ซื้อดาบโซโล&ย้ายเซิฟเวอร์", _G.AutoBuyLegendarySwordHop, function(value)
     _G.AutoBuyLegendarySwordHop = value
-    _G.Settings.AutoBuyLegendarySwordHop = value
-SaveSettings()
 spawn(function()
             while task.wait() do
                 pcall(function()
-                    if _G.Settings.AutoBuyLegendarySwordHop then
+                    if _G.AutoBuyLegendarySwordHop then
                         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("LegendarySwordDealer", "1")
                         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("LegendarySwordDealer", "2")
                         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("LegendarySwordDealer", "3")
@@ -13777,14 +13637,12 @@ else
                 end
             end)
         end)
-        page11:Toggle("ออโต้ซื้อสีฮาคิ&ย้ายเซิฟเวอร์", _G.Settings.AutoBuyEnchanmentHakiHop, function(value)
+        page11:Toggle("ออโต้ซื้อสีฮาคิ&ย้ายเซิฟเวอร์", _G.AutoBuyEnchanmentHakiHop, function(value)
             _G.AutoBuyEnchanmentHakiHop = value
-            _G.Settings.AutoBuyEnchanmentHakiHop = value
-    SaveSettings()
             task.spawn(function()
                 while task.wait() do
                     pcall(function()
-                        if _G.Settings.AutoBuyEnchanmentHakiHop then
+                        if _G.AutoBuyEnchanmentHakiHop then
                             local args = {
                                 [1] = "ColorsDealer",
                                 [2] = "2"
@@ -15382,11 +15240,5 @@ spawn(function()
 		setfflag("AbuseReportScreenshotPercentage", "0")
 	end
 end)
-function Vec(text)
-    local Notification = require(game.ReplicatedStorage.Notification)
-    local notification = Notification.new(text)
-    notification.Duration = 10
-    notification:Display()
-end
-Vec("<Color=Green>Vector Hub loaded successfully<Color=/>")
+Vec("<Color=Yellow>Vector Hub loaded successfully<Color=/>")
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Hmmm213/1/main/Noti"))()
